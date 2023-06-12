@@ -8,6 +8,11 @@ class PlantsController < ApplicationController
 
   # GET /plants/1 or /plants/1.json
   def show
+    @plant = Plant.find_by(id: params[:id])
+    
+    if @plant.nil?
+      redirect_to plants_path, alert: "La plante avec l'ID spécifié n'existe pas."
+    end    
   end
 
   # GET /plants/new

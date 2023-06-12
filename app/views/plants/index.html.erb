@@ -19,7 +19,7 @@
         <p class="text-gray-600"><%= plant.mature_width %> W</p>
       </div>
       <div class="mt-4">
-        <a href="#" class="text-indigo-500 font-semibold">View Details</a>
+        <%= link_to "View Details", plant_path(plant), class: "text-indigo-500 font-semibold" %>
       </div>
     </div>
   <% end %>
