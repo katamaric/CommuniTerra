@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :plant_moods
   resources :deliveries
   resources :listings
   resources :allotment_users
@@ -19,5 +20,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  resources :owned_plants do
+    resources :log_books
+  end
+  
   root to: "static_pages#home"
 end
