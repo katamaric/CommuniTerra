@@ -1,0 +1,41 @@
+<div class="max-w-3xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4"><%= @plant.common_name %></h1>
+  <p class="text-gray-600 mb-6"><%= @plant.latin_name %></p>
+  
+  <div class="grid grid-cols-2 gap-8">
+    <div>
+      <h2 class="text-xl font-bold mb-2">Description</h2>
+      <p><%= @plant.description %></p>
+    </div>
+    
+    <div>
+      <h2 class="text-xl font-bold mb-2">Informations</h2>
+      <ul>
+        <li><span class="font-semibold">Specie:</span> <%= @plant.specie %></li>
+        <li><span class="font-semibold">Vegetation:</span> <%= @plant.vegetation %></li>
+        <li><span class="font-semibold">Foliage:</span> <%= @plant.foliage %></li>
+        <li><span class="font-semibold">Mature Height:</span> <%= @plant.mature_height %></li>
+        <li><span class="font-semibold">Mature Width:</span> <%= @plant.mature_width %></li>
+        <li><span class="font-semibold">Maintenance Level:</span> <%= @plant.maintenance_level %></li>
+        <li><span class="font-semibold">Water Requirement Level:</span> <%= @plant.water_requirement_level %></li>
+        <li><span class="font-semibold">Cold Resistance Level:</span> <%= @plant.cold_resistance_level %></li>
+        <li><span class="font-semibold">Density:</span> <%= @plant.density %></li>
+        <li><span class="font-semibold">Exposure Level:</span> <%= @plant.exposure_level %></li>
+        <li><span class="font-semibold">Flowering:</span> <%= @plant.flowering %></li>
+        <li><span class="font-semibold">Planting:</span> <%= @plant.planting %></li>
+        <li><span class="font-semibold">Harvest:</span> <%= @plant.harvest %></li>
+        <li><span class="font-semibold">Pruning:</span> <%= @plant.pruning %></li>
+      </ul>
+    </div>
+  </div>
+  
+  <% if current_user && current_user.admin? %>
+    <%= link_to "Edit Plant", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+  <% else %>
+    <% if current_user %>
+      <% unless current_user.owned_plants.exists?(plant_id: @plant.id) %>
+        <%= button_to "Add to My Plants", owned_plants_path, method: :post, params: { plant_id: @plant.id }, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

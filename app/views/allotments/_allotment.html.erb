@@ -1,0 +1,32 @@
+<div id="<%= dom_id allotment %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Size:</strong>
+    <%= allotment.size %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= allotment.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= allotment.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Start date:</strong>
+    <%= allotment.start_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">End date:</strong>
+    <%= allotment.end_date %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this allotment", allotment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this allotment', edit_allotment_path(allotment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

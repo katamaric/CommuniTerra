@@ -1,0 +1,122 @@
+<%= form_with(model: plant) do |form| %>
+  <% if plant.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(plant.errors.count, "error") %> prohibited this plant from being saved:</h2>
+
+      <ul>
+        <% plant.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :common_name, style: "display: block" %>
+    <%= form.text_area :common_name %>
+  </div>
+
+  <div>
+    <%= form.label :latin_name, style: "display: block" %>
+    <%= form.text_area :latin_name %>
+  </div>
+
+  <div>
+    <%= form.label :specie, style: "display: block" %>
+    <%= form.text_area :specie %>
+  </div>
+
+  <div>
+    <%= form.label :vegetation, style: "display: block" %>
+    <%= form.text_area :vegetation %>
+  </div>
+
+  <div>
+    <%= form.label :foliage, style: "display: block" %>
+    <%= form.text_area :foliage %>
+  </div>
+
+  <div>
+    <%= form.label :mature_height, style: "display: block" %>
+    <%= form.text_area :mature_height %>
+  </div>
+
+  <div>
+    <%= form.label :mature_width, style: "display: block" %>
+    <%= form.text_area :mature_width %>
+  </div>
+
+  <div>
+    <%= form.label :maintenance_level, style: "display: block" %>
+    <%= form.text_area :maintenance_level %>
+  </div>
+
+  <div>
+    <%= form.label :maintenance_description, style: "display: block" %>
+    <%= form.text_area :maintenance_description %>
+  </div>
+
+  <div>
+    <%= form.label :water_requirement_level, style: "display: block" %>
+    <%= form.text_area :water_requirement_level %>
+  </div>
+
+  <div>
+    <%= form.label :water_requirement_description, style: "display: block" %>
+    <%= form.text_area :water_requirement_description %>
+  </div>
+
+  <div>
+    <%= form.label :cold_resistance_level, style: "display: block" %>
+    <%= form.text_area :cold_resistance_level %>
+  </div>
+
+  <div>
+    <%= form.label :cold_resistance_description, style: "display: block" %>
+    <%= form.text_area :cold_resistance_description %>
+  </div>
+
+  <div>
+    <%= form.label :density, style: "display: block" %>
+    <%= form.text_area :density %>
+  </div>
+
+  <div>
+    <%= form.label :exposure_level, style: "display: block" %>
+    <%= form.text_area :exposure_level %>
+  </div>
+
+  <div>
+    <%= form.label :exposure_description, style: "display: block" %>
+    <%= form.text_area :exposure_description %>
+  </div>
+
+  <div>
+    <%= form.label :flowering, style: "display: block" %>
+    <%= form.text_area :flowering %>
+  </div>
+
+  <div>
+    <%= form.label :planting, style: "display: block" %>
+    <%= form.text_area :planting %>
+  </div>
+
+  <div>
+    <%= form.label :harvest, style: "display: block" %>
+    <%= form.text_area :harvest %>
+  </div>
+
+  <div>
+    <%= form.label :pruning, style: "display: block" %>
+    <%= form.text_area :pruning %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

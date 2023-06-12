@@ -1,0 +1,2 @@
+json.extract! plant, :id, :description, :common_name, :latin_name, :specie, :vegetation, :foliage, :mature_height, :mature_width, :maintenance_level, :maintenance_description, :water_requirement_level, :water_requirement_description, :cold_resistance_level, :cold_resistance_description, :density, :exposure_level, :exposure_description, :flowering, :planting, :harvest, :pruning, :created_at, :updated_at
+json.url plant_url(plant, format: :json)
