@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owned_plant: one
+  entry_date: 2023-06-13 01:47:04
+  title: MyString
+  content: MyText
+  mood: one
+
+two:
+  owned_plant: two
+  entry_date: 2023-06-13 01:47:04
+  title: MyString
+  content: MyText
+  mood: two
