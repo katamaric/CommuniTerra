@@ -10,9 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_141125) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_220539) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "kept_plants", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "owned_plant_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owned_plant_id"], name: "index_kept_plants_on_owned_plant_id"
+    t.index ["user_id"], name: "index_kept_plants_on_user_id"
+  end
+
+  create_table "owned_plants", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "plant_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_id"], name: "index_owned_plants_on_plant_id"
+    t.index ["user_id"], name: "index_owned_plants_on_user_id"
+  end
+
+  create_table "plant_sittings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "kept_plant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kept_plant_id"], name: "index_plant_sittings_on_kept_plant_id"
+    t.index ["user_id"], name: "index_plant_sittings_on_user_id"
+  end
+
+  create_table "plants", force: :cascade do |t|
+    t.text "description"
+    t.text "common_name"
+    t.text "latin_name"
+    t.text "specie"
+    t.text "vegetation"
+    t.text "foliage"
+    t.text "mature_height"
+    t.text "mature_width"
+    t.text "maintenance_level"
+    t.text "maintenance_description"
+    t.text "water_requirement_level"
+    t.text "water_requirement_description"
+    t.text "cold_resistance_level"
+    t.text "cold_resistance_description"
+    t.text "density"
+    t.text "exposure_level"
+    t.text "exposure_description"
+    t.text "flowering"
+    t.text "planting"
+    t.text "harvest"
+    t.text "pruning"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -23,6 +78,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_141125) do
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "kept_plants", "owned_plants"
+  add_foreign_key "kept_plants", "users"
+  add_foreign_key "owned_plants", "plants"
+  add_foreign_key "owned_plants", "users"
+  add_foreign_key "plant_sittings", "kept_plants"
+  add_foreign_key "plant_sittings", "users"
 end

@@ -1,0 +1,32 @@
+<%= form_with(model: kept_plant) do |form| %>
+  <% if kept_plant.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(kept_plant.errors.count, "error") %> prohibited this kept_plant from being saved:</h2>
+
+      <ul>
+        <% kept_plant.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :owned_plant_id, style: "display: block" %>
+    <%= form.text_field :owned_plant_id %>
+  </div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
