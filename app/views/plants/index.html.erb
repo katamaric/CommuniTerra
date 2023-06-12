@@ -1,14 +1,26 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Plants</h1>
-
-<div id="plants">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
   <% @plants.each do |plant| %>
-    <%= render plant %>
-    <p>
-      <%= link_to "Show this plant", plant %>
-    </p>
+    <div class="bg-white rounded-lg shadow-md p-4">
+      <h2 class="text-xl font-bold mb-2"><%= plant.common_name %></h2>
+      <p class="text-gray-600 mb-4"><%= plant.latin_name %></p>
+      <div class="flex flex-wrap mb-2">
+        <span class="inline-flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <%= plant.vegetation %>
+        </span>
+        <span class="inline-flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <%= plant.exposure_level %>
+        </span>
+        <span class="inline-flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <%= plant.water_requirement_level %>
+        </span>
+      </div>
+      <div class="flex justify-between">
+        <p class="text-gray-600"><%= plant.mature_height %> H</p>
+        <p class="text-gray-600"><%= plant.mature_width %> W</p>
+      </div>
+      <div class="mt-4">
+        <a href="#" class="text-indigo-500 font-semibold">View Details</a>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New plant", new_plant_path %>
