@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :deliveries
+  resources :listings
+  resources :allotment_users
+  resources :allotments
   devise_for :users
   resources :plant_sittings
   resources :kept_plants

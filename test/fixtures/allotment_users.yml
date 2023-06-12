@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admin: one
+  member: one
+  allotment: one
+
+two:
+  admin: two
+  member: two
+  allotment: two

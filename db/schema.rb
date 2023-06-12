@@ -10,9 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_220539) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_223958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "allotment_users", force: :cascade do |t|
+    t.bigint "admin_id", null: false
+    t.bigint "member_id", null: false
+    t.bigint "allotment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_allotment_users_on_admin_id"
+    t.index ["allotment_id"], name: "index_allotment_users_on_allotment_id"
+    t.index ["member_id"], name: "index_allotment_users_on_member_id"
+  end
+
+  create_table "allotments", force: :cascade do |t|
+    t.integer "size"
+    t.string "name"
+    t.text "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string "delivery_type"
+    t.float "delivery_price"
+    t.string "delivery_provider"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "kept_plants", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -22,6 +51,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_220539) do
     t.datetime "updated_at", null: false
     t.index ["owned_plant_id"], name: "index_kept_plants_on_owned_plant_id"
     t.index ["user_id"], name: "index_kept_plants_on_user_id"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "listing_title"
+    t.string "item_name"
+    t.text "description"
+    t.float "price"
+    t.integer "quantity"
+    t.bigint "delivery_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["delivery_id"], name: "index_listings_on_delivery_id"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "owned_plants", force: :cascade do |t|
@@ -87,8 +130,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_220539) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "allotment_users", "allotments"
+  add_foreign_key "allotment_users", "users", column: "admin_id"
+  add_foreign_key "allotment_users", "users", column: "member_id"
   add_foreign_key "kept_plants", "owned_plants"
   add_foreign_key "kept_plants", "users"
+  add_foreign_key "listings", "deliveries"
+  add_foreign_key "listings", "users"
   add_foreign_key "owned_plants", "plants"
   add_foreign_key "owned_plants", "users"
   add_foreign_key "plant_sittings", "kept_plants"

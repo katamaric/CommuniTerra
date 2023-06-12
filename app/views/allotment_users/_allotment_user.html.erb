@@ -1,0 +1,22 @@
+<div id="<%= dom_id allotment_user %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Admin:</strong>
+    <%= allotment_user.admin_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Member:</strong>
+    <%= allotment_user.member_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Allotment:</strong>
+    <%= allotment_user.allotment_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this allotment user", allotment_user, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this allotment user', edit_allotment_user_path(allotment_user), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

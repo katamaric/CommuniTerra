@@ -1,0 +1,2 @@
+module AllotmentUsersHelper
+end
