@@ -1,24 +1,57 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# CommuniTerra
 
-Things you may want to cover:
+CommuniTerra is a website for plant care and plant sharing/sitting. 
+## Features
 
-* Ruby version
+- Log in/sign up
+- Add plants you own to your dashboard
+- Responsive website
 
-* System dependencies
+## Features to come
 
-* Configuration
+- Toggle light/dark mode
+- Marketplace
+- Alltoments/Community gardens in your area
 
-* Database creation
+## Authors
 
-* Database initialization
+- [@katamaric](https://www.github.com/katamaric)
+- [@artem-ine](https://www.github.com/artem-ine)
+- [@Hug-alito](https://github.com/Hug-alito)
+- [@SasidaTR](https://github.com/SasidaTR)
+- [@c-boris](https://github.com/c-boris)
 
-* How to run the test suite
+## Run locally
 
-* Services (job queues, cache servers, search engines, etc.)
+Assuming you have postgres installed (if not, figure that out)!
 
-* Deployment instructions
+Do a standard bundle install
 
-* ...
+```bash
+  bundle install
+```
+
+Initialize the migrations (if necessary, create a database first with rails db:create)
+
+```bash
+  rails db:migrate
+```
+
+Run the database file to fill it in
+
+```bash
+  rails runner app/services/gdb.rb
+```
+
+Start your server. 
+
+```bash
+  rails server
+```
+
+You should be able to access it via your standard friendly http://localhost:3000/.
+
+## Visit the website
+
+Painstakingly deployed to Heroku, you can browse CommuniTerra at this adress: https://communiterra.herokuapp.com/
