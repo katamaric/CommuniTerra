@@ -3,8 +3,8 @@ class PlantsController < ApplicationController
 
   # GET /plants or /plants.json
   def index
-    @plants = Plant.all
-  end
+    @plants = Plant.paginate(page: params[:page], per_page: 20)
+  end  
 
   # GET /plants/1 or /plants/1.json
   def show
