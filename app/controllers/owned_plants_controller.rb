@@ -3,7 +3,7 @@ class OwnedPlantsController < ApplicationController
 
   # GET /owned_plants or /owned_plants.json
   def index
-    @owned_plants = OwnedPlant.all
+    @owned_plants = current_user.owned_plants
   end
 
   # GET /owned_plants/1 or /owned_plants/1.json
