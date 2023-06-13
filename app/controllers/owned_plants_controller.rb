@@ -23,7 +23,7 @@
 
   # POST /owned_plants or /owned_plants.json
   def create
-    @owned_plant = OwnedPlant.new(owned_plant.params)
+    @owned_plant = OwnedPlant.new(owned_plant_params)
 
     respond_to do |format|
       if @owned_plant.save
