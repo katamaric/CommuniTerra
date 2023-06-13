@@ -17,6 +17,9 @@
     </div>
     <ul class="flex items-center space-x-8">
       <% if user_signed_in? %>
+        <% if current_user.admin == true %>
+          <li><%= link_to "Admin", admin_root_path, class: "dropdown-item" %></li>
+        <% end %>
         <li><%= link_to "Mon jardin secret", dashboard_index_path, aria: { label: "Mon jardin secret" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
         <li><%= link_to "Se déconnecter", destroy_user_session_path, aria: { label: "Se déconnecter" }, method: :delete, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
       <% else %>
