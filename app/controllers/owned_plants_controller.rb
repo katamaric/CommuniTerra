@@ -9,10 +9,6 @@
     # GET /owned_plants/1 or /owned_plants/1.json
     def show
       @owned_plant = current_user.owned_plants.find_by(plant_id: params[:id])
-    
-      if @owned_plant.nil?
-        @owned_plant = current_user.owned_plants.find_by(owned_plant_id: params[:id])
-      end
     end
     
 
@@ -27,7 +23,7 @@
 
   # POST /owned_plants or /owned_plants.json
   def create
-    @owned_plant = OwnedPlant.new(owned_plant_params)
+    @owned_plant = OwnedPlant.new(owned_plant.params)
 
     respond_to do |format|
       if @owned_plant.save
