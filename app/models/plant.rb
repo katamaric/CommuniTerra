@@ -1,5 +1,5 @@
 class Plant < ApplicationRecord
-  has_many :allotments, through: :ownedplants
+  has_many :allotments, through: :owned_plants
   has_many :owned_plants
   has_many :owners, through: :owned_plants, source: :user
   has_many :plant_sittings
