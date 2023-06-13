@@ -29,7 +29,7 @@ class PlantDashboard < Administrate::BaseDashboard
     owners: Field::HasMany,
     plant_sittings: Field::HasMany,
     planting: Field::Text,
-    plants_to_keep: Field::HasMany,
+    kept_plants: Field::HasMany,
     pruning: Field::Text,
     specie: Field::Text,
     vegetation: Field::Text,
@@ -75,7 +75,7 @@ class PlantDashboard < Administrate::BaseDashboard
     owners
     plant_sittings
     planting
-    plants_to_keep
+    kept_plants
     pruning
     specie
     vegetation
@@ -109,7 +109,7 @@ class PlantDashboard < Administrate::BaseDashboard
     owners
     plant_sittings
     planting
-    plants_to_keep
+    kept_plants
     pruning
     specie
     vegetation
