@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :allotment_users
   resources :allotments
   devise_for :users
+
+  devise_scope :user do
+    get '/users/sign_out', to: 'devise/sessions#destroy'
+  end
+  
   resources :plant_sittings
   resources :kept_plants
   resources :owned_plants
