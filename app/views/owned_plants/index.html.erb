@@ -4,7 +4,19 @@
 
 <div id="owned_plants">
   <% @owned_plants.each do |owned_plant| %>
-    <%= render owned_plant %>
+<div id="<%= dom_id owned_plant %>">
+
+  <p>
+    <strong>Plant:</strong>
+    <%= owned_plant.plant.common_name %>
+  </p>
+
+  <p>
+    <strong>Quantity:</strong>
+    <%= owned_plant.quantity %>
+  </p>
+
+</div>
     <p>
       <%= link_to "Show this owned plant", owned_plant %>
     </p>
