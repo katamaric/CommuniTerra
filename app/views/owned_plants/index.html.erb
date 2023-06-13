@@ -7,20 +7,20 @@
 <div id="<%= dom_id owned_plant %>">
 
   <p>
-    <strong>Plant:</strong>
+    <strong>Plantes :</strong>
     <%= owned_plant.plant.common_name %>
   </p>
 
   <p>
-    <strong>Quantity:</strong>
+    <strong>Quantité :</strong>
     <%= owned_plant.quantity %>
   </p>
 
 </div>
     <p>
-      <%= link_to "Show this owned plant", owned_plant %>
+      <%= link_to "Voir cette plante", owned_plant %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New owned plant", new_owned_plant_path %>
+<%= link_to "Nouvelle plante", new_owned_plant_path %>
