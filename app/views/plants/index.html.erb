@@ -15,11 +15,11 @@
         </span>
       </div>
       <div class="flex justify-between">
-        <p class="text-gray-600"><%= plant.mature_height %> H</p>
-        <p class="text-gray-600"><%= plant.mature_width %> W</p>
+        <p class="text-gray-600">Hauteur : <%= plant.mature_height %></p>
+        <p class="text-gray-600">Largeur : <%= plant.mature_width %></p>
       </div>
       <div class="mt-4">
-        <%= link_to "View Details", plant_path(plant), class: "text-indigo-500 font-semibold" %>
+        <%= link_to "Voir les détails", plant_path(plant), class: "text-indigo-500 font-semibold" %>
       </div>
     </div>
   <% end %>
