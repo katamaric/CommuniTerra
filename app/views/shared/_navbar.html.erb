@@ -11,6 +11,7 @@
       <%#Hugo dit : pour ceux qui ne sont pas connectés/inscrits : soit on affiche les utilisateurs qui sont vraiment existants soit on fait une page factice avec des faux utilisateurs %>
       <li><%= link_to "Gardiennage de plantes", allotments_path, aria: { label: "Gardiennage de plantes" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
       <li><%= link_to "Marché horticole", listings_path, aria: { label: "Marché horticole" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
+      <li><%= link_to "Mes plantes", owned_plants_path, aria: { label: "Mes plantes" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>    
     </ul>
     <div class="flex items-center">
       <!-- Empty flex item as a spacer -->
@@ -63,6 +64,7 @@
               <%#Hugo dit : pour ceux qui ne sont pas connectés/inscrits : soit on affiche les utilisateurs qui sont vraiment existants soit on fait une page factice avec des faux utilisateurs %>
               <li><%= link_to "Gardiennage de plantes", allotments_path, aria: { label: "Gardiennage de plantes" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
               <li><%= link_to "Marché horticole", listings_path, aria: { label: "Marché horticole" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
+              <li><%= link_to "Gardiennage de plantes", allotments_path, aria: { label: "Gardiennage de plantes" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
               <li><a href="/" aria-label="Sign in" title="Sign in" class="font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary">Se Connecter</a></li>
               <li>
                 <a href="/" class="inline-flex items-center justify-center h-12 px-6 font-small tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" aria-label="Sign up" title="Sign up">

@@ -8,7 +8,8 @@ class OwnedPlantsController < ApplicationController
 
   # GET /owned_plants/1 or /owned_plants/1.json
   def show
-  end
+    @owned_plant = current_user.owned_plants.find_by(plant_id: params[:id])
+  end  
 
   # GET /owned_plants/new
   def new
@@ -19,21 +20,21 @@ class OwnedPlantsController < ApplicationController
   def edit
   end
 
-  # POST /owned_plants or /owned_plants.json
-  def create
-    @owned_plant = OwnedPlant.new(owned_plant_params)
+# POST /owned_plants or /owned_plants.json
+def create
+  @owned_plant = OwnedPlant.new(owned_plant_params)
 
-    respond_to do |format|
-      if @owned_plant.save
-        format.html { redirect_to owned_plant_url(@owned_plant), notice: "Owned plant was successfully created." }
-        format.json { render :show, status: :created, location: @owned_plant }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @owned_plant.errors, status: :unprocessable_entity }
-      end
+  respond_to do |format|
+    if @owned_plant.save
+      format.html { redirect_to owned_plant_url(@owned_plant), notice: "Owned plant was successfully created." }
+      format.json { render :show, status: :created, location: @owned_plant }
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @owned_plant.errors, status: :unprocessable_entity }
     end
   end
-
+end
+  
   # PATCH/PUT /owned_plants/1 or /owned_plants/1.json
   def update
     respond_to do |format|
