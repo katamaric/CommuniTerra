@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   resources :plant_moods
   resources :deliveries
   resources :listings

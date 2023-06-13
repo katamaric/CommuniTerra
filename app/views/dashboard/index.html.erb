@@ -1,0 +1,15 @@
+<div class="dashboard-container">
+  <h1>Welcome to your Dashboard!</h1>
+
+
+<div id="owned_plants">
+<h2>Vos plantes que vous possédez :</h2>
+  <% @owned_plants.each do |owned_plant| %>
+    <%= render owned_plant %>
+    <p>
+      <%= link_to "Show this owned plant", owned_plant %>
+    </p>
+  <% end %>
+</div>
+
+</div>
