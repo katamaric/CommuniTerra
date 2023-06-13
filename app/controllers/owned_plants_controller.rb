@@ -8,8 +8,8 @@
 
     # GET /owned_plants/1 or /owned_plants/1.json
     def show
-      @owned_plant = current_user.owned_plants.find_by(plant_id: params[:id])
-    end
+      @owned_plant = current_user.owned_plants.find(params[:id])
+    end    
     
 
     # GET /owned_plants/new
