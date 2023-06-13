@@ -4,7 +4,8 @@
 
 <div>
   <%= link_to "Edit this owned plant", edit_owned_plant_path(@owned_plant) %> |
-  <%= link_to "Back to owned plants", owned_plants_path %>
+  <%= link_to "Back to owned plants", dashboard_index_path %>
+  <%= link_to "All my babies plants", owned_plants_path %>
 
   <%= button_to "Destroy this owned plant", @owned_plant, method: :delete %>
 </div>
