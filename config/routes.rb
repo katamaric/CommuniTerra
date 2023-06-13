@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :allotments
+      resources :allotment_users
+      resources :deliveries
+      resources :kept_plants
+      resources :listings
+      resources :log_books
+      resources :owned_plants
+      resources :plants
+      resources :plant_moods
+      resources :plant_sittings
+
+      root to: "users#index"
+    end
   get 'dashboard/index'
   resources :plant_moods
   resources :deliveries
