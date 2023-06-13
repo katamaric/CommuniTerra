@@ -3,5 +3,5 @@ class Plant < ApplicationRecord
   has_many :owned_plants
   has_many :owners, through: :owned_plants, source: :user
   has_many :plant_sittings
-  has_many :plants_to_keep
+  has_many :kept_plants
 end
