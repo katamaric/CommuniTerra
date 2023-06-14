@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_084834) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_111649) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,12 +72,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_084834) do
     t.datetime "entry_date"
     t.string "title"
     t.text "content"
-    t.bigint "plant_mood_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "mood"
     t.index ["owned_plant_id"], name: "index_log_books_on_owned_plant_id"
-    t.index ["plant_mood_id"], name: "index_log_books_on_plant_mood_id"
   end
 
   create_table "owned_plants", force: :cascade do |t|
