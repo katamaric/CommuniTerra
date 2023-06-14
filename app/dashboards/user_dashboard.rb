@@ -20,7 +20,7 @@ class UserDashboard < Administrate::BaseDashboard
     phone_number: Field::String,
     plant_sittings: Field::HasMany,
     plants: Field::HasMany,
-    plants_to_keep: Field::HasMany,
+    kept_plants: Field::HasMany,
     remember_created_at: Field::DateTime,
     reset_password_sent_at: Field::DateTime,
     reset_password_token: Field::String,
@@ -36,9 +36,9 @@ class UserDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
+    email
+    created_at
     admin
-    bio
-    birthdate
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -56,7 +56,7 @@ class UserDashboard < Administrate::BaseDashboard
     phone_number
     plant_sittings
     plants
-    plants_to_keep
+    kept_plants
     remember_created_at
     reset_password_sent_at
     reset_password_token
@@ -80,7 +80,7 @@ class UserDashboard < Administrate::BaseDashboard
     phone_number
     plant_sittings
     plants
-    plants_to_keep
+    kept_plants
     remember_created_at
     reset_password_sent_at
     reset_password_token

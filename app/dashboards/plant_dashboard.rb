@@ -29,7 +29,7 @@ class PlantDashboard < Administrate::BaseDashboard
     owners: Field::HasMany,
     plant_sittings: Field::HasMany,
     planting: Field::Text,
-    plants_to_keep: Field::HasMany,
+    kept_plants: Field::HasMany,
     pruning: Field::Text,
     specie: Field::Text,
     vegetation: Field::Text,
@@ -46,9 +46,7 @@ class PlantDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    allotments
-    cold_resistance_description
-    cold_resistance_level
+    common_name
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -75,7 +73,7 @@ class PlantDashboard < Administrate::BaseDashboard
     owners
     plant_sittings
     planting
-    plants_to_keep
+    kept_plants
     pruning
     specie
     vegetation
@@ -109,7 +107,7 @@ class PlantDashboard < Administrate::BaseDashboard
     owners
     plant_sittings
     planting
-    plants_to_keep
+    kept_plants
     pruning
     specie
     vegetation

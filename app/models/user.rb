@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :owned_plants
   has_many :plants, through: :owned_plants
   has_many :plant_sittings
-  has_many :plants_to_keep
+  has_many :kept_plants
   # has_many :private_sent_messages, class_name: 'PrivateMessage', foreign_key: 'sender_id'
   # has_many :private_received_messages, class_name: 'PrivateMessage', foreign_key: 'recipient_id'
   # has_many :posts, dependent: :destroy
