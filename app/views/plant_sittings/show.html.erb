@@ -3,8 +3,8 @@
 <%= render @plant_sitting %>
 
 <div>
-  <%= link_to "Edit this plant sitting", edit_plant_sitting_path(@plant_sitting) %> |
-  <%= link_to "Back to plant sittings", plant_sittings_path %>
+  <%= link_to "Modifier", edit_plant_sitting_path(@plant_sitting) %> |
+  <%= link_to "Retour", plant_sittings_path %>
 
-  <%= button_to "Destroy this plant sitting", @plant_sitting, method: :delete %>
+  <%= button_to "Supprimer", @plant_sitting, method: :delete %>
 </div>
