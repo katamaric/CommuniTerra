@@ -8,12 +8,12 @@
           <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
           </p>
           <% if owned_plant.nickname.present? %>
-            <a href="/" aria-label="Category" title="<%= owned_plant.nickname %>" class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.nickname %></a>
+             <%= link_to owned_plant.nickname, plant_path(owned_plant.plant.id), class: "inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"%>
             <p class="mb-2 text-green-dark">
               <%= owned_plant.plant.description %>
             </p>
           <% else %>
-            <a href="/" aria-label="Category" title="<%= owned_plant.plant.common_name %>" class="inline-block mb-1 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.plant.common_name %></a>
+             <%= link_to owned_plant.plant.common_name, plant_path(owned_plant.plant.id), class: "inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"%>
             <p class="mb-3 text-sm text-gray-500">
             <%= link_to "Donne-moi un petit nom !", edit_owned_plant_path(owned_plant), class: "font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
             </p>
