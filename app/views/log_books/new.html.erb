@@ -1,32 +1,41 @@
-<%= form_with(model: [@owned_plant, @log_book], local: true) do |log_book_form| %>
-  <% if @log_book.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@log_book.errors.count, "erreur") %> ont empêché la sauvegarde de cette entrée du journal de bord :</h2>
-
-      <ul>
-        <% @log_book.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= log_book_form.label :entry_date %>
-    <%= log_book_form.datetime_field :entry_date %>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img class="mx-auto h-35 w-auto" src="<%= asset_path('logo_sm.png') %>" alt="communiterra logo" class="object-contain">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Journal de bord</h2>
   </div>
 
-  <div class="field">
-    <%= log_book_form.label :title %>
-    <%= log_book_form.text_field :title %>
-  </div>
+  <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= form_with(model: [@owned_plant, @log_book], local: true, html: { class: "space-y-6" }) do |log_book_form| %>
+      <% if @log_book.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@log_book.errors.count, "erreur") %> ont empêché la sauvegarde de cette entrée du journal de bord :</h2>
 
-  <div class="field">
-    <%= log_book_form.label :content %>
-    <%= log_book_form.text_area :content %>
-  </div>
+          <ul>
+            <% @log_book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div class="actions">
-    <%= log_book_form.submit "Enregistrer" %>
+      <div class="field">
+        <%= log_book_form.label :entry_date, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= log_book_form.datetime_field :entry_date, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+
+      <div class="field">
+        <%= log_book_form.label :title, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= log_book_form.text_field :title, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+
+      <div class="field">
+        <%= log_book_form.label :content, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= log_book_form.text_area :content, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+
+      <div class="actions bg-green-primary rounded-md">
+        <%= log_book_form.submit "Enregistrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

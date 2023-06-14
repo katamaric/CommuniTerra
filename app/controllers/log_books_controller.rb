@@ -31,7 +31,7 @@ class LogBooksController < ApplicationController
 
   def update
     if @log_book.update(log_book_params)
-      redirect_to dashboard_index_url, notice: "L'entrée du journal de bord a été mise à jour avec succès."
+      redirect_to owned_plant_log_books_path(@owned_plant), notice: "L'entrée du journal de bord a été mise à jour avec succès."
     else
       render :edit
     end
