@@ -1,13 +1,21 @@
-<div id="<%= dom_id owned_plant %>">
 
-  <p>
-    <strong>Plante :</strong>
-    <%= @owned_plant.plant.common_name %>
-  </p>
-
-  <p>
-    <strong>Quantité :</strong>
-    <%= @owned_plant.quantity %>
-  </p>
-
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <% @owned_plants.each do |owned_plant| %>
+      <div class="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
+        <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64" alt="" />
+        <div class="p-5 border border-t-0">
+          <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
+            <a href="/" class="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700" aria-label="Category" title="traveling">traveling</a>
+            <span class="text-gray-600">— <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
+          </p>
+          <a href="/" aria-label="Category" title="<%= owned_plant.plant.common_name %>" class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.plant.common_name %></a>
+          <p class="mb-2 text-gray-700">
+            <%= owned_plant.plant.description %>
+          </p>
+          <%= link_to "Learn more", owned_plant, class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
