@@ -46,9 +46,7 @@ class PlantDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    allotments
-    cold_resistance_description
-    cold_resistance_level
+    common_name
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
