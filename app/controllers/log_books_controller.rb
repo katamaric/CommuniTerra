@@ -42,6 +42,6 @@ class LogBooksController < ApplicationController
   end
 
   def log_book_params
-    params.require(:log_book).permit(:entry_date, :title, :content, :plant_mood_id)
+    params.require(:log_book).permit(:entry_date, :title, :content)
   end
 end
