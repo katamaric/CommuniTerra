@@ -1,4 +1,3 @@
-
 <div class="px-4 mx-auto">
   <h1>Vos plantes :</h1>
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -10,10 +9,17 @@
             <a href="/" class="transition-colors duration-200 text-blue-gray-900 hover:text-deep-purple-accent-700" aria-label="Category" title="traveling">traveling</a>
             <span class="text-gray-600">— <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
           </p>
-          <a href="/" aria-label="Category" title="<%= owned_plant.plant.common_name %>" class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.plant.common_name %></a>
-          <p class="mb-2 text-gray-700">
-            <%= owned_plant.plant.description %>
-          </p>
+          <% if owned_plant.nickname.present? %>
+            <a href="/" aria-label="Category" title="<%= owned_plant.nickname %>" class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.nickname %></a>
+          <% else %>
+            <p class="mb-2 text-gray-700">
+              <%= owned_plant.plant.common_name %>
+            </p>
+            <p class="mb-2 text-gray-700">
+              <%= owned_plant.plant.description %>
+            </p>
+            <%= link_to "Ajouter un surnom", edit_owned_plant_path(owned_plant), class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
+          <% end %>
           <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
           <%= link_to "See every logbook entry for this owned plant", owned_plant_log_books_path(owned_plant.id) %>
         </div>

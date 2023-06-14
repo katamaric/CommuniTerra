@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_152911) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
     t.index ["plant_id"], name: "index_owned_plants_on_plant_id"
     t.index ["user_id"], name: "index_owned_plants_on_user_id"
   end
