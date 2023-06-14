@@ -3,7 +3,7 @@ class KeptPlantsController < ApplicationController
 
   # GET /kept_plants or /kept_plants.json
   def index
-    @kept_plants = KeptPlant.all
+    @kept_plants = current_user.kept_plants
   end
 
   # GET /kept_plants/1 or /kept_plants/1.json

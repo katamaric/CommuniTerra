@@ -1,4 +1,8 @@
-<%= link_to "Ajouter des plantes à garder", new_kept_plant_path %>
+<div class="p-4">
+  <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
+  <%= link_to "Mes demandes en cours", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
+</div>
+
 <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
   <% if @kept_plants && @kept_plants.any? %>
     <% @kept_plants.each do |kept_plant| %>
@@ -15,7 +19,7 @@
           <%= kept_plant.description %>
         </p>
         <div class="mt-4">
-          <%= link_to "Voir les détails", plant_path(kept_plant.owned_plant.plant), class: "text-indigo-500 font-semibold" %>
+          <%= link_to "Voir les détails", kept_plant_path(kept_plant), class: "text-indigo-500 font-semibold" %>
         </div>
       </div>
     <% end %>
