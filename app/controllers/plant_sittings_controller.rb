@@ -23,6 +23,7 @@ class PlantSittingsController < ApplicationController
   # POST /plant_sittings or /plant_sittings.json
   def create
     @plant_sitting = PlantSitting.new(plant_sitting_params)
+    @plant_sitting.user = current_user
 
     respond_to do |format|
       if @plant_sitting.save

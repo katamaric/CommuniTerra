@@ -67,6 +67,6 @@ class KeptPlantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def kept_plant_params
-      params.require(:kept_plant).permit(:user_id, :owned_plant_id, :quantity, :description)
+      params.require(:kept_plant).permit(:user_id, :owned_plant_id, :title, :quantity, :description)
     end
 end
