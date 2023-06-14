@@ -11,17 +11,22 @@
           </p>
           <% if owned_plant.nickname.present? %>
             <a href="/" aria-label="Category" title="<%= owned_plant.nickname %>" class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.nickname %></a>
-          <% else %>
-            <p class="mb-2 text-gray-700">
-              <%= owned_plant.plant.common_name %>
-            </p>
             <p class="mb-2 text-gray-700">
               <%= owned_plant.plant.description %>
             </p>
-            <%= link_to "Ajouter un surnom", edit_owned_plant_path(owned_plant), class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
+          <% else %>
+            <a href="/" aria-label="Category" title="<%= owned_plant.plant.common_name %>" class="inline-block mb-1 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.plant.common_name %></a>
+            <p class="mb-3 text-sm text-gray-500">
+            <%= link_to "Donne-moi un petit nom !", edit_owned_plant_path(owned_plant), class: "font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+            </p>
+            
+            <p class="mb-2 text-gray-700">
+              <%= owned_plant.plant.description %>
+            </p>
+
           <% end %>
-          <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
-          <%= link_to "See every logbook entry for this owned plant", owned_plant_log_books_path(owned_plant.id) %>
+          <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "mt-2 flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
+          <%= link_to "See every logbook entry for this owned plant", owned_plant_log_books_path(owned_plant.id), class: "mt-2 mb-3 flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
         </div>
       </div>
     <% end %>
