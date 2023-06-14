@@ -1,14 +1,26 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Log books</h1>
-    <%= link_to 'New log book', new_log_book_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="log_books" class="min-w-full">
-    <%= render @log_books %>
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <h1>Vos dernières entrées :</h1>
+  <div class="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
+    <% @log_books.each do |log_book| %>
+      <div class="flex">
+        <div class="pt-1 mr-6 text-center">
+          <div class="px-2 pb-1 mb-1 border-b border-gray-400">
+            <p class="text-sm text-blue-gray-700"><%= log_book.entry_date.strftime('%b') %></p>
+          </div>
+          <div class="px-2"><p class="text-lg font-bold"><%= log_book.entry_date.strftime('%d') %></p></div>
+        </div>
+        <div>
+          <div class="mb-2">
+            <a href="/" class="text-xs font-semibold tracking-wide uppercase transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" aria-label="Category" title="Delevopment">Delevopment</a>
+          </div>
+          <div class="mb-2">
+            <a href="/" aria-label="Article" class="inline-block text-2xl font-bold leading-5 text-black transition-colors duration-200 hover:text-deep-purple-accent-400"><%= log_book.title %></a>
+          </div>
+          <p class="mb-5 text-gray-700">
+            <%= log_book.content %>
+          </p>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

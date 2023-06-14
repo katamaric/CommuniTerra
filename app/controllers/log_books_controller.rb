@@ -2,6 +2,12 @@ class LogBooksController < ApplicationController
   before_action :set_owned_plant
   before_action :set_log_book, only: [:edit, :update, :destroy]
 
+
+  def index
+    @owned_plant = OwnedPlant.find(params[:owned_plant_id])
+    @log_books = @owned_plant.log_books
+  end
+
   def new
     @log_book = @owned_plant.log_books.build
   end

@@ -15,6 +15,7 @@
             <%= owned_plant.plant.description %>
           </p>
           <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
+          <%= link_to "See every logbook entry for this owned plant", owned_plant_log_books_path(owned_plant.id) %>
         </div>
       </div>
     <% end %>

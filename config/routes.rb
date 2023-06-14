@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
       root to: "users#index"
     end
-    get 'dashboard/index', to: 'dashboard#index', as: 'dashboard_index'
+
+  get 'dashboard/index', to: 'dashboard#index', as: 'dashboard_index'
   resources :plant_moods
   resources :deliveries
   resources :listings
@@ -32,11 +33,6 @@ Rails.application.routes.draw do
   resources :plants
   get 'static_pages/home'
   resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-
   resources :owned_plants do
     resources :log_books
   end
