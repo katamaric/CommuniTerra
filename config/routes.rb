@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get '/team', to: 'static_pages#team'
   get '/contact', to: 'static_pages#contact'
+  get '/faq', to: 'static_pages#faq'
+  get '/mentions_legales', to: 'static_pages#mentions'
+  get '/histoire', to: 'static_pages#historic'
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
