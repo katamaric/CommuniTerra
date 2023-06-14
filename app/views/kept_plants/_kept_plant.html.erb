@@ -1,17 +1,22 @@
 <div id="<%= dom_id kept_plant %>">
   <p>
-    <strong>User:</strong>
-    <%= kept_plant.user_id %>
+    <strong>De :</strong>
+    <%= kept_plant.user.username %>
   </p>
 
   <p>
-    <strong>Owned plant:</strong>
-    <%= kept_plant.owned_plant_id %>
+    <strong>Plante :</strong>
+    <%= kept_plant.owned_plant.plant.common_name %>
   </p>
 
   <p>
-    <strong>Quantity:</strong>
+    <strong>Quantité :</strong>
     <%= kept_plant.quantity %>
+  </p>
+
+  <p>
+    <strong>Description :</strong>
+    <%= kept_plant.description %>
   </p>
 
 </div>
