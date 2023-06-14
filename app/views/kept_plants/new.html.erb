@@ -8,9 +8,20 @@
   </div>
 
   <div class="field">
+    <%= form.label :title, "Titre :" %>
+    <%= form.text_area :title %>
+  </div>
+
+  <div class="field">
     <%= form.label :owned_plant_id, "Plante possédée :" %>
     <%= form.collection_select :owned_plant_id, @owned_plants, :id, lambda { |owned_plant| owned_plant.plant.common_name } %>
   </div>
+
+  <div class="field">
+    <%= form.label :quantity, "Quantité :" %>
+    <%= form.number_field :quantity, class: "form-control", min: 1 %>
+  </div>
+
 
   <div class="field">
     <%= form.label :description, "Description :" %>

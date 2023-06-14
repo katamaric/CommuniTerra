@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   resources :plants
   get 'static_pages/home'
   get '/team', to: 'static_pages#team'
+  get '/contact', to: 'static_pages#contact'
+  get '/faq', to: 'static_pages#faq'
+  get '/mentions_legales', to: 'static_pages#mentions'
+  get '/histoire', to: 'static_pages#historic'
   resources :users
   resources :owned_plants do
     resources :log_books
