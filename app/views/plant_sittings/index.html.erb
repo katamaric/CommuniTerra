@@ -1,14 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<% if @kept_plants && @kept_plants.any? %>
+  <% @kept_plants.each do |kept_plant| %>
+    <div id="<%= dom_id kept_plant %>">
+      <p>
+        <strong>User:</strong>
+        <%= kept_plant.user_id %>
+      </p>
 
-<h1>Plant sittings</h1>
-
-<div id="plant_sittings">
-  <% @plant_sittings.each do |plant_sitting| %>
-    <%= render plant_sitting %>
-    <p>
-      <%= link_to "Show this plant sitting", plant_sitting %>
-    </p>
+      <p>
+        <strong>Kept plant:</strong>
+        <%= kept_plant.owned_plant.plant.common_name %>
+      </p>
+    </div>
   <% end %>
-</div>
+<% else %>
+  <p>Aucune plante à garder pour le moment.</p>
+<% end %>
 
-<%= link_to "New plant sitting", new_plant_sitting_path %>
+<%= link_to "Mettre des plantes à garder", new_kept_plant_path %>

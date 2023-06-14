@@ -1,14 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Kept plants</h1>
-
 <div id="kept_plants">
   <% @kept_plants.each do |kept_plant| %>
-    <%= render kept_plant %>
-    <p>
-      <%= link_to "Show this kept plant", kept_plant %>
-    </p>
+    <div class="p-2" id="<%= dom_id kept_plant %>">
+      <p>
+        <strong>User:</strong>
+        <%= kept_plant.user.email %>
+      </p>
+
+      <p>
+        <strong><%= kept_plant.owned_plant.plant.common_name %></strong>
+      </p>
+
+      <p>
+        <%= link_to "Plus de détails", kept_plant_path(kept_plant) %>
+      </p>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New kept plant", new_kept_plant_path %>
+<%= link_to "Rajouter des plantes à garder", new_kept_plant_path %>
