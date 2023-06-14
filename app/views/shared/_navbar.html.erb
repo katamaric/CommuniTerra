@@ -20,8 +20,8 @@
         <% if current_user.admin == true %>
           <li><%= link_to "Admin", admin_root_path, class: "dropdown-item" %></li>
         <% end %>
-        <li><%= link_to "Mon jardin secret", dashboard_index_path, aria: { label: "Mon jardin secret" }, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
-        <li><%= link_to "Se déconnecter", destroy_user_session_path, aria: { label: "Se déconnecter" }, method: :delete, class: "font-small tracking-wide text-green-dark transition-colors duration-200 hover:text-green-primary" %></li>
+        <li><%= link_to "Ma dashboard", dashboard_index_path, aria: { label: "Dashboard" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
+        <li><%= link_to "Se déconnecter", destroy_user_session_path, aria: { label: "Se déconnecter" }, method: :delete, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
       <% else %>
         <li><%= link_to "Se connecter", new_user_session_path, aria: { label: "Se connecter" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
         <li><%= link_to "S'inscrire", new_user_registration_path, aria: { label: "S'inscrire" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>

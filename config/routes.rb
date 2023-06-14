@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admin do
       resources :users
       resources :allotments
@@ -16,31 +17,39 @@ Rails.application.routes.draw do
     end
 
   get 'dashboard/index', to: 'dashboard#index', as: 'dashboard_index'
-  resources :plant_moods
-  resources :deliveries
-  resources :listings
-  resources :allotment_users
-  resources :allotments
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+
+  authenticated :user do
+    root to: 'dashboard#index', as: :authenticated_root
+  end
 
   devise_scope :user do
+    root to: "static_pages#home"
     get '/users/sign_out', to: 'devise/sessions#destroy'
   end
-  
-  resources :plant_sittings
-  resources :kept_plants
-  resources :owned_plants
-  resources :plants
+
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   get 'static_pages/home'
   get '/team', to: 'static_pages#team'
   get '/contact', to: 'static_pages#contact'
   get '/faq', to: 'static_pages#faq'
   get '/mentions_legales', to: 'static_pages#mentions'
   get '/histoire', to: 'static_pages#historic'
+
+
+  resources :plant_moods
+  resources :deliveries
+  resources :listings
+  resources :allotment_users
+  resources :allotments
+  resources :plant_sittings
+  resources :kept_plants
+  resources :owned_plants
+  resources :plants
   resources :users
+
   resources :owned_plants do
     resources :log_books
   end
   
-  root to: "static_pages#home"
 end
