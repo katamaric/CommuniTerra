@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <p style="color: green"><%= notice %></p>
 
-<%= render @kept_plant %>
+    <%= render @kept_plant %>
 
-<div>
-  <%= link_to "Modifier", edit_kept_plant_path(@kept_plant) %> |
-  <%= link_to "Retour", kept_plants_path %>
-
-  <%= button_to "Supprimer", @kept_plant, method: :delete %>
+    <% if current_user == @kept_plant.user %>
+      <%= link_to "Modifier", edit_kept_plant_path(@kept_plant) %> |
+      <%= button_to "Supprimer", @kept_plant, method: :delete %>
+    <% else %>
+      <%= button_to "Garder cette plante", plant_sittings_path(kept_plant_id: @kept_plant.id), method: :post %>
+    <% end %>
+    <%= link_to "Retour", kept_plants_path %>
+  </div>
 </div>
