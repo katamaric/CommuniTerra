@@ -8,6 +8,11 @@ class LogBooksController < ApplicationController
     @log_books = @owned_plant.log_books
   end
 
+  def show
+    @log_book = LogBook.find(params[:id])
+  end
+  
+
   def new
     @log_book = @owned_plant.log_books.build
   end
@@ -26,7 +31,7 @@ class LogBooksController < ApplicationController
 
   def update
     if @log_book.update(log_book_params)
-      redirect_to @owned_plant, notice: "L'entrée du journal de bord a été mise à jour avec succès."
+      redirect_to dashboard_index_url, notice: "L'entrée du journal de bord a été mise à jour avec succès."
     else
       render :edit
     end
