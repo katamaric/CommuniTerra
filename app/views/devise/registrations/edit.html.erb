@@ -1,7 +1,7 @@
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <img class="mx-auto h-35 w-auto" src="<%= asset_path('logo_sm.png') %>" alt="communiterra logo" class="object-contain">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Modifier <%= resource_name.to_s.humanize %></h2>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Modifier votre profil</h2>
   </div>
 
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -20,58 +20,57 @@
       <% end %>
 
       <div>
-        <%= f.label :password, class: "block text-sm font-medium leading-6 text-gray-900" %> <i>(Laissez vide si vous ne souhaitez pas le changer)</i>
+        <%= f.label :password, "Mot de passe", class: "block text-sm font-medium leading-6 text-gray-900" %> <i>(Laissez vide si vous ne souhaitez pas le changer)</i>
         <div class="mt-2">
           <%= f.password_field :password, autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
         <% if @minimum_password_length %>
-          <br />
           <em><%= @minimum_password_length %> caractères minimum</em>
         <% end %>
       </div>
 
       <div>
-        <%= f.label :password_confirmation, class: "block text-sm font-medium leading-6 text-gray-900" %><br />
+        <%= f.label :password_confirmation, "Répétez votre mot de passe", class: "block text-sm font-medium leading-6 text-gray-900" %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
       <div>
-        <%= f.label :current_password, class: "block text-sm font-medium leading-6 text-gray-900" %> <i>(Nous avons besoin de votre mot de passe actuel pour confirmer les modifications)</i><br />
+        <%= f.label :current_password, "Mot de passe actuel", class: "block text-sm font-medium leading-6 text-gray-900" %> <i>(Nous avons besoin de votre mot de passe actuel pour confirmer les modifications)</i><br />
         <%= f.password_field :current_password, autocomplete: "current-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
 
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Optional</h2>
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Plus d'infos (facultatif) :</h2>
       </div>
 
       <div>
-        <%= f.label :first_name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.label :first_name, "Prénom", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= f.text_field :first_name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
       <div>
-        <%= f.label :last_name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.label :last_name, "Nom de famille", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= f.text_field :last_name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
       <div>
-        <%= f.label :username, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.label :username, "Pseudo", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= f.text_field :username, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
       <div>
-        <%= f.label :phone_number, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.label :phone_number, "Numéro de téléphone", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= f.text_field :phone_number, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
       <div>
-        <%= f.label :birthdate, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.label :birthdate, "Date de naissance", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= f.datetime_field :birthdate, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
       <div>
-        <%= f.label :bio, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= f.label :bio, "Quelques mots sur vous", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= f.text_area :bio, class: "block w-full rounded-md pl-4 pr-4 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
       </div>
 
@@ -89,7 +88,7 @@
     </div>
 
     <p class="mt-10 text-center text-sm text-gray-500">
-      <%= link_to "Retour", :back, class: "block mt-3 text-sm font-medium text-indigo-600 hover:text-indigo-500" %>
+      <%= link_to "Retour", :back, class: "block mt-3 text-sm font-medium text-green-primary hover:text-green-secondary" %>
     </p>
   </div>
 </div>
