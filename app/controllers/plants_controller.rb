@@ -3,7 +3,7 @@ class PlantsController < ApplicationController
 
   # GET /plants or /plants.json
   def index
-    @plants = Plant.page(params[:page]).per(10)
+    @plants = Plant.page(params[:page]).per(12)
     # paginate(page: params[:page], per_page: 20)
   end  
 
