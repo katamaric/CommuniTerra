@@ -2,14 +2,14 @@
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <% @owned_plants.each do |owned_plant| %>
       <div class="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
-        <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64" alt="" />
-        <div class="p-5 border border-t-0">
+        <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
+        <div class="p-5 rounded border border-t-0 shadow-sm">
           <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
           <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
           </p>
           <% if owned_plant.nickname.present? %>
             <a href="/" aria-label="Category" title="<%= owned_plant.nickname %>" class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= owned_plant.nickname %></a>
-            <p class="mb-2 text-gray-700">
+            <p class="mb-2 text-green-dark">
               <%= owned_plant.plant.description %>
             </p>
           <% else %>
@@ -23,8 +23,8 @@
             </p>
 
           <% end %>
-          <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "mt-2 flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
-          <%= link_to "See every logbook entry for this owned plant", owned_plant_log_books_path(owned_plant.id), class: "mt-2 mb-3 flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
+          <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+          <%= link_to "Voir le journal de bord", owned_plant_log_books_path(owned_plant.id), class: "mt-2 mb-3 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
         </div>
       </div>
     <% end %>
