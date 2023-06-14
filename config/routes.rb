@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :plants
   get 'static_pages/home'
   get '/team', to: 'static_pages#team'
+  get '/contact', to: 'static_pages#contact'
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
