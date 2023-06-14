@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_114937) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_084834) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_114937) do
     t.bigint "plant_mood_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "mood"
     t.index ["owned_plant_id"], name: "index_log_books_on_owned_plant_id"
     t.index ["plant_mood_id"], name: "index_log_books_on_plant_mood_id"
   end
@@ -87,12 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_114937) do
     t.datetime "updated_at", null: false
     t.index ["plant_id"], name: "index_owned_plants_on_plant_id"
     t.index ["user_id"], name: "index_owned_plants_on_user_id"
-  end
-
-  create_table "plant_moods", force: :cascade do |t|
-    t.string "plant_mood"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "plant_sittings", force: :cascade do |t|
@@ -157,7 +152,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_114937) do
   add_foreign_key "listings", "deliveries"
   add_foreign_key "listings", "users"
   add_foreign_key "log_books", "owned_plants"
-  add_foreign_key "log_books", "plant_moods"
   add_foreign_key "owned_plants", "plants"
   add_foreign_key "owned_plants", "users"
   add_foreign_key "plant_sittings", "kept_plants"
