@@ -1,4 +1,5 @@
 class DeliveriesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_delivery, only: %i[ show edit update destroy ]
 
   # GET /deliveries or /deliveries.json
