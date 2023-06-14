@@ -40,7 +40,7 @@
     def update
       respond_to do |format|
         if @owned_plant.update(owned_plant_params)
-          format.html { redirect_to owned_plant_url(@owned_plant), notice: "Owned plant was successfully updated." }
+          format.html { redirect_to dashboard_index_url, notice: "Owned plant was successfully updated." }
           format.json { render :show, status: :ok, location: @owned_plant }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -67,6 +67,6 @@
 
       # Only allow a list of trusted parameters through.
       def owned_plant_params
-        params.require(:owned_plant).permit(:user_id, :plant_id, :quantity)
+        params.require(:owned_plant).permit(:user_id, :plant_id, :quantity, :nickname)
       end
   end
