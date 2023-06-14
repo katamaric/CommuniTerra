@@ -26,11 +26,6 @@
     <%= log_book_form.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= log_book_form.label :plant_mood_id %>
-    <%= log_book_form.collection_select :plant_mood_id, PlantMood.all, :id, :name, include_blank: true %>
-  </div>
-
   <div class="actions">
     <%= log_book_form.submit "Enregistrer" %>
   </div>

@@ -1,5 +1,6 @@
 
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <h1>Vos plantes :</h1>
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <% @owned_plants.each do |owned_plant| %>
       <div class="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
@@ -13,7 +14,7 @@
           <p class="mb-2 text-gray-700">
             <%= owned_plant.plant.description %>
           </p>
-          <%= link_to "Learn more", owned_plant, class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
+          <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" %>
         </div>
       </div>
     <% end %>
