@@ -1,4 +1,5 @@
   class OwnedPlantsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_owned_plant, only: %i[ show edit update destroy ]
 
     # GET /owned_plants or /owned_plants.json

@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :require_login
+  before_action :set_plant, only: %i[ show edit update destroy ]
+
+  private
+
+  def require_login
+    unless user_signed_in? && current_user.admin?
+      redirect_to root_url, alert: "Accès restreint. Vous devez être administrateur pour accéder à cette page."
+    end
+  end
 
   # GET /users or /users.json
   def index

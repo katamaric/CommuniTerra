@@ -1,4 +1,5 @@
 class PlantMoodsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plant_mood, only: %i[ show edit update destroy ]
 
   # GET /plant_moods or /plant_moods.json
