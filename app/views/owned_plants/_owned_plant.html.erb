@@ -2,8 +2,8 @@
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     <% @owned_plants.each do |owned_plant| %>
       <div class="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
-        <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64" alt="" />
-        <div class="p-5 border border-t-0">
+        <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
+        <div class="p-5 rounded border border-t-0 shadow-sm">
           <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
           <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
           </p>
