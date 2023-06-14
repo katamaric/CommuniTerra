@@ -1,11 +1,11 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @owned_plant %>
+<div class="bg-white rounded-lg shadow-md p-4 m-4 h-full">
+  <%= render @owned_plant %>
 
-<div>
-  <%= link_to "Modifier cette plante", edit_owned_plant_path(@owned_plant) %> |
-  <%= link_to "Retour aux plantes possédées", dashboard_index_path %>
-  <%= link_to "Toutes mes plantes", owned_plants_path %>
+  <%= link_to "Modifier cette plante", edit_owned_plant_path(@owned_plant), class: "pr-3 text-indigo-500 font-semibold" %>
+  <%= link_to "Retour aux plantes possédées", dashboard_index_path, class: "p-3 text-indigo-500 font-semibold" %>
+  <%= link_to "Toutes mes plantes", owned_plants_path, class: "p-3 text-indigo-500 font-semibold" %>
 
   <%= button_to "Supprimer cette plante", @owned_plant, method: :delete %>
 </div>
