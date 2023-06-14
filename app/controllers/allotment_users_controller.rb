@@ -1,4 +1,5 @@
 class AllotmentUsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_allotment_user, only: %i[ show edit update destroy ]
 
   # GET /allotment_users or /allotment_users.json

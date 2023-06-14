@@ -1,4 +1,5 @@
 class KeptPlantsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_kept_plant, only: %i[ show edit update destroy ]
 
   # GET /kept_plants or /kept_plants.json
