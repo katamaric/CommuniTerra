@@ -7,26 +7,30 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <div class="field">
+  <%# <div class="field">
     <%= form.label :title, "Titre :" %>
-    <%= form.text_area :title %>
-  </div>
+    <%# <%= form.text_area :title %>
+  <%# </div> %>
 
   <div class="field">
-    <%= form.label :owned_plant_id, "Plante possédée :" %>
-    <%= form.collection_select :owned_plant_id, @owned_plants, :id, lambda { |owned_plant| owned_plant.plant.common_name } %>
+    <%= form.label :owned_plant_id, "Plantes à faire garder :" %>
+    <% @owned_plants.each do |owned_plant| %>
+      <%= form.label nil, class: 'checkbox' do %>
+        <%= form.check_box :owned_plant_id, { multiple: true }, owned_plant.id, nil %>
+        <%= owned_plant.plant.common_name %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :quantity, "Quantité :" %>
-    <%= form.number_field :quantity, class: "form-control", min: 1 %>
+    <%= form.number_field :quantity, class: "form-control" %>
   </div>
 
-
-  <div class="field">
+  <%# <div class="field">
     <%= form.label :description, "Description :" %>
-    <%= form.text_area :description %>
-  </div>
+    <%# <%= form.text_area :description %>
+  <%# </div> %>
 
   <div class="actions">
     <%= form.submit "Créer" %>
