@@ -10,6 +10,10 @@
           <strong>Par :</strong>
           <%= kept_plant.user.username %>
         </p>
+        <p>
+          <strong>Description :</strong>
+          <%= kept_plant.description %>
+        </p>
         <div class="mt-4">
           <%= link_to "Voir les détails", plant_path(kept_plant.owned_plant.plant), class: "text-indigo-500 font-semibold" %>
         </div>
