@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
       root to: "users#index"
     end
-  get 'dashboard/index'
+    get 'dashboard/index', to: 'dashboard#index', as: 'dashboard_index'
   resources :plant_moods
   resources :deliveries
   resources :listings

@@ -27,7 +27,7 @@
 
     respond_to do |format|
       if @owned_plant.save
-        format.html { redirect_to owned_plant_url(@owned_plant), notice: "Owned plant was successfully created." }
+        format.html { redirect_to dashboard_index_url, notice: "Owned plant was successfully created." }
         format.json { render :show, status: :created, location: @owned_plant }
       else
         format.html { render :new, status: :unprocessable_entity }
