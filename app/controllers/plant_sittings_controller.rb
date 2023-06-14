@@ -4,6 +4,7 @@ class PlantSittingsController < ApplicationController
   # GET /plant_sittings or /plant_sittings.json
   def index
     @plant_sittings = PlantSitting.all
+    @kept_plants = KeptPlant.all
   end
 
   # GET /plant_sittings/1 or /plant_sittings/1.json

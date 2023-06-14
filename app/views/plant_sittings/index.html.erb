@@ -1,19 +1,21 @@
-<% if @kept_plants && @kept_plants.any? %>
-  <% @kept_plants.each do |kept_plant| %>
-    <div id="<%= dom_id kept_plant %>">
-      <p>
-        <strong>User:</strong>
-        <%= kept_plant.user_id %>
-      </p>
-
-      <p>
-        <strong>Kept plant:</strong>
-        <%= kept_plant.owned_plant.plant.common_name %>
-      </p>
-    </div>
+<%= link_to "Ajouter des plantes à garder", new_kept_plant_path %>
+<div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  <% if @kept_plants && @kept_plants.any? %>
+    <% @kept_plants.each do |kept_plant| %>
+      <div id="<%= dom_id kept_plant %>" class="bg-white rounded-lg shadow-md p-4">
+        <h2 class="text-xl font-bold mb-2">
+          <%= kept_plant.owned_plant.plant.common_name %>
+        </h2>
+        <p>
+          <strong>Par :</strong>
+          <%= kept_plant.user.username %>
+        </p>
+        <div class="mt-4">
+          <%= link_to "Voir les détails", plant_path(kept_plant.owned_plant.plant), class: "text-indigo-500 font-semibold" %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Aucune plante à garder pour le moment.</p>
   <% end %>
-<% else %>
-  <p>Aucune plante à garder pour le moment.</p>
-<% end %>
-
-<%= link_to "Mettre des plantes à garder", new_kept_plant_path %>
+</div>
