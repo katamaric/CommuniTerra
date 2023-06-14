@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :owned_plants
+  has_many :owned_plants, dependent: :destroy
   has_many :plants, through: :owned_plants
   has_many :plant_sittings
   has_many :kept_plants
