@@ -13,6 +13,7 @@ class KeptPlantsController < ApplicationController
   # GET /kept_plants/new
   def new
     @kept_plant = KeptPlant.new
+    @owned_plants = current_user.owned_plants
   end
 
   # GET /kept_plants/1/edit
@@ -22,10 +23,11 @@ class KeptPlantsController < ApplicationController
   # POST /kept_plants or /kept_plants.json
   def create
     @kept_plant = KeptPlant.new(kept_plant_params)
+    @kept_plant.user = current_user
 
     respond_to do |format|
       if @kept_plant.save
-        format.html { redirect_to kept_plant_url(@kept_plant), notice: "Kept plant was successfully created." }
+        format.html { redirect_to kept_plant_url(@kept_plant), notice: "La plante à garder a bien été ajoutée." }
         format.json { render :show, status: :created, location: @kept_plant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +67,6 @@ class KeptPlantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def kept_plant_params
-      params.require(:kept_plant).permit(:user_id, :owned_plant_id, :quantity)
+      params.require(:kept_plant).permit(:user_id, :owned_plant_id, :quantity, :description)
     end
 end

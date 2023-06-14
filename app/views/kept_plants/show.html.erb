@@ -3,8 +3,8 @@
 <%= render @kept_plant %>
 
 <div>
-  <%= link_to "Edit this kept plant", edit_kept_plant_path(@kept_plant) %> |
-  <%= link_to "Back to kept plants", kept_plants_path %>
+  <%= link_to "Modifier", edit_kept_plant_path(@kept_plant) %> |
+  <%= link_to "Retour", kept_plants_path %>
 
-  <%= button_to "Destroy this kept plant", @kept_plant, method: :delete %>
+  <%= button_to "Supprimer", @kept_plant, method: :delete %>
 </div>
