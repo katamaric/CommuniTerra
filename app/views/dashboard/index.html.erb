@@ -32,23 +32,34 @@
   </div>
 
   <%= render "owned_plants/owned_plant" %>
-
+  
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="bg-white rounded-lg shadow-md p-4 mb-4 h-full flex flex-col items-center">
-      <div class="flex flex-col">
-        <h2 class="text-2xl font-bold mb-4">Votre profil :</h2>
-        <p><strong>Prénom:</strong> <%= current_user.first_name %></p>
-        <p><strong>Nom:</strong> <%= current_user.last_name %></p>
-        <p><strong>Email:</strong> <%= current_user.email %></p>
-        <p><strong>Username:</strong> <%= current_user.username %></p>
-        <p><strong>Téléphone:</strong> <%= current_user.phone_number %></p>
-        <p><strong>Anniversaire:</strong> <%= current_user.birthdate %></p>
-        <p><strong>Bio:</strong> <%= current_user.bio %></p>
-      <div class="mt-4 flex justify-center">
-        <%= link_to "Modifier mon profil", edit_user_registration_path, class: "mt-2 flex justify-center w-full rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
-      </div>
-            </div>
 
+<div class="px-4 mx-auto">
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
+        <img src="<%= asset_path('userprofile.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
+        <div class="p-5 rounded border border-t-0 shadow-sm">
+          <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
+                    <span class="text-gray-600">Votre profil :</span>
+          </p>
+            <p class="mb-2 text-gray-700">
+            <p><strong>Prénom:</strong> <%= current_user.first_name %></p>
+            <p><strong>Nom:</strong> <%= current_user.last_name %></p>
+            <p><strong>Email:</strong> <%= current_user.email %></p>
+            <p><strong>Username:</strong> <%= current_user.username %></p>
+            <p><strong>Téléphone:</strong> <%= current_user.phone_number %></p>
+            <p><strong>Anniversaire:</strong> <%= current_user.birthdate %></p>
+            <p><strong>Bio:</strong> <%= current_user.bio %></p>
+            </p>
+
+            <div class="mt-4 flex justify-center">
+              <%= link_to "Modifier mon profil", edit_user_registration_path, class: "mt-2 flex justify-center w-full rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 </div>
