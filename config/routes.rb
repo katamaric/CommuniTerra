@@ -43,13 +43,16 @@ Rails.application.routes.draw do
   resources :allotment_users
   resources :allotments, path: 'potagers'
   resources :plant_sittings, path: 'gardiennage'
+  resources :plant_sittings do
+    get 'index_current_user', on: :collection
+  end
   resources :kept_plants
   resources :owned_plants
   resources :plants, path: 'plantes'
   resources :users
 
   resources :owned_plants do
-    resources :log_books
+    resources :log_books, except: [:show]
   end
   
 end

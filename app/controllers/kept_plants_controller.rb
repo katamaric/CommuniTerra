@@ -35,21 +35,28 @@ class KeptPlantsController < ApplicationController
   # POST /kept_plants or /kept_plants.json
   def create
     @owned_plants = current_user.owned_plants
-  
     @kept_plants = []
-  
+    
     @owned_plants.each do |owned_plant|
       if params[:kept_plant] && params[:kept_plant][:owned_plant_id].include?(owned_plant.id.to_s)
-        # Add description, start_date, and end_date to the merged parameters
         kept_plant_params_with_attributes = kept_plant_params.merge(
           owned_plant_id: owned_plant.id,
           description: params[:kept_plant][:description],
           start_date: params[:kept_plant][:start_date],
           end_date: params[:kept_plant][:end_date]
         )
-        @kept_plants << KeptPlant.new(kept_plant_params_with_attributes)
+    
+        existing_kept_plant = KeptPlant.find_by(owned_plant_id: owned_plant.id)
+        if existing_kept_plant
+          # Rajouter le message d'erreur
+        else
+          @kept_plants << KeptPlant.new(kept_plant_params_with_attributes)
+        end
       end
-    end
+    end    
+  
+    plantlist_number = KeptPlant.maximum(:plantlist_number).to_i + 1
+    @kept_plants.each { |kept_plant| kept_plant.plantlist_number = plantlist_number }
   
     respond_to do |format|
       if @kept_plants.all?(&:save)
@@ -60,7 +67,8 @@ class KeptPlantsController < ApplicationController
         format.json { render json: @kept_plants.map(&:errors), status: :unprocessable_entity }
       end
     end
-  end  
+  end
+  
   
   
 
