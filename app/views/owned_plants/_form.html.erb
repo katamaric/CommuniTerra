@@ -8,7 +8,7 @@
     <%= form_with(model: owned_plant, html: { class: "space-y-6" }) do |form| %>
       <% if owned_plant.errors.any? %>
         <div style="color: red">
-          <h2><%= pluralize(owned_plant.errors.count, "error") %> prohibited this owned_plant from being saved:</h2>
+          <h2><%= pluralize(owned_plant.errors.count, "error") %> a empêché cette plante d'être sauvegardée :</h2>
 
           <ul>
             <% owned_plant.errors.each do |error| %>

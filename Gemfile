@@ -83,3 +83,5 @@ gem 'administrate'
 gem "table_print"
 
 gem 'dotenv-rails'
+
+gem 'ransack'
