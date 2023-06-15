@@ -10,7 +10,14 @@ class KeptPlantsController < ApplicationController
     else
       @kept_plants = current_user.kept_plants
     end
-  end
+    
+    if params[:user_id] && params[:start_date] && params[:end_date]
+      start_date = Date.parse(params[:start_date])
+      end_date = Date.parse(params[:end_date])
+      @kept_plants = @kept_plants.where(start_date: start_date, end_date: end_date)
+    end
+  end  
+  
 
   # GET /kept_plants/1 or /kept_plants/1.json
   def show

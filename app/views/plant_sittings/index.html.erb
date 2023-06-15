@@ -11,22 +11,21 @@
         <h2 class="text-xl font-bold mb-2">
           <%= user.username %>
         </h2>
-<% kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
-  <div class="border p-4 mb-4">
-    <h3 class="text-lg font-semibold mb-2"> a besoin de toi du 
-      <%= dates.first.strftime("%d/%m/%Y") %> au <%= dates.last.strftime("%d/%m/%Y") %> pour garder
-    </h3>
-    <ul>
-      <% plants.each do |kept_plant| %>
-        <li>
-          <%= kept_plant.owned_plant.plant.common_name %>
-        </li>
-      <% end %>
-    </ul>
-    <%= link_to "Voir les détails des plantes", kept_plants_path(user_id: kept_plants.first.user_id), class: "text-indigo-500 font-semibold" %>
-  </div>
-<% end %>
-
+        <% kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
+          <div class="border p-4 mb-4">
+            <h3 class="text-lg font-semibold mb-2">Besoin de toi du 
+              <%= dates.first.strftime("%d/%m/%Y") %> au <%= dates.last.strftime("%d/%m/%Y") %> pour garder
+            </h3>
+            <ul>
+              <% plants.each do |kept_plants| %>
+                <li>
+                  <%= kept_plants.owned_plant.plant.common_name %>
+                </li>
+              <% end %>
+            </ul>
+          <%= link_to "Voir les détails des plantes", kept_plants_path(user_id: kept_plants.first.user_id, start_date: dates.first, end_date: dates.last), class: "text-indigo-500 font-semibold" %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   <% else %>

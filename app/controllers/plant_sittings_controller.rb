@@ -5,8 +5,8 @@ class PlantSittingsController < ApplicationController
   # GET /plant_sittings or /plant_sittings.json
   def index
     @plant_sittings = PlantSitting.all
-    @kept_plants = KeptPlant.where("start_date <= ? AND end_date >= ?", Date.today, Date.today).group_by(&:user_id)
-  end
+    @kept_plants = KeptPlant.where("end_date >= ?", Date.today).group_by(&:user_id)
+  end  
 
   # GET /plant_sittings/1 or /plant_sittings/1.json
   def show
