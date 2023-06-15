@@ -30,11 +30,12 @@
   </div>
   
   <%# <% if current_user && current_user.admin? %>
-    <%# <%= link_to "Edit Plant", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+    <%# <%= link_to "Modifier plante", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
   <%# <% else %> 
     <%# <% if current_user %> 
   <% if user_signed_in? %>
     <% if current_user.owned_plants.exists?(plant_id: @plant.id) %>
+
       <%= link_to "Voir ma plante", dashboard_index_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
     <% else %>
     <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
@@ -42,13 +43,13 @@
         <%= owned_plant_fields.hidden_field :plant_id, value: @plant.id %>
         <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
       <% end %>
-  
+
       <%= form.submit "Ajouter à mes plantes", class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
     <% end %>
 
     <% end %>
   <% else %>
-    <%= link_to "Sign in to Add to My Plants", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+    <%= link_to "Me connecter pour ajouter à mes plantes", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
   <% end %>
     <%# <% end %>
   <%# <% end %>
