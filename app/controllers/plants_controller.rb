@@ -7,6 +7,9 @@ class PlantsController < ApplicationController
     @plants = Plant.page(params[:page]).per(12)
     @q = Plant.ransack(params[:q])
     @plants = @q.result(distinct: true).page(params[:page]).per(12)
+    @search = Plant.ransack(params[:q])
+    @search.sorts = 'name asc' if @search.sorts.empty?
+    @plants = @search.result.page(params[:page]).per(12)
   end
 
   # GET /plants/1 or /plants/1.json

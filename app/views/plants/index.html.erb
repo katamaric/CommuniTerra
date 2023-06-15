@@ -1,28 +1,73 @@
-<div class="min-h-screen">
-
+<div class="grid grid-cols-2 gap-4">
+  <div class="col-span-1">
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm ">
     <br />
     <%= search_form_for @q do |f| %>
 
     <div class="field">
       <%= f.label :common_name_cont, "Recherchez une plante à l'aide de son nom commun :", class: "block text-sm font-medium leading-6 text-gray-900" %>
-      <br />
+        <hr/>
       <%= f.search_field :common_name_cont, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-    </div>
-    <br />
-    <div class="field">
-      <%= f.label :water_requirement_description_cont, "Recherchez une plante à l'aide de son nom commun :", class: "block text-sm font-medium leading-6 text-gray-900" %>
-      <br />
-      <%= f.search_field :water_requirement_description_cont, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
     </div>
     <br />
 
     <div class="actions bg-green-primary rounded-md">
       <%= f.submit "Chercher", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary"%>
     </div>
+        <hr/>
+
+      <%= link_to "Retour", plants_path, class: "flex w-full justify-center rounded-md bg-gray-500 text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
+    </div>
+
 
   <% end %>
   </div>
+  <div class="col-span-1">
+
+<div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+  <br />
+  <%= search_form_for @q,
+        class: 'form',
+        url: plants_path,
+        html: { autocomplete: 'off', autocapitalize: 'none' } do |f| %>
+
+    <div class="field">
+      <%= f.label :maintenance_level_cont, "Filtrer par niveau d'entretien :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= f.collection_select :maintenance_level_cont, Plant.select(:maintenance_level).distinct.order(:maintenance_level), :maintenance_level, :maintenance_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :cold_resistance_level_cont, "Filtrer par résistance au froid :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= f.collection_select :cold_resistance_level_cont, Plant.select(:cold_resistance_level).distinct.order(:cold_resistance_level), :cold_resistance_level, :cold_resistance_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :water_requirement_level_cont, "Filtrer par besoin en eau :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= f.collection_select :water_requirement_level_cont, Plant.select(:water_requirement_level).distinct.order(:water_requirement_level), :water_requirement_level, :water_requirement_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
+
+    <div class="form-group">
+      <i><%= @plants.total_count %> plantes</i>
+    </div>
+
+      <div class="form-group">
+        <div class="actions bg-green-primary rounded-md">
+          <%= f.submit "Filtrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+        </div>
+
+        <hr/>
+        <div class="actions bg-green-primary rounded-md">
+          <%= link_to request.path, class: "flex w-full justify-center rounded-md bg-gray-500 text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" do %>
+            <i class="far fa-undo icon-l"></i><%= t('Retour') %>
+          <% end %>
+        </div>
+      </div>
+
+      </div>
+    </div>    
+  <% end %>
+</div>
+
 
 
 <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
