@@ -1,25 +1,26 @@
-<div id="kept_plants">
-  <% @kept_plants.each do |kept_plant| %>
-    <div class="p-2" id="<%= dom_id kept_plant %>">
-      <p>
-        <strong>User:</strong>
-        <%= kept_plant.user.email %>
-      </p>
+<div class="grid xs:grid-cols-1 my-5 mx-5">
+<%= link_to "Rajouter des plantes à garder", new_kept_plant_path, class: "mb-4 actions text-indigo-500 font-semibold" %>
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <% @kept_plants.each do |kept_plant| %>
+      <div class="p-2" id="<%= dom_id kept_plant %>">
+        <p>
+          <strong>De :</strong>
+          <%= kept_plant.user.username %>
+        </p>
 
-      <p>
-        <strong><%= kept_plant.owned_plant.plant.common_name %></strong>
-      </p>
+        <p>
+          <strong><%= kept_plant.owned_plant.plant.common_name %></strong>
+        </p>
 
-      <p>
-        <strong>Description :</strong>
-        <%= kept_plant.description %>
-      </p>
+        <p>
+          <strong>Description :</strong>
+          <%= kept_plant.description %>
+        </p>
 
-      <p>
-        <%= link_to "Plus de détails", kept_plant_path(kept_plant) %>
-      </p>
-    </div>
-  <% end %>
+        <p>
+          <%= link_to "Plus de détails", kept_plant_path(kept_plant) %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "Rajouter des plantes à garder", new_kept_plant_path %>
