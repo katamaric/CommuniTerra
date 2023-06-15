@@ -24,11 +24,16 @@ class KeptPlantsController < ApplicationController
   # POST /kept_plants or /kept_plants.json
   def create
     @owned_plants = current_user.owned_plants
+    
+    @kept_plants = []
   
-    @kept_plants = @owned_plants.map do |owned_plant|
-      KeptPlant.new(kept_plant_params.merge(owned_plant_id: owned_plant.id))
+    # Iterate through the owned_plants and create KeptPlant instances for the selected ones
+    @owned_plants.each do |owned_plant|
+      if params[:kept_plant] && params[:kept_plant][:owned_plant_id].include?(owned_plant.id.to_s)
+        @kept_plants << KeptPlant.new(kept_plant_params.merge(owned_plant_id: owned_plant.id))
+      end
     end
-  
+    
     respond_to do |format|
       if @kept_plants.all?(&:save)
         format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont été ajoutées avec succès." }
@@ -39,6 +44,7 @@ class KeptPlantsController < ApplicationController
       end
     end
   end
+  
   
 
   # PATCH/PUT /kept_plants/1 or /kept_plants/1.json
