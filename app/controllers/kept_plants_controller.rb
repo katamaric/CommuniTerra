@@ -4,7 +4,12 @@ class KeptPlantsController < ApplicationController
 
   # GET /kept_plants or /kept_plants.json
   def index
-    @kept_plants = current_user.kept_plants
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @kept_plants = @user.kept_plants
+    else
+      @kept_plants = current_user.kept_plants
+    end
   end
 
   # GET /kept_plants/1 or /kept_plants/1.json
@@ -49,8 +54,7 @@ class KeptPlantsController < ApplicationController
         format.json { render json: @kept_plants.map(&:errors), status: :unprocessable_entity }
       end
     end
-  end
-  
+  end  
   
   
 
