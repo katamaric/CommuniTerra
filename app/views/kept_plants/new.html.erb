@@ -7,11 +7,6 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
-  <%# <div class="field">
-    <%= form.label :title, "Titre :" %>
-    <%# <%= form.text_area :title %>
-  <%# </div> %>
-
   <div class="field">
     <%= form.label :owned_plant_id, "Plantes à faire garder :" %>
     <% @owned_plants.each do |owned_plant| %>
@@ -27,10 +22,20 @@
     <%= form.number_field :quantity, class: "form-control" %>
   </div>
 
-  <%# <div class="field">
+  <div class="field">
     <%= form.label :description, "Description :" %>
-    <%# <%= form.text_area :description %>
-  <%# </div> %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date, "Date de début :" %>
+    <%= form.date_field :start_date, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date, "Date de fin :" %>
+    <%= form.date_field :end_date, class: "form-control" %>
+  </div>
 
   <div class="actions">
     <%= form.submit "Créer" %>

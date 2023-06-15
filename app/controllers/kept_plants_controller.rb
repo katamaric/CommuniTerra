@@ -24,16 +24,22 @@ class KeptPlantsController < ApplicationController
   # POST /kept_plants or /kept_plants.json
   def create
     @owned_plants = current_user.owned_plants
-    
+  
     @kept_plants = []
   
-    # Iterate through the owned_plants and create KeptPlant instances for the selected ones
     @owned_plants.each do |owned_plant|
       if params[:kept_plant] && params[:kept_plant][:owned_plant_id].include?(owned_plant.id.to_s)
-        @kept_plants << KeptPlant.new(kept_plant_params.merge(owned_plant_id: owned_plant.id))
+        # Add description, start_date, and end_date to the merged parameters
+        kept_plant_params_with_attributes = kept_plant_params.merge(
+          owned_plant_id: owned_plant.id,
+          description: params[:kept_plant][:description],
+          start_date: params[:kept_plant][:start_date],
+          end_date: params[:kept_plant][:end_date]
+        )
+        @kept_plants << KeptPlant.new(kept_plant_params_with_attributes)
       end
     end
-    
+  
     respond_to do |format|
       if @kept_plants.all?(&:save)
         format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont été ajoutées avec succès." }
@@ -43,7 +49,8 @@ class KeptPlantsController < ApplicationController
         format.json { render json: @kept_plants.map(&:errors), status: :unprocessable_entity }
       end
     end
-  end  
+  end
+  
   
   
 
@@ -78,6 +85,6 @@ class KeptPlantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def kept_plant_params
-      params.require(:kept_plant).permit(:user_id, :quantity, owned_plant_id: [])
+      params.require(:kept_plant).permit(:user_id, :quantity, :description, :start_date, :end_date, owned_plant_id: [])
     end    
   end
