@@ -42,7 +42,9 @@ Rails.application.routes.draw do
   resources :listings
   resources :allotment_users
   resources :allotments
-  resources :plant_sittings
+  resources :plant_sittings do
+    get 'index_current_user', on: :collection
+  end
   resources :kept_plants
   resources :owned_plants
   resources :plants
