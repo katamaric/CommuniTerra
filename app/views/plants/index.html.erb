@@ -1,3 +1,30 @@
+<div class="min-h-screen">
+
+  <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm ">
+    <br />
+    <%= search_form_for @q do |f| %>
+
+    <div class="field">
+      <%= f.label :common_name_cont, "Recherchez une plante à l'aide de son nom commun :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <br />
+      <%= f.search_field :common_name_cont, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
+    <br />
+    <div class="field">
+      <%= f.label :water_requirement_description_cont, "Recherchez une plante à l'aide de son nom commun :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <br />
+      <%= f.search_field :water_requirement_description_cont, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+    </div>
+    <br />
+
+    <div class="actions bg-green-primary rounded-md">
+      <%= f.submit "Chercher", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary"%>
+    </div>
+
+  <% end %>
+  </div>
+
+
 <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
   <% @plants.each do |plant| %>
     <div class="bg-white rounded-lg shadow-md p-4">

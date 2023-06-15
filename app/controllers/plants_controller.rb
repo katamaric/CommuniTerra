@@ -5,6 +5,8 @@ class PlantsController < ApplicationController
   # GET /plants or /plants.json
   def index
     @plants = Plant.page(params[:page]).per(12)
+    @q = Plant.ransack(params[:q])
+    @plants = @q.result(distinct: true).page(params[:page]).per(12)
   end
 
   # GET /plants/1 or /plants/1.json
