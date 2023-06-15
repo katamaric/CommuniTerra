@@ -1,11 +1,11 @@
 class PlantsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plant, only: %i[ show edit update destroy ]
 
   # GET /plants or /plants.json
   def index
     @plants = Plant.page(params[:page]).per(12)
-    # paginate(page: params[:page], per_page: 20)
-  end  
+  end
 
   # GET /plants/1 or /plants/1.json
   def show

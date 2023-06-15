@@ -1,11 +1,12 @@
 class PlantSittingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plant_sitting, only: %i[ show edit update destroy ]
 
   # GET /plant_sittings or /plant_sittings.json
   def index
     @plant_sittings = PlantSitting.all
-    @kept_plants = KeptPlant.all
-  end
+    @kept_plants = KeptPlant.where("end_date >= ?", Date.today).group_by(&:user_id)
+  end  
 
   # GET /plant_sittings/1 or /plant_sittings/1.json
   def show

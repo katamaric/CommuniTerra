@@ -1,4 +1,5 @@
 class LogBooksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_owned_plant
   before_action :set_log_book, only: [:edit, :update, :destroy]
 

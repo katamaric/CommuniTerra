@@ -3,5 +3,5 @@ class DashboardController < ApplicationController
   
   def index
     @owned_plants = current_user.owned_plants
-  end  
+  end
 end
