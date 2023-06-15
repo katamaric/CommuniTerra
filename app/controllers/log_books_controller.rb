@@ -28,6 +28,7 @@ class LogBooksController < ApplicationController
   end
 
   def edit
+    @log_book = LogBook.find(params[:id])
   end
 
   def update
@@ -39,9 +40,11 @@ class LogBooksController < ApplicationController
   end
 
   def destroy
+    @log_book = LogBook.find(params[:id])
     @log_book.destroy
-    redirect_to @owned_plant, notice: "L'entrée du journal de bord a été supprimée avec succès."
+    redirect_to owned_plant_log_books_path(@owned_plant), notice: "L'entrée du journal de bord a été supprimée avec succès."
   end
+  
 
   private
 

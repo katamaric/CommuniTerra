@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :owned_plants do
-    resources :log_books
+    resources :log_books, except: [:show]
   end
   
 end
