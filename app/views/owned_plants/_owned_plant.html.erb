@@ -9,7 +9,7 @@
           </p>
           <% if owned_plant.nickname.present? %>
              <%= link_to owned_plant.nickname, plant_path(owned_plant.plant.id), class: "inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"%>
-            <p class="mb-2 text-green-dark">
+            <p class="mb-2 text-gray-500">
               <%= owned_plant.plant.description %>
             </p>
           <% else %>
@@ -18,7 +18,7 @@
             <%= link_to "Donne-moi un petit nom !", edit_owned_plant_path(owned_plant), class: "font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
             </p>
             
-            <p class="mb-2 text-gray-700">
+            <p class="mb-2 text-gray-500">
               <%= owned_plant.plant.description %>
             </p>
 
