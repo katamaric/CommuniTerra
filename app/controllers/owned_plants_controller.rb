@@ -1,5 +1,4 @@
   class OwnedPlantsController < ApplicationController
-    before_action :authenticate_user!
     before_action :set_owned_plant, only: %i[ show edit update destroy ]
 
     # GET /owned_plants or /owned_plants.json
@@ -24,24 +23,18 @@
 
   # POST /owned_plants or /owned_plants.json
   def create
-    @owned_plants = current_user.owned_plants
-    selected_owned_plant_ids = params[:kept_plant][:owned_plant_id] || []
-  
-    @kept_plants = @owned_plants.select { |owned_plant| selected_owned_plant_ids.include?(owned_plant.id.to_s) }
-                               .map { |owned_plant| KeptPlant.new(kept_plant_params.merge(owned_plant_id: owned_plant.id)) }
-  
+    @owned_plant = OwnedPlant.new(owned_plant_params)
+
     respond_to do |format|
-      if @kept_plants.all?(&:save)
-        format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont été ajoutées avec succès." }
-        format.json { render :index, status: :created, location: kept_plants_url }
+      if @owned_plant.save
+        format.html { redirect_to dashboard_index_url, notice: "Owned plant was successfully created." }
+        format.json { render :show, status: :created, location: @owned_plant }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @kept_plants.map(&:errors), status: :unprocessable_entity }
+        format.json { render json: @owned_plant.errors, status: :unprocessable_entity }
       end
     end
   end
-  
-  
     
     # PATCH/PUT /owned_plants/1 or /owned_plants/1.json
     def update
