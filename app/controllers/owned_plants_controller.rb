@@ -67,6 +67,6 @@
 
       # Only allow a list of trusted parameters through.
       def owned_plant_params
-        params.require(:owned_plant).permit(:user_id, :plant_id, :quantity, :nickname)
+        params.require(:owned_plant).permit(:user_id, :plant_id, :quantity, :nickname, :description)
       end
   end
