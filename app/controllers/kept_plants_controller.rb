@@ -43,7 +43,7 @@ class KeptPlantsController < ApplicationController
         format.json { render json: @kept_plants.map(&:errors), status: :unprocessable_entity }
       end
     end
-  end
+  end  
   
   
 
