@@ -30,22 +30,22 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'static_pages/home'
-  get '/team', to: 'static_pages#team'
+  get '/notre_equipe', to: 'static_pages#team'
   get '/contact', to: 'static_pages#contact'
   get '/faq', to: 'static_pages#faq'
   get '/mentions_legales', to: 'static_pages#mentions'
-  get '/histoire', to: 'static_pages#historic'
+  get '/notre_histoire', to: 'static_pages#historic'
 
 
   resources :plant_moods
   resources :deliveries
-  resources :listings
+  resources :listings, path: 'marche'
   resources :allotment_users
-  resources :allotments
-  resources :plant_sittings
+  resources :allotments, path: 'potagers'
+  resources :plant_sittings, path: 'gardiennage'
   resources :kept_plants
   resources :owned_plants
-  resources :plants
+  resources :plants, path: 'plantes'
   resources :users
 
   resources :owned_plants do
