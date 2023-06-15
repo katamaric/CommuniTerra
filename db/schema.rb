@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_100128) do
     t.bigint "user_id", null: false
     t.bigint "owned_plant_id", null: false
     t.integer "quantity"
+    t.integer "plantlist_number", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"

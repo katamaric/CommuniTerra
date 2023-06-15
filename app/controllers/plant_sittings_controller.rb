@@ -9,8 +9,13 @@ class PlantSittingsController < ApplicationController
   end  
 
   # GET /plant_sittings/1 or /plant_sittings/1.json
+  def index_current_user
+    @plant_sittings = current_user.plant_sittings
+  end  
+
   def show
-  end
+    @plant_sittings = current_user.plant_sittings
+  end  
 
   # GET /plant_sittings/new
   def new
@@ -23,8 +28,8 @@ class PlantSittingsController < ApplicationController
 
   # POST /plant_sittings or /plant_sittings.json
   def create
-    @plant_sitting = PlantSitting.new(plant_sitting_params)
-    @plant_sitting.user = current_user
+    @plant_sitting = PlantSitting.create(plant_sitting_params)
+    @plant_sitting.kept_plants << current_user.kept_plants
 
     respond_to do |format|
       if @plant_sitting.save
@@ -69,5 +74,5 @@ class PlantSittingsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def plant_sitting_params
       params.require(:plant_sitting).permit(:user_id, :kept_plant_id)
-    end
+    end    
 end

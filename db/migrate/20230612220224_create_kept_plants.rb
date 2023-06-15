@@ -4,6 +4,7 @@ class CreateKeptPlants < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.references :owned_plant, null: false, foreign_key: true
       t.integer :quantity
+      t.integer :plantlist_number, default: 1
 
       t.timestamps
     end
