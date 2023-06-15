@@ -16,8 +16,7 @@ class KeptPlantsController < ApplicationController
       end_date = Date.parse(params[:end_date])
       @kept_plants = @kept_plants.where(start_date: start_date, end_date: end_date)
     end
-  end  
-  
+  end
 
   # GET /kept_plants/1 or /kept_plants/1.json
   def show
@@ -69,7 +68,7 @@ class KeptPlantsController < ApplicationController
   def update
     respond_to do |format|
       if @kept_plant.update(kept_plant_params)
-        format.html { redirect_to kept_plant_url(@kept_plant), notice: "Kept plant was successfully updated." }
+        format.html { redirect_to kept_plant_url(@kept_plant), notice: "Les plantes à garder ont bien été modifiées." }
         format.json { render :show, status: :ok, location: @kept_plant }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -83,7 +82,7 @@ class KeptPlantsController < ApplicationController
     @kept_plant.destroy
 
     respond_to do |format|
-      format.html { redirect_to kept_plants_url, notice: "Kept plant was successfully destroyed." }
+      format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont bien été supprimées." }
       format.json { head :no_content }
     end
   end
