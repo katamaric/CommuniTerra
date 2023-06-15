@@ -1,0 +1,23 @@
+<% if @plant_sittings.empty? %>
+  <p>Il n'y a pas de PlantSitting.</p>
+<% else %>
+  <% if @plant_sittings.any? %>
+    <% @plant_sittings.each do |plant_sitting| %>
+      <% if plant_sitting.user_id == current_user.id %>
+        <!-- Afficher les détails du plant sitting -->
+        <div>
+          <h2>Plante gardée pour <%= plant_sitting.kept_plant.user.username %></h2>
+          <p>Date de début : <%= plant_sitting.kept_plant.start_date.strftime("%d/%m/%Y") %></p>
+          <p>Date de fin : <%= plant_sitting.kept_plant.end_date.strftime("%d/%m/%Y") %></p>
+          <p>Plante : <%= plant_sitting.kept_plant.plant.common_name %></p>
+          <!-- Ajoutez ici d'autres détails spécifiques au PlantSitting -->
+          <%= link_to "Modifier", edit_plant_sitting_path(plant_sitting) %> |
+          <%= link_to "Retour", plant_sittings_path %>
+          <%= button_to "Supprimer", plant_sitting, method: :delete %>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p>Vous n'avez pas de plantsitting.</p>
+  <% end %>
+<% end %>
