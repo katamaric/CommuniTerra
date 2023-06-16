@@ -20,7 +20,7 @@
               </svg>
               <span class="relative">Bienvenue</span>
             </span>
-            sur le journal de bord
+            sur le journal de bord de
             <% if @log_books.present? && @log_books.first.present? && @log_books.first.owned_plant.nickname.present? %>
               de <%= @log_books.first.owned_plant.nickname %>
             <% elsif @log_books.present? && @log_books.first.present? %>
