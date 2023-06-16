@@ -1,26 +1,28 @@
-
 # CommuniTerra
 
-CommuniTerra is a website for plant care and plant sharing/sitting. 
+CommuniTerra is a website for plant care and plant sharing/sitting. It offers users a wide database of plants to pick from, and a logbook system that allows users to log entries on their plants daily to keep track of their health and anything the user deems worth keeping :)
+
 ## Features
 
-- Log in/sign up
-- Add plants you own to your dashboard
-- Responsive website
+- Wide database of plants 
+- User creation (including profile personalization)
+- Logbook for each plant
 
 ## Features to come
 
-- Toggle light/dark mode
-- Marketplace
-- Alltoments/Community gardens in your area
+- Plantsitting: ability to select plants that need a sitter, to plantsit for other users, and to log entries in plants a sitter is currently taking care of
+- "Smart" logbook: using the database info, the logbook will predict when the plant needs watering, its overall health, and allow the user to use the logbook faster
+- Allotments/Community gardens in your area
+- Private messaging between users
+- Dark Mode
 
 ## Authors
 
-- [@katamaric](https://www.github.com/katamaric)
 - [@artem-ine](https://www.github.com/artem-ine)
-- [@Hug-alito](https://github.com/Hug-alito)
-- [@SasidaTR](https://github.com/SasidaTR)
 - [@c-boris](https://github.com/c-boris)
+- [@Hug-alito](https://github.com/Hug-alito)
+- [@katamaric](https://www.github.com/katamaric)
+- [@SasidaTR](https://github.com/SasidaTR)
 
 ## Run locally
 
@@ -54,4 +56,4 @@ You should be able to access it via your standard friendly http://localhost:3000
 
 ## Visit the website
 
-Painstakingly deployed to Heroku, you can browse CommuniTerra at this adress: https://communiterra.herokuapp.com/
+Painstakingly deployed to Heroku, you can browse and use CommuniTerra at this address: https://communiterra.herokuapp.com/
