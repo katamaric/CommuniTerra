@@ -1,5 +1,8 @@
 
 <div class="dashboard-container min-h-screen">
+  <% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
 
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
@@ -41,13 +44,13 @@
                       <span class="text-gray-600">Votre profil :</span>
             </p>
               <p class="mb-2 text-gray-700">
-                <p><strong>Prénom:</strong> <%= current_user.first_name %></p>
-                <p><strong>Nom:</strong> <%= current_user.last_name %></p>
-                <p><strong>Email:</strong> <%= current_user.email %></p>
-                <p><strong>Username:</strong> <%= current_user.username %></p>
-                <p><strong>Téléphone:</strong> <%= current_user.phone_number %></p>
-                <p><strong>Anniversaire:</strong> <%= current_user.birthdate %></p>
-                <p><strong>Bio:</strong> <%= current_user.bio %></p>
+                <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
+                <p><strong>Nom :</strong> <%= current_user.last_name %></p>
+                <p><strong>Email :</strong> <%= current_user.email %></p>
+                <p><strong>Username :</strong> <%= current_user.username %></p>
+                <p><strong>Téléphone :</strong> <%= current_user.phone_number %></p>
+                <p><strong>Anniversaire :</strong> <%= current_user.birthdate %></p>
+                <p><strong>Bio :</strong> <%= current_user.bio %></p>
               </p>
 
               <div class="mt-4 flex justify-center">
