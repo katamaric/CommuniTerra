@@ -27,7 +27,7 @@
 
     respond_to do |format|
       if @owned_plant.save
-        format.html { redirect_to dashboard_index_url, notice: "Owned plant was successfully created." }
+        format.html { redirect_to dashboard_index_url, notice: "La plante possédée a bien été ajoutée." }
         format.json { render :show, status: :created, location: @owned_plant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@
     def update
       respond_to do |format|
         if @owned_plant.update(owned_plant_params)
-          format.html { redirect_to dashboard_index_url, notice: "Owned plant was successfully updated." }
+          format.html { redirect_to dashboard_index_url, notice: "La plante possédée a bien été modifiée." }
           format.json { render :show, status: :ok, location: @owned_plant }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@
       @owned_plant.destroy
 
       respond_to do |format|
-        format.html { redirect_to owned_plants_url, notice: "Owned plant was successfully destroyed." }
+        format.html { redirect_to owned_plants_url, notice: "La plante possédée a bien été supprimée." }
         format.json { head :no_content }
       end
     end
