@@ -33,7 +33,7 @@ class PlantSittingsController < ApplicationController
 
     respond_to do |format|
       if @plant_sitting.save
-        format.html { redirect_to plant_sitting_url(@plant_sitting), notice: "Plant sitting was successfully created." }
+        format.html { redirect_to plant_sitting_url(@plant_sitting), notice: "Le gardiennage a bien été créé." }
         format.json { render :show, status: :created, location: @plant_sitting }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +46,7 @@ class PlantSittingsController < ApplicationController
   def update
     respond_to do |format|
       if @plant_sitting.update(plant_sitting_params)
-        format.html { redirect_to plant_sitting_url(@plant_sitting), notice: "Plant sitting was successfully updated." }
+        format.html { redirect_to plant_sitting_url(@plant_sitting), notice: "Le gardiennage a bien été modifié." }
         format.json { render :show, status: :ok, location: @plant_sitting }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,7 +60,7 @@ class PlantSittingsController < ApplicationController
     @plant_sitting.destroy
 
     respond_to do |format|
-      format.html { redirect_to plant_sittings_url, notice: "Plant sitting was successfully destroyed." }
+      format.html { redirect_to plant_sittings_url, notice: "Le gardiennage a bien été supprimé." }
       format.json { head :no_content }
     end
   end

@@ -26,7 +26,7 @@ class PlantMoodsController < ApplicationController
 
     respond_to do |format|
       if @plant_mood.save
-        format.html { redirect_to plant_mood_url(@plant_mood), notice: "Plant mood was successfully created." }
+        format.html { redirect_to plant_mood_url(@plant_mood), notice: "Le mood de la plante a bien été créé." }
         format.json { render :show, status: :created, location: @plant_mood }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class PlantMoodsController < ApplicationController
   def update
     respond_to do |format|
       if @plant_mood.update(plant_mood_params)
-        format.html { redirect_to plant_mood_url(@plant_mood), notice: "Plant mood was successfully updated." }
+        format.html { redirect_to plant_mood_url(@plant_mood), notice: "Le mood de la plante a bien été modifié." }
         format.json { render :show, status: :ok, location: @plant_mood }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class PlantMoodsController < ApplicationController
     @plant_mood.destroy
 
     respond_to do |format|
-      format.html { redirect_to plant_moods_url, notice: "Plant mood was successfully destroyed." }
+      format.html { redirect_to plant_moods_url, notice: "Le mood de la plante a bien été supprimé." }
       format.json { head :no_content }
     end
   end
