@@ -59,13 +59,14 @@ class PlantMoodsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_plant_mood
-      @plant_mood = PlantMood.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_plant_mood
+    @plant_mood = PlantMood.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def plant_mood_params
-      params.require(:plant_mood).permit(:plant_mood)
-    end
+  # Only allow a list of trusted parameters through.
+  def plant_mood_params
+    params.require(:plant_mood).permit(:plant_mood)
+  end
 end

@@ -69,13 +69,14 @@ class PlantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_plant
-      @plant = Plant.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_plant
+    @plant = Plant.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def plant_params
-      params.require(:plant).permit(:description, :common_name, :latin_name, :specie, :vegetation, :foliage, :mature_height, :mature_width, :maintenance_level, :maintenance_description, :water_requirement_level, :water_requirement_description, :cold_resistance_level, :cold_resistance_description, :density, :exposure_level, :exposure_description, :flowering, :planting, :harvest, :pruning)
-    end
+  # Only allow a list of trusted parameters through.
+  def plant_params
+    params.require(:plant).permit(:description, :common_name, :latin_name, :specie, :vegetation, :foliage, :mature_height, :mature_width, :maintenance_level, :maintenance_description, :water_requirement_level, :water_requirement_description, :cold_resistance_level, :cold_resistance_description, :density, :exposure_level, :exposure_description, :flowering, :planting, :harvest, :pruning)
+  end
 end
