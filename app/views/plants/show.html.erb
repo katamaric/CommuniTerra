@@ -31,7 +31,7 @@
   
   <%# <% if current_user && current_user.admin? %>
     <%# <%= link_to "Modifier plante", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
-  <%# <% else %> 
+  <%# <% else %>
     <%# <% if current_user %> 
       <% if user_signed_in? %>
         <% if current_user.owned_plants.exists?(plant_id: @plant.id) %>
@@ -48,6 +48,6 @@
   <% else %>
     <%= link_to "Me connecter pour ajouter à mes plantes", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
   <% end %>
-    <%# <% end %>
+  <%# <% end %>
   <%# <% end %>
 </div>
