@@ -18,11 +18,11 @@ CommuniTerra is a website for plant care and plant sharing/sitting. It offers us
 
 ## Authors
 
-- [@katamaric](https://www.github.com/katamaric)
 - [@artem-ine](https://www.github.com/artem-ine)
-- [@Hug-alito](https://github.com/Hug-alito)
-- [@SasidaTR](https://github.com/SasidaTR)
 - [@c-boris](https://github.com/c-boris)
+- [@Hug-alito](https://github.com/Hug-alito)
+- [@katamaric](https://www.github.com/katamaric)
+- [@SasidaTR](https://github.com/SasidaTR)
 
 ## Run locally
 
