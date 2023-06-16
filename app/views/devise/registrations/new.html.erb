@@ -1,3 +1,6 @@
+<% if notice.present? %>
+<p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <img class="mx-auto h-35 w-auto" src="<%= asset_path('logo_sm.png') %>" alt="communiterra logo" class="object-contain">
@@ -12,6 +15,13 @@
         <%= f.label :email, class: "block text-sm font-medium leading-6 text-gray-900" %>
         <div class="mt-2 mb-5">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="field">
+      <%= f.label :username, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <div class="mt-2 mb-5">
+          <%= f.text_field :username, autofocus: true, autocomplete: "username", required: true, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
