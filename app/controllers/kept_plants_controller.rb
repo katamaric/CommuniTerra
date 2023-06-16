@@ -96,13 +96,14 @@ class KeptPlantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_kept_plant
-      @kept_plant = KeptPlant.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def kept_plant_params
-      params.require(:kept_plant).permit(:user_id, :quantity, :description, :start_date, :end_date, owned_plant_id: [])
-    end    
+  # Use callbacks to share common setup or constraints between actions.
+  def set_kept_plant
+    @kept_plant = KeptPlant.find(params[:id])
   end
+
+  # Only allow a list of trusted parameters through.
+  def kept_plant_params
+    params.require(:kept_plant).permit(:user_id, :quantity, :description, :start_date, :end_date, owned_plant_id: [])
+  end    
+end
