@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  self.inheritance_column = :user_type
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,10 +8,10 @@ class User < ApplicationRecord
   has_many :owned_plants, dependent: :destroy
   has_many :plants, through: :owned_plants
 
-  has_many :plant_sittings_as_sitter, foreign_key: :plantsitter_id, class_name: 'PlantSitting', dependent: :destroy
-  has_many :kept_plants_as_sitter, through: :plant_sittings_as_sitter, source: :kept_plant
+  has_many :kept_plants, foreign_key: :sitter_id, class_name: 'KeptPlant'
+  has_many :plant_sittings_as_sitter, through: :kept_plants, source: :plant_sitting_as_sitter
 
-  has_many :plant_sittings_as_asker, foreign_key: :plantsitasker_id, class_name: 'PlantSitting', dependent: :destroy
+  has_many :plant_sittings_as_asker, foreign_key: :asker_id, class_name: 'PlantSitting'
   has_many :kept_plants_as_asker, through: :plant_sittings_as_asker, source: :kept_plant
 
   # has_many :private_sent_messages, class_name: 'PrivateMessage', foreign_key: 'sender_id'
