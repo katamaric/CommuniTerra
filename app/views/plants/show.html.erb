@@ -35,7 +35,7 @@
     <%# <% if current_user %> 
       <% if user_signed_in? %>
         <% if current_user.owned_plants.exists?(plant_id: @plant.id) %>
-          <%= link_to "Voir ma plante", dashboard_index_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+          <%= link_to "Voir ma plante", dashboard_index_path, class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
         <% else %>
           <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
           <%= form.fields_for :owned_plant do |owned_plant_fields| %>
