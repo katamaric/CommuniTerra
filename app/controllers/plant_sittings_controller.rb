@@ -5,18 +5,19 @@ class PlantSittingsController < ApplicationController
   # GET /plant_sittings or /plant_sittings.json
   def index
     @plant_sittings = PlantSitting.all
-    @kept_plants = KeptPlant.where("end_date >= ?", Date.today).group_by(&:user_id)
+    @kept_plants = KeptPlant.where("end_date >= ?", Date.today).group_by { |kept_plant| kept_plant.owned_plant.user_id }
   end  
 
   # GET /plant_sittings/1 or /plant_sittings/1.json
-  def index_current_user
-    @plant_sittings = current_user.plant_sittings
-  end  
-
   def show
-    @plant_sittings = current_user.plant_sittings
-  end  
+    @plant_sittings = PlantSitting.includes(:sitter, :asker).where(sitter_id: current_user.id)
+  end
 
+  def index_current_user
+    @plant_sittings_as_asker = PlantSitting.includes(:sitter, :asker).where(asker_id: current_user.id)
+    @plant_sittings_as_sitter = PlantSitting.includes(:sitter, :asker).where(sitter_id: current_user.id)
+  end
+  
   # GET /plant_sittings/new
   def new
     @plant_sitting = PlantSitting.new
@@ -27,20 +28,22 @@ class PlantSittingsController < ApplicationController
   end
 
   # POST /plant_sittings or /plant_sittings.json
-  def create
-    @plant_sitting = PlantSitting.create(plant_sitting_params)
-    @plant_sitting.kept_plants << current_user.kept_plants
-
-    respond_to do |format|
+    def create
+      kept_plants = KeptPlant.where(id: params[:kept_plant_ids])
+      asker_id = kept_plants.first&.owned_plant&.user_id
+  
+      @plant_sitting = PlantSitting.new(sitter_id: current_user.id, asker_id: asker_id)
+  
       if @plant_sitting.save
-        format.html { redirect_to plant_sitting_url(@plant_sitting), notice: "Le gardiennage a bien été créé." }
-        format.json { render :show, status: :created, location: @plant_sitting }
+        # Associer le PlantSitting à chaque KeptPlant de la liste
+        kept_plants.update_all(plant_sitting_id: @plant_sitting.id)
+  
+        redirect_to @plant_sitting, notice: 'Plant sitting was successfully created.'
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @plant_sitting.errors, status: :unprocessable_entity }
+        render :new
       end
     end
-  end
+  
 
   # PATCH/PUT /plant_sittings/1 or /plant_sittings/1.json
   def update

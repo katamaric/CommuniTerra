@@ -1,15 +1,12 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  <div class="bg-white rounded-lg shadow-md p-4">
 
     <%= render @listing %>
 
-    <%= link_to 'Edit this listing', edit_listing_path(@listing), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Modifier l'article", edit_listing_path(@listing), class: "text-indigo-500 font-semibold" %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy this listing', listing_path(@listing), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Supprimer l'article", listing_path(@listing), method: :delete, class: "text-indigo-500 font-semibold" %>
     </div>
-    <%= link_to 'Back to listings', listings_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Retour aux articles", listings_path, class: "text-indigo-500 font-semibold" %>
   </div>
 </div>

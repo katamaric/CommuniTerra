@@ -1,13 +1,9 @@
 <div class="grid xs:grid-cols-1 my-5 mx-5">
   <div class="bg-white rounded-lg shadow-md p-4">
     <%= form_with(model: @kept_plant, url: kept_plants_path) do |form| %>
-      <% if @kept_plant.errors.any? %>
+      <%# <% if @kept_plant.errors.any? %>
         <!-- ... Gestion des erreurs ... -->
-      <% end %>
-
-      <div class="field">
-        <%= form.hidden_field :user_id, value: current_user.id %>
-      </div>
+      <%# <% end %>
 
       <div class="field mb-4">
         <%= form.label :owned_plant_id, "Plantes à faire garder :" %>
