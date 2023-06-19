@@ -41,7 +41,7 @@
           <img src="<%= asset_path('userprofile.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
           <div class="p-5 rounded border border-t-0 shadow-sm">
             <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
-                      <span class="text-gray-600">Votre profil :</span>
+              <span class="text-gray-600">Votre profil :</span>
             </p>
               <p class="mb-2 text-gray-700">
                 <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
@@ -66,12 +66,7 @@
         <h1 class="font-semibold text-2xl">Vos plantes</h1>
       </div>
 
-      <% if @owned_plant.nil? %>
-        <p>Vous n'avez aucune plante. Sélectionnez celles que vous avez dans l'onglet <%= link_to "Plantes", plants_path, class: "text-indigo-500 font-semibold" %>.</p>
-      <% else %>
-        <%= render "owned_plants/owned_plant" %>
-        <p>TEST</p>
-      <% end %>
+      <%= render "owned_plants/owned_plant" %>
     </div>
   </div>
 </div>
