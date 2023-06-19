@@ -4,6 +4,8 @@ class CreateOwnedPlants < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.references :plant, null: false, foreign_key: true
       t.integer :quantity
+      t.text :description, default: nil
+      t.string :nickname, default: nil
 
       t.timestamps
     end

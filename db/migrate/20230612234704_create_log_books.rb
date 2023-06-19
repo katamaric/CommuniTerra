@@ -5,7 +5,6 @@ class CreateLogBooks < ActiveRecord::Migration[7.0]
       t.datetime :entry_date
       t.string :title
       t.text :content
-      t.references :plant_mood, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_104213) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_114937) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,12 +48,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_104213) do
     t.bigint "owned_plant_id", null: false
     t.integer "quantity"
     t.integer "plantlist_number", default: 1
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "description"
-    t.string "title"
     t.date "start_date"
     t.date "end_date"
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["owned_plant_id"], name: "index_kept_plants_on_owned_plant_id"
     t.index ["user_id"], name: "index_kept_plants_on_user_id"
   end
@@ -79,7 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_104213) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "mood"
     t.index ["owned_plant_id"], name: "index_log_books_on_owned_plant_id"
   end
 
@@ -87,10 +86,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_104213) do
     t.bigint "user_id", null: false
     t.bigint "plant_id", null: false
     t.integer "quantity"
+    t.text "description"
+    t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "nickname"
-    t.text "description"
     t.index ["plant_id"], name: "index_owned_plants_on_plant_id"
     t.index ["user_id"], name: "index_owned_plants_on_user_id"
   end
