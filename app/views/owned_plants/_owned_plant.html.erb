@@ -1,35 +1,39 @@
-<div class="px-4 mx-auto min-h-screen">
+<div class="px-4 mx-auto">
   <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <% @owned_plants.each do |owned_plant| %>
-      <div class="transition-shadow duration-300 bg-white rounded shadow-sm flex flex-col">
-        <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
-        <div class="p-5 rounded">
-          <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
-            <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
-          </p>
-          <% if owned_plant.nickname.present? %>
-            <%= link_to owned_plant.nickname, plant_path(owned_plant.plant.id), class: "inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"%>
-            <p class="mb-3 text-sm text-gray-500">
-              <%= link_to "Editer mon petit nom et/ou description personnalisée !", edit_owned_plant_path(owned_plant), class: "font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
-            </p> 
-            <p class="mb-2 text-gray-500">
-              <%= owned_plant.description %>
+    <% if @owned_plants.empty? %>
+      <p>Vous n'avez aucune plante. Sélectionnez celles que vous avez dans l'onglet <%= link_to "Plantes", plants_path, class: "text-indigo-500 font-semibold" %>.</p>
+    <% else %>
+      <% @owned_plants.each do |owned_plant| %>
+        <div class="transition-shadow duration-300 bg-white rounded shadow-sm flex flex-col">
+          <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
+          <div class="p-5 rounded">
+            <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
+              <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
             </p>
-          <% else %>
-            <%= link_to owned_plant.plant.common_name, plant_path(owned_plant.plant.id), class: "inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"%>
-            <p class="mb-3 text-sm text-gray-500">
-              <%= link_to "Donne-moi un petit nom et/ou description personnalisée !", edit_owned_plant_path(owned_plant), class: "font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
-            </p>          
-            <p class="mb-2 text-gray-500">
-              <%= owned_plant.plant.description %>
-            </p>
-          <% end %>
-          <div class="mt-auto">
-            <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
-            <%= link_to "Voir le journal de bord", owned_plant_log_books_path(owned_plant.id), class: "mt-2 mb-3 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+            <% if owned_plant.nickname.present? %>
+              <%= link_to owned_plant.nickname, plant_path(owned_plant.plant.id), class: "inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"%>
+              <p class="mb-3 text-sm text-gray-500">
+                <%= link_to "Editer mon petit nom et/ou description personnalisée !", edit_owned_plant_path(owned_plant), class: "font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+              </p> 
+              <p class="mb-2 text-gray-500">
+                <%= owned_plant.description %>
+              </p>
+            <% else %>
+              <%= link_to owned_plant.plant.common_name, plant_path(owned_plant.plant.id), class: "inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"%>
+              <p class="mb-3 text-sm text-gray-500">
+                <%= link_to "Donne-moi un petit nom et/ou description personnalisée !", edit_owned_plant_path(owned_plant), class: "font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+              </p>          
+              <p class="mb-2 text-gray-500">
+                <%= owned_plant.plant.description %>
+              </p>
+            <% end %>
+            <div class="mt-auto">
+              <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+              <%= link_to "Voir le journal de bord", owned_plant_log_books_path(owned_plant.id), class: "mt-2 mb-3 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
