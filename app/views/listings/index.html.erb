@@ -1,4 +1,5 @@
 <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+<%= link_to 'Ajouter un article', new_listing_path, class: 'text-indigo-500 font-semibold' %>
   <% @listings.each do |listing| %>
     <div class="bg-white rounded-lg shadow-md p-4">
 
@@ -11,8 +12,4 @@
   <% end %>
 </div>
 
-<div class="flex justify-center mb-4">
-  <div class="font-bold">
-    <%= paginate @listings %>
-  </div>
 </div>
