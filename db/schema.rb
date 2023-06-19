@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
 
   create_table "kept_plants", force: :cascade do |t|
     t.bigint "owned_plant_id", null: false
-    t.bigint "plant_sitting_id", null: false
+    t.bigint "plant_sitting_id"
     t.integer "quantity"
     t.date "start_date"
     t.date "end_date"
@@ -136,7 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
     t.datetime "birthdate"
     t.text "bio"
     t.boolean "admin", default: false
-    t.string "type", null: false
+    t.string "type", default: "asker", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

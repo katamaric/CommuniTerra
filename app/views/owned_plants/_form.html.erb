@@ -18,19 +18,39 @@
         </div>
       <% end %>
 
-      <div class="field">
-        <%= form.label :nickname, "Petit nom", class: "block text-sm font-medium leading-6 text-gray-900" %>
-        <%= form.text_field :nickname, value: owned_plant.plant.common_name, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-      </div>
+      <% if owned_plant.nickname.present? %>
 
-      <div class="field">
-        <%= form.label :description, "Description personnalisée", class: "block text-sm font-medium leading-6 text-gray-900" %>
-        <%= form.text_area :description, value: owned_plant.plant.description, class: "block w-full rounded-md pl-4 pr-4 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-      </div>
+        <div class="field">
+          <%= form.label :nickname, "Petit nom", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :nickname, value: owned_plant.nickname, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
 
-      <div class="actions bg-green-primary rounded-md">
-        <%= form.submit "Enregistrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
-      </div>
+        <div class="field">
+          <%= form.label :description, "Description personnalisée", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_area :description, value: owned_plant.description, class: "block w-full rounded-md pl-4 pr-4 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+
+        <div class="actions bg-green-primary rounded-md">
+          <%= form.submit "Enregistrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+        </div>
+
+      <% else %>
+
+        <div class="field">
+          <%= form.label :nickname, "Petit nom", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :nickname, value: owned_plant.plant.common_name, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :description, "Description personnalisée", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_area :description, value: owned_plant.plant.description, class: "block w-full rounded-md pl-4 pr-4 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+
+        <div class="actions bg-green-primary rounded-md">
+          <%= form.submit "Enregistrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+        </div>
+
+      <% end %>
 
     <% end %>
 
