@@ -1,4 +1,4 @@
-<nav class="bg-green-secondary fixed w-full z-20 top-0 left-0 border-b border-gray-200">
+<nav class="bg-green-secondary border-gray-200">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" aria-label="Communiterra" title="Communiterra" class="inline-flex items-center">
       <img src="<%= asset_path('tiny_communiterra.png') %>" alt="communiterra logo">
@@ -15,14 +15,13 @@
           <li><%= link_to "Se connecter", new_user_session_path, aria: { label: "Se connecter" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
           <li><%= link_to "S'inscrire", new_user_registration_path, aria: { label: "S'inscrire" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
         <% end %>
-    
-        <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
+        <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
         </button>
       </ul>
     </div>
-    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
       <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent">
         <li>
           <%= link_to "Plantes", plants_path, class: "block py-2 pl-3 pr-4 text-green-primary rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 text-lg" %>
