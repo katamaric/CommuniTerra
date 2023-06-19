@@ -1,5 +1,5 @@
 <div class="px-4 mx-auto">
-  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
     <% if @owned_plants.empty? %>
       <p>Vous n'avez aucune plante. Sélectionnez celles que vous avez dans l'onglet <%= link_to "Plantes", plants_path, class: "text-indigo-500 font-semibold" %>.</p>
     <% else %>
