@@ -61,10 +61,17 @@
         </div>
       </div>
       <hr>
+
       <div class="my-4">
         <h1 class="font-semibold text-2xl">Vos plantes</h1>
       </div>
-      <%= render "owned_plants/owned_plant" %>
+
+      <% if @owned_plant.nil? %>
+        <p>Vous n'avez aucune plante. Sélectionnez celles que vous avez dans l'onglet <%= link_to "Plantes", plants_path, class: "text-indigo-500 font-semibold" %>.</p>
+      <% else %>
+        <%= render "owned_plants/owned_plant" %>
+        <p>TEST</p>
+      <% end %>
     </div>
   </div>
 </div>
