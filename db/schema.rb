@@ -44,10 +44,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
   end
 
   create_table "kept_plants", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "owned_plant_id", null: false
+    t.bigint "plant_sitting_id", null: false
     t.integer "quantity"
-    t.integer "plantlist_number", default: 1
     t.date "start_date"
     t.date "end_date"
     t.string "title"
@@ -55,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owned_plant_id"], name: "index_kept_plants_on_owned_plant_id"
-    t.index ["user_id"], name: "index_kept_plants_on_user_id"
+    t.index ["plant_sitting_id"], name: "index_kept_plants_on_plant_sitting_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -95,12 +94,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
   end
 
   create_table "plant_sittings", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "kept_plant_id", null: false
+    t.bigint "sitter_id"
+    t.bigint "asker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["kept_plant_id"], name: "index_plant_sittings_on_kept_plant_id"
-    t.index ["user_id"], name: "index_plant_sittings_on_user_id"
+    t.index ["asker_id"], name: "index_plant_sittings_on_asker_id"
+    t.index ["sitter_id"], name: "index_plant_sittings_on_sitter_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -137,6 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
     t.datetime "birthdate"
     t.text "bio"
     t.boolean "admin", default: false
+    t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -152,12 +152,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
   add_foreign_key "allotment_users", "users", column: "admin_id"
   add_foreign_key "allotment_users", "users", column: "member_id"
   add_foreign_key "kept_plants", "owned_plants"
-  add_foreign_key "kept_plants", "users"
+  add_foreign_key "kept_plants", "plant_sittings"
   add_foreign_key "listings", "deliveries"
   add_foreign_key "listings", "users"
   add_foreign_key "log_books", "owned_plants"
   add_foreign_key "owned_plants", "plants"
   add_foreign_key "owned_plants", "users"
-  add_foreign_key "plant_sittings", "kept_plants"
-  add_foreign_key "plant_sittings", "users"
+  add_foreign_key "plant_sittings", "users", column: "asker_id"
+  add_foreign_key "plant_sittings", "users", column: "sitter_id"
 end

@@ -6,9 +6,9 @@ class KeptPlantsController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @kept_plants = @user.kept_plants
+      @kept_plants = @user.kept_plants_as_asker
     else
-      @kept_plants = current_user.kept_plants
+      @kept_plants = current_user.kept_plants_as_sitter
     end
     
     if params[:user_id] && params[:start_date] && params[:end_date]
