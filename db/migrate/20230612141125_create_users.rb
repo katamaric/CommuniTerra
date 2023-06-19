@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.datetime :birthdate
       t.text :bio
       t.boolean :admin, default: false
-      t.string :type, null: false
+      t.string :type, null: false, default: "asker"
 
       t.timestamps
     end
