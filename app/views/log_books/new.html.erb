@@ -19,17 +19,17 @@
       <% end %>
 
       <div class="field">
-        <%= log_book_form.label :entry_date, class: "block text-sm font-medium leading-6 text-gray-900" %>
-        <%= log_book_form.datetime_field :entry_date, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        <%= log_book_form.label :entry_date, "Date et heure", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= log_book_form.datetime_field :entry_date, value: Time.now.strftime('%Y-%m-%dT%H:%M'), class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
       </div>
 
       <div class="field">
-        <%= log_book_form.label :title, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= log_book_form.label :title, "Titre", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= log_book_form.text_field :title, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
       </div>
 
       <div class="field">
-        <%= log_book_form.label :content, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= log_book_form.label :content, "Entrée du jour", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= log_book_form.text_area :content, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
       </div>
 
