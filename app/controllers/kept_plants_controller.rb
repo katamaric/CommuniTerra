@@ -6,15 +6,15 @@ class KeptPlantsController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @kept_plants = @user.kept_plants_as_asker
+      @kept_plants = @user.owned_plants.map(&:kept_plants).flatten
     else
-      @kept_plants = current_user.kept_plants_as_sitter
+      @kept_plants = current_user.owned_plants.map(&:kept_plants).flatten
     end
     
     if params[:user_id] && params[:start_date] && params[:end_date]
       start_date = Date.parse(params[:start_date])
       end_date = Date.parse(params[:end_date])
-      @kept_plants = @kept_plants.where(start_date: start_date, end_date: end_date)
+      @kept_plants = @kept_plants.select { |kept_plant| kept_plant.start_date == start_date && kept_plant.end_date == end_date }
     end
   end
 
@@ -55,16 +55,13 @@ class KeptPlantsController < ApplicationController
       end
     end    
   
-    plantlist_number = KeptPlant.maximum(:plantlist_number).to_i + 1
-    @kept_plants.each { |kept_plant| kept_plant.plantlist_number = plantlist_number }
-  
     respond_to do |format|
       if @kept_plants.all?(&:save)
         format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont été ajoutées avec succès." }
         format.json { render :index, status: :created, location: kept_plants_url }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @kept_plants.map(&:errors), status: :unprocessable_entity }
+        format.json { render json: @kept_plants.map { |kp| kp.errors.full_messages }, status: :unprocessable_entity }
       end
     end
   end
@@ -104,6 +101,6 @@ class KeptPlantsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def kept_plant_params
-    params.require(:kept_plant).permit(:user_id, :quantity, :description, :start_date, :end_date, owned_plant_id: [])
+    params.require(:kept_plant).permit(:quantity, :description, :start_date, :end_date, owned_plant_id: [])
   end    
 end
