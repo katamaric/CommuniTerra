@@ -21,23 +21,3 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
-
-/* VIEW PLANTS */
-.plant-title {
-  background-color: #DBFFD1;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.plant-column {
-  background-color: #DBFFD1;
-  column-count: 4;
-  column-gap: 20px;
-  padding: 10px 20px;
-}
-
-.plant-plant {
-  display: block;
-  margin-bottom: 10px;
-}
