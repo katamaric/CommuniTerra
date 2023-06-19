@@ -1,7 +1,7 @@
 <div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <img class="mx-auto h-35 w-auto" src="<%= asset_path('logo_sm.png') %>" alt="communiterra logo" class="object-contain">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Donne-moi un petit nom et/ou description personnalisée !</h2>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Mon petit nom et/ou description personnalisée !</h2>
   </div>
 
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -31,6 +31,11 @@
       <div class="actions bg-green-primary rounded-md">
         <%= form.submit "Enregistrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
       </div>
+
     <% end %>
+
+    <div>
+      <%= button_to "Supprimer", owned_plant_path(@owned_plant), data: { turbo: false }, method: :delete, class: "mt-2 flex w-full justify-center rounded-md bg-red-400 text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-red-200" %>
+    </div>
   </div>
 </div>
