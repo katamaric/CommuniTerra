@@ -6,8 +6,13 @@ class User < ApplicationRecord
 
   has_many :owned_plants, dependent: :destroy
   has_many :plants, through: :owned_plants
-  has_many :plant_sittings
-  has_many :kept_plants, dependent: :destroy
+
+  has_many :plant_sittings_as_sitter, foreign_key: :plantsitter_id, class_name: 'PlantSitting', dependent: :destroy
+  has_many :kept_plants_as_sitter, through: :plant_sittings_as_sitter, source: :kept_plant
+
+  has_many :plant_sittings_as_asker, foreign_key: :plantsitasker_id, class_name: 'PlantSitting', dependent: :destroy
+  has_many :kept_plants_as_asker, through: :plant_sittings_as_asker, source: :kept_plant
+
   # has_many :private_sent_messages, class_name: 'PrivateMessage', foreign_key: 'sender_id'
   # has_many :private_received_messages, class_name: 'PrivateMessage', foreign_key: 'recipient_id'
   # has_many :posts, dependent: :destroy
