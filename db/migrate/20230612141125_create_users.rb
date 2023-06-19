@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :phone_number
       t.datetime :birthdate
       t.text :bio
+      t.boolean :admin, default: false
 
       t.timestamps
     end
