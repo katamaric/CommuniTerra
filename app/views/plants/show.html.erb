@@ -42,7 +42,9 @@
           <%= owned_plant_fields.hidden_field :plant_id, value: @plant.id %>
           <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
         <% end %>
-        <%= form.submit "Ajouter à mes plantes", class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+        <div class="actions mt-4 bg-green-primary rounded-md">
+          <%= form.submit "Ajouter à mes plantes", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+        </div>
       <% end %>
     <% end %>
   <% else %>
