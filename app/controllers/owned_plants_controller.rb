@@ -54,7 +54,7 @@ class OwnedPlantsController < ApplicationController
     @owned_plant.destroy
 
     respond_to do |format|
-      format.html { redirect_to owned_plants_url, notice: "La plante possédée a bien été supprimée." }
+      format.html { redirect_to dashboard_index_url, notice: "La plante possédée a bien été supprimée." }
       format.json { head :no_content }
     end
   end
