@@ -11,42 +11,40 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
 
-  <div class="my-5">
-    <%= form.label :listing_title %>
+  <div class="mb-5">
+    <%= form.label :listing_title, "Titre" %>
     <%= form.text_field :listing_title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :item_name %>
+    <%= form.label :item_name, "Nom de l'article" %>
     <%= form.text_field :item_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :description %>
+    <%= form.label :description, "Description" %>
     <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :price %>
+    <%= form.label :price, "Prix" %>
     <%= form.text_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :quantity %>
+    <%= form.label :quantity, "Quantité" %>
     <%= form.number_field :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :delivery_id %>
-    <%= form.text_field :delivery_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :delivery_id, "Livraison" %>
+    <%= form.collection_select :delivery_id, Delivery.all, :id, :delivery_provider, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit "Créer l'article", class: "px-4 text-indigo-500 font-semibold" %>
+    <%= link_to 'Annuler', listings_path, class: "px-4 text-indigo-500 font-semibold" %>
   </div>
 <% end %>
