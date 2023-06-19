@@ -1,42 +1,42 @@
 <div id="<%= dom_id listing %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
+    <strong class="block font-medium mb-1">Utilisateur : </strong>
     <%= listing.user_id %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Listing title:</strong>
+    <strong class="block font-medium mb-1">Titre :</strong>
     <%= listing.listing_title %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Item name:</strong>
-    <%= listing.item_name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">Description :</strong>
     <%= listing.description %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
+    <strong class="block font-medium mb-1">Prix :</strong>
     <%= listing.price %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Quantity:</strong>
+    <strong class="block font-medium mb-1">Quantité :</strong>
     <%= listing.quantity %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Delivery:</strong>
-    <%= listing.delivery_id %>
+    <strong class="block font-medium mb-1">Livraison :</strong>
+    <%= listing.delivery.delivery_provider %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Prix de la livraison :</strong>
+    <%= listing.delivery.delivery_price %> €
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this listing", listing, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this listing', edit_listing_path(listing), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Voir l'article", listing, class: "text-indigo-500 font-semibold" %>
+    <%= link_to "Modifier l'article", edit_listing_path(listing), class: "text-indigo-500 font-semibold" %>
     <hr class="mt-6">
   <% end %>
 </div>

@@ -11,7 +11,7 @@
       </div>
       <h2 class="text-xl mb-2"><%= listing.description %></h2>
       <h2 class="text-xl font-semibold mb-2">Quantité : <%= listing.quantity %></h2>
-      <%= link_to "Détails", listings_path(user_id: listing.user_id), class: "text-indigo-500 font-semibold" %>
+      <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
   <% end %>
 </div>
 
