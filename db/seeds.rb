@@ -10,4 +10,5 @@ Delivery.create!([
   { delivery_provider: "Colissimo", delivery_price: 2.44, delivery_type: "standard" },
   { delivery_provider: "UPS", delivery_price: 3.20, delivery_type: "standard" },
   { delivery_provider: "FedEx", delivery_price: 6.72, delivery_type: "express" }
+  { delivery_provider: "Autre", delivery_price: 0.0, delivery_type: "standard" }
 ])
