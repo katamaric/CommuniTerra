@@ -5,13 +5,13 @@
 <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
   <% @listings.each do |listing| %>
     <div class="bg-white rounded-lg shadow-md p-4">
-      <h2 class="text-xl font-bold mb-2"><%= listing.listing_title %></h2>
-      <h2 class="text-xl font-bold mb-2"><%= listing.description %></h2>
-      <h2 class="text-xl font-bold mb-2"><%= listing.price %></h2>
-      <h2 class="text-xl font-bold mb-2"><%= listing.quantity %></h2>
-      <h2 class="text-xl font-bold mb-2"><%= listing.delivery.delivery_provider %></h2>
-      <h2 class="text-xl font-bold mb-2"><%= listing.item_name %></h2>
-    </div>
+      <div class="flex justify-between items-center">
+        <h2 class="text-xl font-bold mb-2"><%= listing.listing_title %></h2>
+        <h2 class="text-xl font-bold mb-2"><%= listing.price %> €</h2>
+      </div>
+      <h2 class="text-xl mb-2"><%= listing.description %></h2>
+      <h2 class="text-xl font-semibold mb-2">Quantité : <%= listing.quantity %></h2>
+      <%= link_to "Détails", listings_path(user_id: listing.user_id), class: "text-indigo-500 font-semibold" %>
   <% end %>
 </div>
 
