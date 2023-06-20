@@ -21,6 +21,7 @@
         </p>
         <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
       </div>
+      <%= button_to "Passer commande", checkout_create_path(total: listing.price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
     </div>
     <% end %>
   <% else %>

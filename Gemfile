@@ -85,3 +85,6 @@ gem "table_print"
 gem 'dotenv-rails'
 
 gem 'ransack'
+gem "stripe", "~> 8.5"
+
+gem "aws-sdk-s3", "~> 1.126"

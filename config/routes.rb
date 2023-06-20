@@ -36,7 +36,13 @@ Rails.application.routes.draw do
   get '/mentions_legales', to: 'static_pages#mentions'
   get '/notre_histoire', to: 'static_pages#historic'
 
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+  end
 
+  resources :my_listings
   resources :plant_moods
   resources :deliveries
   resources :listings, path: 'marche'
@@ -49,8 +55,10 @@ Rails.application.routes.draw do
   resources :kept_plants
   resources :owned_plants
   resources :plants, path: 'plantes'
+  resources :plants, only: [:show] do
+    resources :plantimgs, only: [:create]
+  end  
   resources :users
-
   resources :owned_plants do
     resources :log_books, except: [:show]
   end
