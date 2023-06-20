@@ -5,3 +5,4 @@ fr:
       previous: "&lsaquo; Précédente"
       next: "Suivante &rsaquo;"
       last: "Dernière &raquo;"
+      truncate: "&hellip;"
