@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
   end
 
+  resources :my_listings
   resources :plant_moods
   resources :deliveries
   resources :listings, path: 'marche'
