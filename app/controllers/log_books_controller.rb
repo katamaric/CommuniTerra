@@ -21,7 +21,7 @@ class LogBooksController < ApplicationController
   def create
     @log_book = @owned_plant.log_books.build(log_book_params)
     if @log_book.save
-      redirect_to dashboard_index_url, notice: "L'entrée du journal de bord a été créée avec succès."
+      redirect_to owned_plant_log_books_path(@owned_plant), notice: "L'entrée du journal de bord a été créée avec succès."
     else
       render :new
     end
