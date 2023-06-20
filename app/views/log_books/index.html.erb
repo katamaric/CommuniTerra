@@ -28,11 +28,14 @@
       </div>
     </div>
 
-    <h3>Input your first entry for your logbook to get smarter!</h3>
-    <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(@owned_plant), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
-
-
-    <%= render partial: 'log_books/smart_log', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+    <% if @log_books.empty? %>
+      <h3>Input your first entry for your logbook to get smarter!</h3>
+      <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(@owned_plant), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+    <% else %>
+      <%= render partial: 'log_books/water_intake', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+      <%= render partial: 'log_books/exposure', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+      <%= render partial: 'log_books/flowering', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+    <% end %>
 
     <div class="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
       <% if @log_books.present? %>

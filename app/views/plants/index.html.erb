@@ -47,6 +47,16 @@
           <%= f.collection_select :water_requirement_level_cont, Plant.select(:water_requirement_level).distinct.order(:water_requirement_level), :water_requirement_level, :water_requirement_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
 
+        <div class="field">
+          <%= f.label :exposure_level_cont, "Filtrer par exposition :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.collection_select :exposure_level_cont, Plant.select(:exposure_level).distinct.order(:exposure_level), :exposure_level, :exposure_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :flowering_cont, "Filtrer par floraison :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.collection_select :flowering_cont, Plant.select(:flowering).distinct.order(:flowering), :flowering, :flowering, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
         <div class="form-group">
           <i><%= @plants.total_count %> plantes</i>
         </div>
