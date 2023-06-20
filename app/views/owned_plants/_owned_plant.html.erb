@@ -3,7 +3,7 @@
     <% if @owned_plants.empty? %>
       <p>Vous n'avez aucune plante. Sélectionnez celles que vous avez dans l'onglet <%= link_to "Plantes", plants_path, class: "text-indigo-500 font-semibold" %>.</p>
     <% else %>
-      <% @owned_plants.each do |owned_plant| %>
+      <% @owned_plants.reverse_each do |owned_plant| %>
         <div class="transition-shadow duration-300 bg-white rounded shadow-sm flex flex-col">
           <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
           <div class="p-5 rounded">
