@@ -1,7 +1,7 @@
-<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-  <div class="grid grid-cols-2 gap-4 px-4 mx-auto">
-    <div class="col-span-1">
-      <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm ">
+<div class="px-4 py-8 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+  <div class="grid grid-cols-3 gap-4 px-4 mx-auto">
+    <div class="col-span-1 mr-8">
+      <div class="mt- sm:mx-auto sm:w-full sm:max-w-sm ">
         <br />
         <%= search_form_for @q do |f| %>
 
@@ -24,8 +24,8 @@
       <% end %>
     </div>
 
-    <div class="col-span-1">
-      <div class="mb-2 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="ml-6 col-span-1">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <br />
         <%= search_form_for @q,
               class: 'form',
@@ -46,7 +46,11 @@
           <%= f.label :water_requirement_level_cont, "Filtrer par besoin en eau :", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <%= f.collection_select :water_requirement_level_cont, Plant.select(:water_requirement_level).distinct.order(:water_requirement_level), :water_requirement_level, :water_requirement_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
+      </div>
+    </div>
 
+    <div class="mt-6 col-span-1">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <div class="field">
           <%= f.label :exposure_level_cont, "Filtrer par exposition :", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <%= f.collection_select :exposure_level_cont, Plant.select(:exposure_level).distinct.order(:exposure_level), :exposure_level, :exposure_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
