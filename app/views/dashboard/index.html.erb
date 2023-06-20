@@ -48,7 +48,7 @@
                 <p><strong>Email :</strong> <%= current_user.email %></p>
                 <p><strong>Pseudo :</strong> <%= current_user.username %></p>
                 <p><strong>Téléphone :</strong> <%= current_user.phone_number %></p>
-                <p><strong>Anniversaire :</strong> <%= current_user.birthdate %></p>
+                <p><strong>Anniversaire :</strong> <%= current_user.birthdate.strftime('%d/%m/%Y') %></p>
                 <p><strong>Bio :</strong> <%= current_user.bio %></p>
               </p>
 
