@@ -9,13 +9,13 @@
     <% @listings.each do |listing| %>
     <div class="bg-white rounded-lg shadow-md p-4">
       <div class="flex justify-between items-center">
-        <h2 class="text-xl font-bold mb-2"><%= listing.listing_title %></h2>
-        <h2 class="text-xl font-bold mb-2"><%= listing.price %> €</h2>
+        <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
+        <h2 class="text-lg pl-2 mb-4"><%= listing.price %> €</h2>
       </div>
       <div class="border rounded-lg p-4">
-        <h2 class="text-xl mb-2"><%= listing.item_name %></h2>
-        <h2 class="text-xl mb-2"><%= listing.description %></h2>
-        <h2 class="text-xl font-semibold mb-2">Quantité : <%= listing.quantity %></h2>
+        <p class="mb-2"><%= listing.item_name %></p>
+        <p class="mb-2"><%= listing.description %></p>
+        <p class="mb-2">Quantité : <%= listing.quantity %></p>
         <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
       </div>
     <% end %>
