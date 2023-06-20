@@ -3,10 +3,9 @@
 
     <%= render @listing %>
 
-    <%= link_to "Modifier l'article", edit_listing_path(@listing), class: "text-indigo-500 font-semibold" %>
-    <div class="inline-block ml-2">
+    <div class="flex justify-between items-center px-4">
+      <%= link_to "Modifier l'article", edit_listing_path(@listing), class: "text-indigo-500 font-semibold" %>
       <%= button_to "Supprimer l'article", listing_path(@listing), method: :delete, class: "text-indigo-500 font-semibold" %>
     </div>
-    <%= link_to "Retour aux articles", listings_path, class: "text-indigo-500 font-semibold" %>
   </div>
 </div>
