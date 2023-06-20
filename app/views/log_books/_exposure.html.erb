@@ -1,0 +1,13 @@
+<div class="flex px-6 py-12 lg:px-8">
+
+  <% if @owned_plant.plant.exposure_level == "Soleil" %>
+    <h1>Votre plante a besoin de soleil.</h1>
+  <% elsif @owned_plant.plant.exposure_level == "Mi-ombre, Ombre" %>
+    <h1>Gardez votre plante à l'abri du soleil.</h1>
+  <% elsif @owned_plant.plant.exposure_level == "Mi-ombre" %>
+    <h1>Votre plante sera en meilleure santé dans une zone mi-ombre.</h1>
+  <% else %>
+    <h1>Votre plante sera comfortable au soleil, à la mi-ombre, ou à l'ombre. Le choix est le vôtre !</h1>
+  <% end %>
+
+</div>

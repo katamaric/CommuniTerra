@@ -5,6 +5,26 @@
     </a>
     <div class="flex md:order-2">
       <ul class="flex items-center space-x-8">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "Dashboard", dashboard_index_path, aria: { label: "Mon jardin secret" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none hidden sm:flex" %>
+          </li>
+          <li>
+            <%= link_to "Se déconnecter", destroy_user_session_path, aria: { label: "Se déconnecter" }, method: :delete, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none hidden sm:flex" %>
+          </li>
+          <% if current_user.admin == true %>
+            <li>
+              <%= link_to "Admin", admin_root_path, class: "dropdown-item hidden sm:flex" %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>
+            <%= link_to "Se connecter", new_user_session_path, aria: { label: "Se connecter" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none hidden sm:flex" %>
+          </li>
+          <li>
+            <%= link_to "S'inscrire", new_user_registration_path, aria: { label: "S'inscrire" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none hidden sm:flex" %>
+          </li>
+        <% end %>
         <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -27,19 +47,29 @@
         <li>
           <%= link_to "Marché", listings_path, class: "block py-2 pl-3 pr-4 text-green-primary rounded hover:bg-green-secondary md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 text-lg" %>
         </li>
-        <br>
-        <ul class="flex items-center space-x-8">
-          <% if user_signed_in? %>
-            <li><%= link_to "Dashboard", dashboard_index_path, aria: { label: "Mon jardin secret" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
-            <li><%= link_to "Se déconnecter", destroy_user_session_path, aria: { label: "Se déconnecter" }, method: :delete, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
-            <% if current_user.admin == true %>
-              <li><%= link_to "Admin", admin_root_path, class: "dropdown-item" %></li>
-            <% end %>
-          <% else %>
-            <li><%= link_to "Se connecter", new_user_session_path, aria: { label: "Se connecter" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
-            <li><%= link_to "S'inscrire", new_user_registration_path, aria: { label: "S'inscrire" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %></li>
+      </ul>
+      <br>
+      <ul class="flex items-center space-x-8 sm:hidden">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "Dashboard", dashboard_index_path, aria: { label: "Mon jardin secret" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %>
+          </li>
+          <li>
+            <%= link_to "Se déconnecter", destroy_user_session_path, aria: { label: "Se déconnecter" }, method: :delete, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %>
+          </li>
+          <% if current_user.admin == true %>
+            <li>
+              <%= link_to "Admin", admin_root_path, class: "dropdown-item" %>
+            </li>
           <% end %>
-        </ul>
+        <% else %>
+          <li>
+            <%= link_to "Se connecter", new_user_session_path, aria: { label: "Se connecter" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %>
+          </li>
+          <li>
+            <%= link_to "S'inscrire", new_user_registration_path, aria: { label: "S'inscrire" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
