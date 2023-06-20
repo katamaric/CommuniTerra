@@ -1,0 +1,7 @@
+fr:
+  views:
+    pagination:
+      first: Premier 
+      last: Dernier
+      next: Suivant
+      previous: Precedent
