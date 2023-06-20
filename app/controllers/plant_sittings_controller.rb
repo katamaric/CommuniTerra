@@ -38,7 +38,7 @@ class PlantSittingsController < ApplicationController
         # Associer le PlantSitting à chaque KeptPlant de la liste
         kept_plants.update_all(plant_sitting_id: @plant_sitting.id)
   
-        redirect_to @plant_sitting, notice: 'Plant sitting was successfully created.'
+        redirect_to @plant_sitting, notice: 'Vous avez désormais la garde de cette plante.'
       else
         render :new
       end
