@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_071929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "mood", default: 0
+    t.boolean "watered", default: false
     t.index ["owned_plant_id"], name: "index_log_books_on_owned_plant_id"
   end
 
@@ -136,7 +138,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_234704) do
     t.datetime "birthdate"
     t.text "bio"
     t.boolean "admin", default: false
-    t.string "type", default: "asker", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
