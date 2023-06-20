@@ -21,7 +21,7 @@
 
       <div class="field">
         <%= form.label :entry_date, "Date et heure", class: "block text-sm font-medium leading-6 text-gray-900" %>
-        <%= form.datetime_field :entry_date, value: Time.now.strftime('%Y-%m-%dT%H:%M'), class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        <%= form.datetime_field :entry_date, value: @log_book.entry_date.strftime('%Y-%m-%dT%H:%M'), class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
       </div>
 
       <div class="field">
@@ -32,6 +32,11 @@
       <div class="field">
         <%= form.label :content, "Entrée du jour", class: "block text-sm font-medium leading-6 text-gray-900" %>
         <%= form.text_area :content, rows: 4, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :watered, "Arrosée", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= form.check_box :watered, checked: @log_book.watered, class: "form-checkbox h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded" %>
       </div>
 
       <div class="actions bg-green-primary rounded-md">

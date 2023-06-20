@@ -1,0 +1,27 @@
+<div class="flex px-6 py-12 lg:px-8">
+
+  <% if @owned_plant.plant.water_requirement_level == "Faible" %>
+    <% if @log_books.last.watered == false && @log_books.last.entry_date < 7.days.ago.to_date %>
+      <h1>pls water it</h1>
+    <% else %>
+      <h1>dw</h1>
+    <% end %>
+  <% end %>
+
+  <% if @owned_plant.plant.water_requirement_level == "Moyen" %>
+    <% if @log_books.last.watered == false && @log_books.last.entry_date < 5.days.ago.to_date %>
+      <h1>pls water it</h1>
+    <% else %>
+      <h1>dw</h1>
+    <% end %>
+  <% end %>
+
+  <% if @owned_plant.plant.water_requirement_level == "Important" %>
+    <% if @log_books.last.watered == false && @log_books.last.entry_date < 3.days.ago.to_date %>
+      <h1>pls water it</h1>
+    <% else %>
+      <h1>dw</h1>
+    <% end %>
+  <% end %>
+
+</div>
