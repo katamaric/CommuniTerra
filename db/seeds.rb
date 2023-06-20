@@ -7,8 +7,8 @@ CSV.foreach(db_path.join('plants.csv'), :quote_char => "|", col_sep: ';', header
 end
 
 Delivery.create!([
-  { delivery_provider: "Colissimo", delivery_price: 2.44, delivery_type: "standard" },
-  { delivery_provider: "UPS", delivery_price: 3.20, delivery_type: "standard" },
-  { delivery_provider: "FedEx", delivery_price: 6.72, delivery_type: "express" },
-  { delivery_provider: "Autre", delivery_price: 0.0, delivery_type: "standard" }
+  { delivery_provider: "UPS", delivery_type: "standard", delivery_price: 3.20, },
+  { delivery_provider: "UPS", delivery_type: "express", delivery_price: 7.70 },
+  { delivery_provider: "Point relais", delivery_price: 1.0 },
+  { delivery_provider: "À venir chercher", delivery_price: 0.0 },
 ])
