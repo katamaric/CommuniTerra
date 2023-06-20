@@ -10,7 +10,7 @@
       <% user = User.find(user_id) %>
       <div class="bg-white rounded-lg shadow-md p-4">
         <% kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
-          <h3 class="text-lg pl-2  mb-4">
+          <h3 class="text-lg pl-2 mb-4">
             <span class="font-semibold">
               <%= user.username %>
             </span> 
