@@ -85,3 +85,4 @@ gem "table_print"
 gem 'dotenv-rails'
 
 gem 'ransack'
+gem "stripe", "~> 8.5"
