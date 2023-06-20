@@ -49,8 +49,10 @@ Rails.application.routes.draw do
   resources :kept_plants
   resources :owned_plants
   resources :plants, path: 'plantes'
+  resources :plants, only: [:show] do
+    resources :plantimgs, only: [:create]
+  end  
   resources :users
-
   resources :owned_plants do
     resources :log_books, except: [:show]
   end
