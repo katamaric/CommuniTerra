@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_071929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mood", default: 0
-    t.text "water_intake"
+    t.boolean "watered", default: false
     t.index ["owned_plant_id"], name: "index_log_books_on_owned_plant_id"
   end
 
