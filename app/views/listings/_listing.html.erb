@@ -1,36 +1,43 @@
 <div id="<%= dom_id listing %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Utilisateur : </strong>
-    <%= listing.user_id %>
+  <p class="mb-4">
+    <span class="font-semibold"><%= listing.user.username %></span>
+    <strong class="font-medium mb-1">vend cet article</strong>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Titre :</strong>
+  <p class="my-4">
+    <strong class="font-medium mb-1">Son titre :</strong>
     <%= listing.listing_title %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description :</strong>
+  <p class="my-4">
+    <strong class="font-medium mb-1">Le nom de l'article :</strong>
+    <%= listing.item_name %>
+  </p>
+
+  <p class="my-4">
+    <strong class="font-medium mb-1">La description :</strong>
     <%= listing.description %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Prix :</strong>
+  <p class="my-4">
+    <strong class="font-medium mb-1">Son prix :</strong>
     <%= listing.price %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Quantité :</strong>
+  <p class="my-4">
+    <strong class="font-medium mb-1">Nombre d'exemplaires :</strong>
     <%= listing.quantity %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Livraison :</strong>
+  <p class="my-4">
+    <strong class="font-medium mb-1">Le service de livraison :</strong>
     <%= listing.delivery.delivery_provider %>
+    <strong class="font-medium mb-1"> en </strong>
+    <%= listing.delivery.delivery_type %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Prix de la livraison :</strong>
+  <p class="my-4">
+    <strong class="font-medium mb-1">Le prix de la livraison :</strong>
     <%= listing.delivery.delivery_price %> €
   </p>
 
