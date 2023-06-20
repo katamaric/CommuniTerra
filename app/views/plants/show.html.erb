@@ -2,21 +2,20 @@
   <h1 class="text-3xl font-bold mb-4"><%= @plant.common_name %></h1>
   <p class="text-gray-600 mb-6">De son nom latin <%= @plant.latin_name %></p>
 
-  <%if @plant.plantimg.attached?%>
+  <% if @plant.plantimg.attached? %>
     <%= image_tag @plant.plantimg, alt: 'plantimg' %>
     <br>
     <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
       <%= file_field_tag :plantimg %>
-      <%= submit_tag "Mettre à jour", class: "bg-green-primary hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
+      <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
     <% end %>
-  <%else%>
-  <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
-    <%= file_field_tag :plantimg %>
-    <%= submit_tag "Mettre à jour", class: "bg-green-primary hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
+  <% else %>
+    <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
+      <%= file_field_tag :plantimg %>
+      <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
   <% end %>
-  <%end%>
   <br>
-  
   
   <div class="grid grid-cols-2 gap-8">
     <div>
@@ -45,10 +44,10 @@
     </div>
   </div>
   
-  <%# <% if current_user && current_user.admin? %>
-    <%# <%= link_to "Modifier plante", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
-  <%# <% else %>
-    <%# <% if current_user %> 
+  <% if current_user && current_user.admin? %>
+    <%= link_to "Modifier plante", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+  <% else %>
+    <% if current_user %> 
       <% if user_signed_in? %>
         <% if current_user.owned_plants.exists?(plant_id: @plant.id) %>
           <div class="actions mt-4 bg-green-primary rounded-md">
@@ -56,18 +55,18 @@
           </div>
         <% else %>
           <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
-          <%= form.fields_for :owned_plant do |owned_plant_fields| %>
-          <%= owned_plant_fields.hidden_field :plant_id, value: @plant.id %>
-          <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
+            <%= form.fields_for :owned_plant do |owned_plant_fields| %>
+              <%= owned_plant_fields.hidden_field :plant_id, value: @plant.id %>
+              <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
+            <% end %>
+            <div class="actions mt-4 bg-green-primary rounded-md">
+              <%= form.submit "Ajouter à mes plantes", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+            </div>
+          <% end %>
         <% end %>
-        <div class="actions mt-4 bg-green-primary rounded-md">
-          <%= form.submit "Ajouter à mes plantes", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
-        </div>
       <% end %>
+    <% else %>
+      <%= link_to "Me connecter pour ajouter à mes plantes", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
     <% end %>
-  <% else %>
-    <%= link_to "Me connecter pour ajouter à mes plantes", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
   <% end %>
-  <%# <% end %>
-  <%# <% end %>
 </div>
