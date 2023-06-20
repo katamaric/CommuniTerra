@@ -40,11 +40,11 @@
 
   <div class="my-5">
     <%= form.label :delivery_id, "Livraison" %>
-    <%= form.collection_select :delivery_id, Delivery.all, :id, :delivery_provider, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.collection_select :delivery_id, Delivery.all, :id, lambda { |delivery| "#{delivery.delivery_provider} #{delivery.delivery_type} : #{delivery.delivery_price} €" }, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="inline">
-    <%= form.submit "Créer l'article", class: "px-4 text-indigo-500 font-semibold" %>
+  <div class="inline flex justify-between items-center px-4">
+    <%= form.submit "Valider", class: "px-4 text-indigo-500 font-semibold" %>
     <%= link_to 'Annuler', listings_path, class: "px-4 text-indigo-500 font-semibold" %>
   </div>
 <% end %>
