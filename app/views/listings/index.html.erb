@@ -1,18 +1,29 @@
 <div class="p-4">
-  <%= link_to 'Ajouter un article', new_listing_path, class: 'text-indigo-500 font-semibold' %>
+  <%= link_to 'Ajouter un article', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
+  <%= link_to 'Mes articles en vente', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
+  <%= link_to 'Mes commandes passées', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
 </div>
 
 <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-  <% @listings.each do |listing| %>
+  <% if @listings.any? %>
+    <% @listings.each do |listing| %>
     <div class="bg-white rounded-lg shadow-md p-4">
       <div class="flex justify-between items-center">
-        <h2 class="text-xl font-bold mb-2"><%= listing.listing_title %></h2>
-        <h2 class="text-xl font-bold mb-2"><%= listing.price %> €</h2>
+        <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
+        <h2 class="text-lg pl-2 mb-4"><%= listing.price %> €</h2>
       </div>
-      <h2 class="text-xl mb-2"><%= listing.description %></h2>
-      <h2 class="text-xl font-semibold mb-2">Quantité : <%= listing.quantity %></h2>
-      <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
-  <% end %>
-</div>
 
+      <div class="border rounded-lg p-4">
+        <p class="mb-2 font-semibold"><%= listing.item_name %></p>
+        <p class="mb-2"><%= listing.description %></p>
+        <p class="mb-2">
+          <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
+        </p>
+        <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
+      </div>
+    </div>
+    <% end %>
+  <% else %>
+    <p>Aucun article pour le moment.</p>
+  <% end %>
 </div>

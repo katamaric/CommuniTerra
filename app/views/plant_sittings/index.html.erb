@@ -9,15 +9,26 @@
     <% @kept_plants.each do |user_id, kept_plants| %>
       <% user = User.find(user_id) %>
       <div class="bg-white rounded-lg shadow-md p-4">
-        <h2 class="text-xl font-bold mb-2">
-          <%= user.username %>
-        </h2>
         <% kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
-          <div class="border p-4 mb-4">
-            <h3 class="text-lg font-semibold mb-2">Besoin de toi du 
-              <%= dates.first.strftime("%d/%m/%Y") %> au <%= dates.last.strftime("%d/%m/%Y") %> pour garder :
-            </h3>
-            <ul class="mb-2 ml-2">
+          <h3 class="text-lg pl-2 mb-4">
+            <span class="font-semibold">
+              <%= user.username %>
+            </span> 
+            à besoin de toi ! 
+          </h3>
+          <div class="border rounded-lg p-4">
+            <p class="mb-2">
+              Du 
+              <span class="font-semibold">
+                <%= dates.first.strftime("%d/%m/%Y") %>
+              </span> 
+              au
+              <span class="font-semibold">
+                <%= dates.last.strftime("%d/%m/%Y") %>
+              </span>
+            </p>
+            <p>Pour garder : </p>
+            <ul class="my-2 ml-4">
               <% plants.each do |kept_plant| %>
                 <li>
                   • <%= kept_plant.owned_plant.plant.common_name %>
@@ -25,9 +36,9 @@
               <% end %>
             </ul>
             <p class="mb-2"><%= plants.first.description %></p>
-            <%= link_to "Détails des plantes", kept_plants_path(user_id: plants.first.owned_plant.user_id, start_date: dates.first, end_date: dates.last), class: "text-indigo-500 font-semibold" %>
-            <%= button_to "Garder ces plantes", plant_sittings_path, method: :post, params: { kept_plant_ids: plants.map(&:id) }, class: "p-4 text-indigo-500 font-semibold", form: { id: "create-plant-sitting-form" } %>
+            <%= link_to "Détails", kept_plants_path(user_id: plants.first.owned_plant.user_id, start_date: dates.first, end_date: dates.last), class: "text-indigo-500 font-semibold" %>
           </div>
+          <%= button_to "Garder ces plantes", plant_sittings_path, method: :post, params: { kept_plant_ids: plants.map(&:id) }, class: "p-2 text-indigo-500 font-semibold", form: { id: "create-plant-sitting-form" } %>
         <% end %>
       </div>
     <% end %>
