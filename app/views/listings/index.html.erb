@@ -69,11 +69,11 @@
                   </p>
                   <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
                 </div>
-              <% if current_user && current_user != listing.user %>
-                <%= button_to "Passer commande", checkout_create_path(listing_id: listing.id, total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
-              <% else %>
-                <p class="p-2">Cet article est le vôtre.</p>
-              <% end %>
+                <% if current_user && current_user != listing.user %>
+                  <%= button_to "Passer commande", checkout_create_path(listing_id: listing.id, total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+                <% else %>
+                  <p class="p-2">Cet article est le vôtre.</p>
+                <% end %>
               </div>
             <% end %>
           <% end %>
