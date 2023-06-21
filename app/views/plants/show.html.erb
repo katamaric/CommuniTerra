@@ -5,16 +5,20 @@
   <% if @plant.plantimg.attached? %>
     <%= image_tag @plant.plantimg, alt: 'plantimg' %>
     <br>
-    <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
-      <%= file_field_tag :plantimg %>
-      <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
+    <% if current_user && current_user.admin? %> <!-- Check if the user is logged in and is an admin -->
+      <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
+        <%= file_field_tag :plantimg %>
+        <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
+      <% end %>
     <% end %>
   <% else %>
-    <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
-      <%= file_field_tag :plantimg %>
-      <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
+    <% if current_user && current_user.admin? %> <!-- Check if the user is logged in and is an admin -->
+      <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
+        <%= file_field_tag :plantimg %>
+        <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
       <% end %>
-      <% end %>
+    <% end %>
+  <% end %>
   <br>
   
   <div class="grid grid-cols-2 gap-8">
