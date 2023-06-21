@@ -31,7 +31,7 @@
     <% if @log_books.empty? %>
       <h3>Input your first entry for your logbook to get smarter!</h3>
     <% else %>
-      <div class="flex space-x-4">
+      <div class="flex justify-center space-x-4">
         <%= render partial: 'log_books/water_intake', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
         <%= render partial: 'log_books/exposure', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
         <%= render partial: 'log_books/flowering', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
