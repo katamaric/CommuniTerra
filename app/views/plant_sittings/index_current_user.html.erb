@@ -1,3 +1,8 @@
+<div class="p-4">
+  <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
+  <%= link_to "Mes demandes de garde", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
+  <%= link_to "Mes gardes de plantes", index_current_user_plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
+</div>
 <div>
   <h2>Plant Sittings en tant qu'Asker :</h2>
   <% @plant_sittings_as_asker.each do |plant_sitting| %>
