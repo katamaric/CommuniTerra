@@ -44,25 +44,10 @@
     </div>
   </div>
   
-<% if current_user %>
-  <% if user_signed_in? %>
-    <% if current_user.admin? %>
-      <%= link_to "Modifier plante", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
-      <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
-        <%= form.fields_for :owned_plant do |owned_plant_fields| %>
-          <%= owned_plant_fields.hidden_field :plant_id, value: @plant.id %>
-          <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
-        <% end %>
-        <div class="actions mt-4 bg-green-primary rounded-md">
-          <%= form.submit "Ajouter à mes plantes", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
-        </div>
-      <% end %>
-    <% else %>
-      <% if current_user.owned_plants.exists?(plant_id: @plant.id) %>
-        <div class="actions mt-4 bg-green-primary rounded-md">
-          <%= link_to "Voir ma plante", dashboard_index_path, class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
-        </div>
-      <% else %>
+  <% if current_user %>
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <%= link_to "Modifier plante", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
         <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
           <%= form.fields_for :owned_plant do |owned_plant_fields| %>
             <%= owned_plant_fields.hidden_field :plant_id, value: @plant.id %>
@@ -72,10 +57,25 @@
             <%= form.submit "Ajouter à mes plantes", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
           </div>
         <% end %>
+      <% else %>
+        <% if current_user.owned_plants.exists?(plant_id: @plant.id) %>
+          <div class="actions mt-4 bg-green-primary rounded-md">
+            <%= link_to "Voir ma plante", dashboard_index_path, class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+          </div>
+        <% else %>
+          <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
+            <%= form.fields_for :owned_plant do |owned_plant_fields| %>
+              <%= owned_plant_fields.hidden_field :plant_id, value: @plant.id %>
+              <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
+            <% end %>
+            <div class="actions mt-4 bg-green-primary rounded-md">
+              <%= form.submit "Ajouter à mes plantes", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
+    <% else %>
+      <%= link_to "Me connecter pour ajouter à mes plantes", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
     <% end %>
-  <% else %>
-    <%= link_to "Me connecter pour ajouter à mes plantes", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
   <% end %>
-<% end %>
 </div>
