@@ -13,7 +13,7 @@
         <% else %>
           <% @owned_plants.reverse_each do |owned_plant| %>
             <div class="transition-shadow duration-300 bg-white rounded shadow-sm flex flex-col">
-              <img src="<%= asset_path('inside_pots.jpg') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
+              <img src="<%= asset_path('inside_pots.png') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
               <div class="p-5 rounded">
                 <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
                   <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
