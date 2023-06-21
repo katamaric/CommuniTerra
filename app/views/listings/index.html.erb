@@ -4,7 +4,7 @@
   <% end %>
   <div class="p-4">
     <%= link_to 'Ajouter un article', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
-    <%= link_to 'Mes commandes passées', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
+    <%= link_to 'Mes commandes passées', dashboard_index_path(anchor: 'past-order'), class: 'p-4 text-indigo-500 font-semibold' %>
   </div>
 
   <div id="accordion-flush" data-accordion="collapse" data-active-classes="dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
@@ -17,23 +17,24 @@
     <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         <% if @current_user_listings.any? %>
-          <% @current_user_listings.each do |listing| %>
-            <div class="bg-white rounded-lg shadow-md p-4">
-              <div class="flex justify-between items-center">
-                <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
-                <h2 class="text-lg pl-2 mb-4"><%= (listing.price + listing.delivery.delivery_price) %> €</h2>
-              </div>
+          <% @current_user_listings.each do |current_user_listing| %>
+            <% unless current_user_listing.paid %>
+              <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-center">
+                  <h3 class="text-lg font-semibold pl-2 mb-4"><%= current_user_listing.listing_title %></h3>
+                  <h2 class="text-lg pl-2 mb-4"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</h2>
+                </div>
 
-              <div class="border rounded-lg p-4">
-                <p class="mb-2 font-semibold"><%= listing.item_name %></p>
-                <p class="mb-2"><%= listing.description %></p>
-                <p class="mb-2">
-                  <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
-                </p>
-                <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
+                <div class="border rounded-lg p-4">
+                  <p class="mb-2 font-semibold"><%= current_user_listing.item_name %></p>
+                  <p class="mb-2"><%= current_user_listing.description %></p>
+                  <p class="mb-2">
+                    <span class="font-semibold">Quantité :</span> <%= current_user_listing.quantity %>
+                  </p>
+                  <%= link_to "Détails", listing_path(current_user_listing), class: "text-indigo-500 font-semibold" %>
+                </div>
               </div>
-              <%= button_to "Passer commande", checkout_create_path(total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
-            </div>
+            <% end %>
           <% end %>
         <% else %>
           <p>Aucun article pour le moment.</p>
@@ -53,22 +54,28 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         <% if @listings.any? %>
           <% @listings.each do |listing| %>
-            <div class="bg-white rounded-lg shadow-md p-4">
-              <div class="flex justify-between items-center">
-                <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
-                <h2 class="text-lg pl-2 mb-4"><%= (listing.price + listing.delivery.delivery_price) %> €</h2>
-              </div>
+            <% unless listing.paid %>
+              <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-center">
+                  <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
+                  <h2 class="text-lg pl-2 mb-4"><%= (listing.price + listing.delivery.delivery_price) %> €</h2>
+                </div>
 
-              <div class="border rounded-lg p-4">
-                <p class="mb-2 font-semibold"><%= listing.item_name %></p>
-                <p class="mb-2"><%= listing.description %></p>
-                <p class="mb-2">
-                  <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
-                </p>
-                <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
+                <div class="border rounded-lg p-4">
+                  <p class="mb-2 font-semibold"><%= listing.item_name %></p>
+                  <p class="mb-2"><%= listing.description %></p>
+                  <p class="mb-2">
+                    <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
+                  </p>
+                  <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
+                </div>
+                <% if current_user && current_user != listing.user %>
+                  <%= button_to "Passer commande", checkout_create_path(listing_id: listing.id, total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+                <% else %>
+                  <p class="p-2">Cet article est le vôtre.</p>
+                <% end %>
               </div>
-              <%= button_to "Passer commande", checkout_create_path(total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
-            </div>
+            <% end %>
           <% end %>
         <% else %>
           <p>Aucun article pour le moment.</p>
