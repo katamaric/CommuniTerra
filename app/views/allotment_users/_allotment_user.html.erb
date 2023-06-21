@@ -1,17 +1,12 @@
 <div id="<%= dom_id allotment_user %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Admin:</strong>
-    <%= allotment_user.admin_id %>
+    <%= allotment_user.allotment.admin_id %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Member:</strong>
     <%= allotment_user.member_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Allotment:</strong>
-    <%= allotment_user.allotment_id %>
   </p>
 
   <% if action_name != "show" %>

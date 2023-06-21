@@ -27,6 +27,14 @@
   <% if action_name != "show" %>
     <%= link_to "Show this allotment", allotment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this allotment', edit_allotment_path(allotment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+<%= form_with(model: @allotment_user, url: allotment_users_path, method: :post) do |form| %>
+  <%= form.fields_for :allotment_user do |au_form| %>
+    <%= au_form.hidden_field :allotment_id, value: allotment.id %>
+    <%= au_form.hidden_field :member_id, value: current_user.id %>
+  <% end %>
+  <%= form.submit 'Join this allotment', class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+<% end %>
+
     <hr class="mt-6">
   <% end %>
 </div>
