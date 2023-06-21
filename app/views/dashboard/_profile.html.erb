@@ -1,0 +1,29 @@
+
+<div id="accordion-flush" data-accordion="collapse" data-active-classes="dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
+  <h2 id="accordion-flush-heading-1">
+    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
+  <h1 class="font-semibold text-2xl">Mon Profil</h1>
+      <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+  </h2>
+  <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+    <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+              <p class="mb-2 text-gray-700">
+                <p><strong>Prénom :</strong> <%= current_user.first_name %></p>
+                <p><strong>Nom :</strong> <%= current_user.last_name %></p>
+                <p><strong>Email :</strong> <%= current_user.email %></p>
+                <p><strong>Pseudo :</strong> <%= current_user.username %></p>
+                <p><strong>Téléphone :</strong> <%= current_user.phone_number %></p>
+                <p><strong>Anniversaire :</strong> <%= current_user.birthdate %></p>
+                <p><strong>Bio :</strong> <%= current_user.bio %></p>
+              </p>
+
+              <div class="mt-4 flex justify-center">
+                <%= link_to "Modifier mon profil", edit_user_registration_path, class: "mt-2 flex justify-center w-full rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+              </div>
+    </div>
+  </div>
+</div>
+
+
+

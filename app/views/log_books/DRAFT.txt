@@ -1,3 +1,0 @@
-if owned_plant.plant.water_requirement_level: faible && owned_plant.created_at > 7 days > Time.now 
-  -> water 
-
