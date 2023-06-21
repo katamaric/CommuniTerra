@@ -1,17 +1,18 @@
 <section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
-<div class="p-4">
-  <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
-  <%= link_to "Mes demandes de garde", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
-  <%= link_to "Mes gardes de plantes", index_current_user_plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
-</div>
+  <div class="p-4">
+    <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes demandes de garde", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes gardes de plantes", index_current_user_plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
+  </div>
   <div class="container">
     <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 p-4">
       <% if @kept_plants && @kept_plants.any? %>
         <% @kept_plants.each do |user_id, kept_plants| %>
           <% user = User.find(user_id) %>
+          <% next if user == current_user %>
           <% kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
-            <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0  bg-white rounded shadow-sm p-5">
-                <h1 class="text-green-primary text-xl title-font font-medium mb-0 px-1"><%= user.username %> <br><span class="text-sm text-gray-900 font-light border-b-1 border-green-primary px-1 flex-grow">a besoin de faire garder ses plantes</span><br></h1>
+            <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0 bg-white rounded shadow-sm p-5">
+              <h1 class="text-green-primary text-xl title-font font-medium mb-0 px-1"><%= user.username %> <br><span class="text-sm text-gray-900 font-light border-b-1 border-green-primary px-1 flex-grow">a besoin de faire garder ses plantes</span><br></h1>
               <div class="flex mb-4 mt-3">
                 <%= link_to '#', class: 'flex-grow text-green-primary border-b-2 border-green-primary py-2 text-lg px-1', 'turbo-frame': 'description' do %>
                   Description
@@ -37,7 +38,7 @@
               </div>
               <div class="flex items-center justify-center">
                 <%= button_to "Garder ses plantes", plant_sittings_path, method: :post, params: { kept_plant_ids: plants.map(&:id) }, class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale", form: { id: "create-plant-sitting-form" } %>
-              </div>              
+              </div>
             </div>
           <% end %>
         <% end %>
