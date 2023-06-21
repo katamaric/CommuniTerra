@@ -1,6 +1,7 @@
 class CheckoutController < ApplicationController
   def create
     @total = params[:total].to_d
+    
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
@@ -25,6 +26,14 @@ class CheckoutController < ApplicationController
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+        
+    @listing = Listing.find_by(params[:listing_id])
+    if @listing
+      @listing.paid = true
+      @listing.save!
+    else
+      redirect_to dashboard_index_url
+    end
   end
 
   def cancel

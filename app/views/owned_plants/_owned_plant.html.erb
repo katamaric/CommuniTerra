@@ -6,7 +6,7 @@
     </button>
   </h2>
   <div id="plants-accordion-body" class="hidden" aria-labelledby="plants-accordion-heading">
-    <div class="px-4 mx-auto">
+    <div class="p-4 mx-auto">
       <div class="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <% if @owned_plants.empty? %>
           <p>Vous n'avez aucune plante. Sélectionnez celles que vous avez dans l'onglet <%= link_to "Plantes", plants_path, class: "text-indigo-500 font-semibold" %>.</p>
@@ -32,7 +32,7 @@
                       <%= link_to owned_plant.nickname, plant_path(owned_plant.plant.id) %>
                     </h3>
                   </div>
-                  <p class="mb-2 text-gray-500">
+                  <p class="mb-2 text-gray-500 h-36 overflow-hidden">
                     <%= owned_plant.description %>
                   </p>
                 <% else %>

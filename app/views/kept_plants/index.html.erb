@@ -1,26 +1,60 @@
 <div class="grid xs:grid-cols-1 my-5 mx-5">
-<%= link_to "Rajouter des plantes à garder", new_kept_plant_path, class: "mb-4 actions text-indigo-500 font-semibold" %>
+  <div class="p-4">
+    <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes demandes de garde", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes gardes de plantes", index_current_user_plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
+  </div>
   <div class="bg-white rounded-lg shadow-md p-4">
-    <% @kept_plants.each do |kept_plant| %>
-      <div class="p-2" id="<%= dom_id kept_plant %>">
-        <p>
-          <strong>De :</strong>
-          <%= kept_plant.owned_plant.user.username %>
-        </p>
-
-        <p>
-          <strong><%= kept_plant.owned_plant.plant.common_name %></strong>
-        </p>
-
-        <p>
-          <strong>Description :</strong>
-          <%= kept_plant.description %>
-        </p>
-
-        <p>
-          <%= link_to "Plus de détails", kept_plant_path(kept_plant) %>
-        </p>
+    <% @kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
+      <div class="p-4 border rounded-lg mb-4">
+        <h2 class="font-semibold text-xl">
+          Demande de garde du <%= l(dates[0].to_date, format: "%-d %B %Y") %> au <%= l(dates[1].to_date, format: "%-d %B %Y") %>
+        </h2>
+        
+        <% plants.each do |kept_plant| %>
+          <h2 class="font-semibold text-lg">
+            <br><%= kept_plant.owned_plant.plant.common_name %>
+          </h2>
+          
+          <p class="mb-2">
+            <strong>Quantité :</strong> <%= kept_plant.quantity %>
+          </p>
+          
+          <p class="mb-2">
+            <%= kept_plant.description %>
+          </p>
+          
+          <div class="mt-2">
+            <%= link_to "Plus de détails sur cette plante", kept_plant_path(kept_plant) %>
+            <% if current_user == kept_plant.owned_plant.user %>
+              <%= link_to "Éditer la plante à garder", edit_kept_plant_path(kept_plant) %>
+              <%= button_to "Supprimer la plante à garder", kept_plant, method: :delete %>
+            <% end %>
+          </div>
+        <% end %>
+        
+        <%# You can add more details or customize the layout of the card as per your requirements %>
+        
+        <% if plants.first.plant_sitting && plants.first.plant_sitting.sitter %>
+          <p>
+            <br><strong>PlantSitter :</strong> <%= plants.first.plant_sitting.sitter.username %>
+          </p>
+        <% else %>
+          <p>
+            <br><strong>PlantSitter :</strong> Votre demande est en attente d'un PlantSitter
+          </p>
+        <% end %>
+        
+        <% if current_user == plants.first.owned_plant.user %>
+          <div class="mt-4">
+            <%= button_to "Supprimer la demande de garde", kept_plants_path(kept_plant_ids: plants.map(&:id)), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cette demande de garde et toutes les plantes associées ?" }, class: "text-red-500 font-semibold" %>
+          </div>
+        <% end %>
       </div>
+    <% end %>
+    
+    <% if @kept_plants.empty? %>
+      <p>Aucune plante n'a été mise en demande de garde.</p>
     <% end %>
   </div>
 </div>
