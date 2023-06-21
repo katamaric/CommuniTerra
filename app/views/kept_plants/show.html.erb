@@ -4,7 +4,7 @@
 
     <%= render @kept_plant %>
 
-    <% if current_user == @kept_plant.user %>
+    <% if current_user == @kept_plant.owned_plant.user %>
       <%= link_to "Modifier", edit_kept_plant_path(@kept_plant) %> |
       <%= button_to "Supprimer", @kept_plant, method: :delete %>
     <% else %>
