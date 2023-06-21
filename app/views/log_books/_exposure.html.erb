@@ -5,17 +5,16 @@
   </div>
 
   <div class="ml-3 text-sm font-normal">
-  <% if @owned_plant.plant.exposure_level == "Soleil" %>
-    <h1>Votre plante a besoin de soleil.</h1>
-  <% elsif @owned_plant.plant.exposure_level == "Mi-ombre, Ombre" %>
-    <h1>Gardez votre plante à l'abri du soleil.</h1>
-  <% elsif @owned_plant.plant.exposure_level == "Mi-ombre" %>
-    <h1>Votre plante sera en meilleure santé dans une zone mi-ombre.</h1>
-  <% else %>
-    <h1>Votre plante sera comfortable au soleil, à la mi-ombre, ou à l'ombre. Le choix est le vôtre !</h1>
-  <% end %>
-
-</div>
+    <% if @owned_plant.plant.exposure_level == "Soleil" %>
+      <h1>Votre plante a besoin de soleil.</h1>
+    <% elsif @owned_plant.plant.exposure_level == "Mi-ombre, Ombre" %>
+      <h1>Gardez votre plante à l'abri du soleil.</h1>
+    <% elsif @owned_plant.plant.exposure_level == "Mi-ombre" %>
+      <h1>Votre plante sera en meilleure santé dans une zone mi-ombre.</h1>
+    <% else %>
+      <h1>Votre plante sera comfortable au soleil, à la mi-ombre, ou à l'ombre. Le choix est le vôtre !</h1>
+    <% end %>
+  </div>
 
   <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-water-intake" aria-label="Close">
     <span class="sr-only">Close</span>
