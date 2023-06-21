@@ -68,7 +68,7 @@
               <%= link_to "Modifier cette entrée", edit_owned_plant_log_book_path(@owned_plant, log_book.id), method: :get, class: "text-xs font-semibold tracking-wide uppercase transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800", aria: { label: "Modify Log Entry" }, title: "Modify Log Entry" %>
             </div>
             <div class="mb-2">
-              <a href="/" aria-label="Article" class="inline-block text-2xl font-bold leading-5 text-black transition-colors duration-200 hover:text-deep-purple-accent-400"><%= log_book.title %></a>
+              <h5 class="inline-block text-2xl font-bold leading-5 text-black"><%= log_book.title %></h5>
             </div>
             <p class="mb-5 text-gray-700">
               <%= log_book.content %>
