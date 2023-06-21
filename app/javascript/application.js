@@ -8,3 +8,4 @@ import "./controllers"
 document.addEventListener("turbolinks:load", function() {
   AOS.init();
 });
+
