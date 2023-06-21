@@ -1,8 +1,59 @@
-<div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-  <div class="bg-white rounded-lg shadow-md p-4">
-    <h1 class="font-semibold text-lg mb-4">Modifier l'article</h1>
+<div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Modifier votre article</h2>
+  </div>
 
-    <%= render "form", listing: @listing %>
+  <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+      <%= form_with(model: @listing, class: "contents") do |form| %>
+        <% if @listing.errors.any? %>
+          <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+            <h2><%= pluralize(@listing.errors.count, "erreur") %> vous empêche de valider :</h2>
 
+            <ul>
+              <% @listing.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form.hidden_field :user_id, value: current_user.id %>
+
+        <div class="mb-5">
+          <%= form.label :listing_title, "Titre", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :listing_title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :item_name, "Nom de l'article", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :item_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :description, "Description", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :price, "Prix", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.text_field :price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :quantity, "Quantité", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.number_field :quantity, min: 1, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="my-5">
+          <%= form.label :delivery_id, "Livraison", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= form.collection_select :delivery_id, Delivery.all, :id, lambda { |delivery| "#{delivery.delivery_provider} #{delivery.delivery_type} : #{delivery.delivery_price} €" }, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+        </div>
+
+        <div class="flex justify-between items-center px-4">
+          <%= form.submit "Valider", class: "px-4 text-indigo-500 font-semibold" %>
+          <%= link_to 'Annuler', @listings_path, class: "px-4 text-indigo-500 font-semibold" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
