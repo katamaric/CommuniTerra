@@ -15,23 +15,34 @@
       </button>
     </h2>
     <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
-      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 p-4">
         <% if @current_user_listings.any? %>
           <% @current_user_listings.each do |current_user_listing| %>
             <% unless current_user_listing.paid %>
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="flex justify-between items-center">
-                  <h3 class="text-lg font-semibold pl-2 mb-4"><%= current_user_listing.listing_title %></h3>
-                  <h2 class="text-lg pl-2 mb-4"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</h2>
+              <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0 bg-white rounded shadow-sm p-5">
+                <h1 class="text-green-primary text-xl title-font font-medium mb-0 px-1"><%= current_user_listing.listing_title %><br></h1>
+                <div class="flex mb-4 mt-3">
+                  <%= link_to '#', class: 'flex-grow text-green-primary border-b-2 border-green-primary py-2 text-lg px-1', 'turbo-frame': 'description' do %>
+                    Description
+                  <% end %>
+                  <%= link_to '#', class: 'flex-grow border-b-2 border-green-secondary py-2 text-lg text-green-secondary px-1', 'turbo-frame': 'details' do %>
+                    Détails
+                  <% end %>
                 </div>
-
-                <div class="border rounded-lg p-4">
-                  <p class="mb-2 font-semibold"><%= current_user_listing.item_name %></p>
-                  <p class="mb-2"><%= current_user_listing.description %></p>
-                  <p class="mb-2">
-                    <span class="font-semibold">Quantité :</span> <%= current_user_listing.quantity %>
-                  </p>
-                  <%= link_to "Détails", listing_path(current_user_listing), class: "text-indigo-500 font-semibold" %>
+                <p class="leading-relaxed mb-4 toggle-description-content">
+                  <%= current_user_listing.description %>
+                </p>
+                <div class="flex border-t border-gray-200 py-2 toggle-details-content">
+                  <span class="text-green-primary">Ville</span>
+                  <span class="ml-auto text-green-dark">Paris</span>
+                </div>
+                <div class="flex border-t border-gray-200 py-2 toggle-details-content">
+                  <span class="text-green-primary">Quantité</span>
+                  <span class="ml-auto text-green-dark"><%= current_user_listing.quantity %></span>
+                </div>
+                <div class="flex border-t border-b mb-6 border-gray-200 py-2 toggle-details-content">
+                  <span class="text-green-primary">Prix de l'article</span>
+                  <span class="ml-auto text-green-dark"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</span>
                 </div>
               </div>
             <% end %>
@@ -51,29 +62,42 @@
       </button>
     </h2>
     <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
-      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 p-4">
         <% if @listings.any? %>
           <% @listings.each do |listing| %>
             <% unless listing.paid %>
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="flex justify-between items-center">
-                  <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
-                  <h2 class="text-lg pl-2 mb-4"><%= (listing.price + listing.delivery.delivery_price) %> €</h2>
+              <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0 bg-white rounded shadow-sm p-5">
+                <h1 class="text-green-primary text-xl title-font font-medium mb-0 px-1"><%= listing.listing_title %><br></h1>
+                <div class="flex mb-4 mt-3">
+                  <%= link_to '#', class: 'flex-grow text-green-primary border-b-2 border-green-primary py-2 text-lg px-1', 'turbo-frame': 'description' do %>
+                    Description
+                  <% end %>
+                  <%= link_to '#', class: 'flex-grow border-b-2 border-green-secondary py-2 text-lg text-green-secondary px-1', 'turbo-frame': 'details' do %>
+                    Détails
+                  <% end %>
                 </div>
-
-                <div class="border rounded-lg p-4">
-                  <p class="mb-2 font-semibold"><%= listing.item_name %></p>
-                  <p class="mb-2"><%= listing.description %></p>
-                  <p class="mb-2">
-                    <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
-                  </p>
-                  <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
+                <p class="leading-relaxed mb-4 toggle-description-content">
+                  <%= listing.description %>
+                </p>
+                <div class="flex border-t border-gray-200 py-2 toggle-details-content">
+                  <span class="text-green-primary">Ville</span>
+                  <span class="ml-auto text-green-dark">Paris</span>
                 </div>
-                <% if current_user && current_user != listing.user %>
-                  <%= button_to "Passer commande", checkout_create_path(listing_id: listing.id, total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
-                <% else %>
-                  <p class="p-2">Cet article est le vôtre.</p>
-                <% end %>
+                <div class="flex border-t border-gray-200 py-2 toggle-details-content">
+                  <span class="text-green-primary">Quantité</span>
+                  <span class="ml-auto text-green-dark"><%= listing.quantity %></span>
+                </div>
+                <div class="flex border-t border-b mb-6 border-gray-200 py-2 toggle-details-content">
+                  <span class="text-green-primary">Prix de l'article</span>
+                  <span class="ml-auto text-green-dark"><%= (listing.price + listing.delivery.delivery_price) %> €</span>
+                </div>
+                <div class="flex items-center justify-center">
+                  <% if current_user && current_user != listing.user %>
+                    <%= button_to "Passer commande", checkout_create_path(listing_id: listing.id, total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+                  <% else %>
+                    <p class="p-2">Cet article est le vôtre.</p>
+                  <% end %>
+                </div>
               </div>
             <% end %>
           <% end %>

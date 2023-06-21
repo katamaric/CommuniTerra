@@ -7,7 +7,7 @@
   </h2>
   <div id="past-orders-accordion-body" class="hidden" aria-labelledby="past-orders-accordion-heading">
     <div class="p-4 mx-auto">
-      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         <% if @current_user_listings.any? %>
           <% @current_user_listings.each do |current_user_listing| %>
             <% if current_user_listing.paid %>
