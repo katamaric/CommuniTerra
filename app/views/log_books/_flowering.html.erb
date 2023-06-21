@@ -5,12 +5,12 @@
   </div>
 
   <div class="ml-3 text-sm font-normal">
-  <% if @owned_plant.plant.flowering.nil? %>
-     <h1> </h1>
-  <% else %>
-    <% current_month = Date.today.strftime("%B") %>
-    <% flowering_months = @owned_plant.plant.flowering.split(", ") %>
-    <% french_months = {
+    <% if @owned_plant.plant.flowering.nil? %>
+      <h1> </h1>
+    <% else %>
+      <% current_month = Date.today.strftime("%B") %>
+      <% flowering_months = @owned_plant.plant.flowering.split(", ") %>
+      <% french_months = {
         "January" => "JANVIER",
         "February" => "FÉVRIER",
         "March" => "MARS",
@@ -23,14 +23,14 @@
         "October" => "OCTOBRE",
         "November" => "NOVEMBRE",
         "December" => "DÉCEMBRE"
-    } %>
+      } %>
 
-    <% if flowering_months.include?(french_months[current_month]) %>
-      <p>Votre plante est en saison de floraison. Attendez vous à des belles surprises !</p>
+      <% if flowering_months.include?(french_months[current_month]) %>
+        <p>Votre plante est en saison de floraison. Attendez vous à des belles surprises !</p>
+      <% end %>
     <% end %>
-  <% end %>
 
-</div>
+  </div>
 
   <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-water-intake" aria-label="Close">
     <span class="sr-only">Close</span>
