@@ -31,9 +31,11 @@
     <% if @log_books.empty? %>
       <h3>Input your first entry for your logbook to get smarter!</h3>
     <% else %>
-      <%= render partial: 'log_books/water_intake', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
-      <%= render partial: 'log_books/exposure', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
-      <%= render partial: 'log_books/flowering', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+      <div class="flex space-x-4">
+        <%= render partial: 'log_books/water_intake', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+        <%= render partial: 'log_books/exposure', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+        <%= render partial: 'log_books/flowering', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+      </div>
     <% end %>
 
     <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(@owned_plant), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
