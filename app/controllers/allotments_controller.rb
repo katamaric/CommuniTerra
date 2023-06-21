@@ -66,6 +66,6 @@ class AllotmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def allotment_params
-      params.require(:allotment).permit(:size, :name, :description, :start_date, :end_date)
+      params.require(:allotment).permit(:size, :name, :description, :start_date, :end_date, :admin_id)
     end
 end
