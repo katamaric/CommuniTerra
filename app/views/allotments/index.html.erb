@@ -1,14 +1,17 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Allotments</h1>
-    <%= link_to 'New allotment', new_allotment_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<% if notice.present? %>
+<p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+  <div class="p-4">
+    <%= link_to 'Nouveau potager', new_allotment_path, class: 'p-4 text-indigo-500 font-semibold' %>
   </div>
+  <div class="w-full">
+    <div class="flex justify-between items-center">
+      <h1 class="font-bold text-4xl">Allotments</h1>
+    </div>
 
-  <div id="allotments" class="min-w-full">
-    <%= render @allotments %>
+    <div id="allotments" class="min-w-full">
+      <%= render @allotments %>
+    </div>
   </div>
-</div>
+</section>
