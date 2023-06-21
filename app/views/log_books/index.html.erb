@@ -29,14 +29,27 @@
     </div>
 
     <% if @log_books.empty? %>
-      <h3>Input your first entry for your logbook to get smarter!</h3>
+      <div class="flex items-center justify-center w-full py-12">
+        <div class="text-center"> 
+          <p class="text-lg font-medium mb-4">
+            Ce journal est vide pour le moment.
+            <br>
+            Ajoutez votre première entrée pour rendre votre journal intelligent plus intelligent !
+          </p>
+          <%= link_to "Ajouter une entrée", new_owned_plant_log_book_path(@owned_plant), class: "mt-2 flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
+        </div>
+      </div>
     <% else %>
-      <%= render partial: 'log_books/water_intake', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
-      <%= render partial: 'log_books/exposure', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
-      <%= render partial: 'log_books/flowering', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
-    <% end %>
+      <div class="flex justify-center space-x-4">
+        <%= render partial: 'log_books/water_intake', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+        <%= render partial: 'log_books/exposure', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+        <%= render partial: 'log_books/flowering', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+      </div>
 
-    <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(@owned_plant), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+      <div class="flex items-center justify-center w-full py-12">
+        <%= link_to "Ajouter une entrée", new_owned_plant_log_book_path(@owned_plant), class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
+      </div>
+    <% end %>
 
     <div class="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
       <% if @log_books.present? %>
@@ -63,13 +76,6 @@
           </div>
         </div>
         <% end %>
-      <% else %>
-        <div class="flex items-center justify-center w-full py-12">
-          <div class="text-center"> 
-            <p class="text-lg font-medium mb-4">Ce journal est vide.</p>
-            <%= link_to "Ajouter votre première entrée", new_owned_plant_log_book_path(@owned_plant), class: "mt-2 flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-green-secondary" %>
-          </div>
-        </div>
       <% end %>
     </div>
   </div>
