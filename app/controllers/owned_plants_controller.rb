@@ -24,6 +24,7 @@ class OwnedPlantsController < ApplicationController
   # POST /owned_plants or /owned_plants.json
   def create
     @owned_plant = OwnedPlant.new(owned_plant_params)
+    @owned_plant.user = current_user
 
     respond_to do |format|
       if @owned_plant.save
@@ -68,6 +69,7 @@ class OwnedPlantsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def owned_plant_params
-    params.require(:owned_plant).permit(:user_id, :plant_id, :quantity, :nickname, :description)
+    params.require(:owned_plant).permit(:plant_id, :quantity, :nickname, :description).merge(user_id: current_user.id)
   end
+
 end
