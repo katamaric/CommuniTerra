@@ -4,7 +4,7 @@
   <% end %>
   <div class="p-4">
     <%= link_to 'Ajouter un article', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
-    <%= link_to 'Mes commandes passées', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
+    <%= link_to 'Mes commandes passées', dashboard_index_path(anchor: 'past-order'), class: 'p-4 text-indigo-500 font-semibold' %>
   </div>
 
   <div id="accordion-flush" data-accordion="collapse" data-active-classes="dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
