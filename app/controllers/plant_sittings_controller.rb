@@ -5,7 +5,7 @@ class PlantSittingsController < ApplicationController
   # GET /plant_sittings or /plant_sittings.json
   def index
     @plant_sittings = PlantSitting.all
-    @kept_plants = KeptPlant.where("end_date >= ?", Date.today).group_by { |kept_plant| kept_plant.owned_plant.user_id }
+    @kept_plants = KeptPlant.includes(:plant_sitting).where(plant_sitting_id: nil).where("end_date >= ?", Date.today).group_by { |kept_plant| kept_plant.owned_plant.user_id }
   end  
 
   # GET /plant_sittings/1 or /plant_sittings/1.json
@@ -28,21 +28,25 @@ class PlantSittingsController < ApplicationController
   end
 
   # POST /plant_sittings or /plant_sittings.json
-    def create
-      kept_plants = KeptPlant.where(id: params[:kept_plant_ids])
-      asker_id = kept_plants.first&.owned_plant&.user_id
+  def create
+    kept_plants = KeptPlant.where(id: params[:kept_plant_ids])
+    asker_id = kept_plants.first&.owned_plant&.user_id
   
+    if kept_plants.all? { |kept_plant| kept_plant.plant_sitting.nil? }
       @plant_sitting = PlantSitting.new(sitter_id: current_user.id, asker_id: asker_id)
   
       if @plant_sitting.save
-        # Associer le PlantSitting à chaque KeptPlant de la liste
         kept_plants.update_all(plant_sitting_id: @plant_sitting.id)
   
         redirect_to @plant_sitting, notice: 'Plant sitting was successfully created.'
       else
         render :new
       end
+    else
+      redirect_to plant_sittings_path, alert: 'Un ou plusieurs kept plants ont déjà un sitter assigné.'
     end
+  end
+  
   
 
   # PATCH/PUT /plant_sittings/1 or /plant_sittings/1.json
