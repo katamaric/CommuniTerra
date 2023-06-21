@@ -41,5 +41,8 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver_now
   end
   
+  def admin?
+    admin
+  end
 
 end
