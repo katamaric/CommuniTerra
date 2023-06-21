@@ -43,10 +43,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_123002) do
   end
 
   create_table "allotment_users", force: :cascade do |t|
+    t.bigint "admin_id", null: false
     t.bigint "member_id", null: false
     t.bigint "allotment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_allotment_users_on_admin_id"
     t.index ["allotment_id"], name: "index_allotment_users_on_allotment_id"
     t.index ["member_id"], name: "index_allotment_users_on_member_id"
   end
@@ -57,10 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_123002) do
     t.text "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.bigint "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_id"], name: "index_allotments_on_admin_id"
   end
 
   create_table "deliveries", force: :cascade do |t|
@@ -180,8 +180,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_20_123002) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "allotment_users", "allotments"
+  add_foreign_key "allotment_users", "users", column: "admin_id"
   add_foreign_key "allotment_users", "users", column: "member_id"
-  add_foreign_key "allotments", "users", column: "admin_id"
   add_foreign_key "kept_plants", "owned_plants"
   add_foreign_key "kept_plants", "plant_sittings"
   add_foreign_key "listings", "deliveries"
