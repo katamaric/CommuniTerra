@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
 
   # GET /listings or /listings.json
   def index
+    @current_user_listings = current_user.listings
     @listings = Listing.all
   end
 

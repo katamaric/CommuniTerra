@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :owned_plants, dependent: :destroy
   has_many :plants, through: :owned_plants
+  has_many :listings, dependent: :destroy
 
   has_many :kept_plants, foreign_key: :sitter_id, class_name: 'KeptPlant'
   has_many :plant_sittings_as_sitter, through: :kept_plants, source: :plant_sitting_as_sitter

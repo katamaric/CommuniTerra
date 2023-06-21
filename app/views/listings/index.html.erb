@@ -1,35 +1,79 @@
-<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
   <% if notice.present? %>
   <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
   <div class="p-4">
     <%= link_to 'Ajouter un article', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
-    <%= link_to 'Mes articles en vente', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
     <%= link_to 'Mes commandes passées', new_listing_path, class: 'p-4 text-indigo-500 font-semibold' %>
   </div>
 
-  <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-    <% if @listings.any? %>
-      <% @listings.each do |listing| %>
-      <div class="bg-white rounded-lg shadow-md p-4">
-        <div class="flex justify-between items-center">
-          <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
-          <h2 class="text-lg pl-2 mb-4"><%= (listing.price + listing.delivery.delivery_price) %> €</h2>
-        </div>
+  <div id="accordion-flush" data-accordion="collapse" data-active-classes="dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
+    <h2 id="accordion-flush-heading-1">
+      <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
+        <h1 class="font-semibold text-2xl">Mes articles</h1>
+        <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      </button>
+    </h2>
+    <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        <% if @current_user_listings.any? %>
+          <% @current_user_listings.each do |listing| %>
+            <div class="bg-white rounded-lg shadow-md p-4">
+              <div class="flex justify-between items-center">
+                <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
+                <h2 class="text-lg pl-2 mb-4"><%= (listing.price + listing.delivery.delivery_price) %> €</h2>
+              </div>
 
-        <div class="border rounded-lg p-4">
-          <p class="mb-2 font-semibold"><%= listing.item_name %></p>
-          <p class="mb-2"><%= listing.description %></p>
-          <p class="mb-2">
-            <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
-          </p>
-          <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
-        </div>
-        <%= button_to "Passer commande", checkout_create_path(total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+              <div class="border rounded-lg p-4">
+                <p class="mb-2 font-semibold"><%= listing.item_name %></p>
+                <p class="mb-2"><%= listing.description %></p>
+                <p class="mb-2">
+                  <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
+                </p>
+                <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
+              </div>
+              <%= button_to "Passer commande", checkout_create_path(total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>Aucun article pour le moment.</p>
+        <% end %>
       </div>
-      <% end %>
-    <% else %>
-      <p>Aucun article pour le moment.</p>
-    <% end %>
+    </div>
+  </div>
+
+  <div id="accordion-flush" data-accordion="collapse" data-active-classes="dark:bg-gray-900 text-gray-900 dark:text-white" data-inactive-classes="text-gray-500 dark:text-gray-400">
+    <h2 id="accordion-flush-heading-2">
+      <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-2" aria-expanded="true" aria-controls="accordion-flush-body-2">
+        <h1 class="font-semibold text-2xl">Tous les articles</h1>
+        <svg data-accordion-icon class="w-6 h-6 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      </button>
+    </h2>
+    <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        <% if @listings.any? %>
+          <% @listings.each do |listing| %>
+            <div class="bg-white rounded-lg shadow-md p-4">
+              <div class="flex justify-between items-center">
+                <h3 class="text-lg font-semibold pl-2 mb-4"><%= listing.listing_title %></h3>
+                <h2 class="text-lg pl-2 mb-4"><%= (listing.price + listing.delivery.delivery_price) %> €</h2>
+              </div>
+
+              <div class="border rounded-lg p-4">
+                <p class="mb-2 font-semibold"><%= listing.item_name %></p>
+                <p class="mb-2"><%= listing.description %></p>
+                <p class="mb-2">
+                  <span class="font-semibold">Quantité :</span> <%= listing.quantity %>
+                </p>
+                <%= link_to "Détails", listing_path(listing), class: "text-indigo-500 font-semibold" %>
+              </div>
+              <%= button_to "Passer commande", checkout_create_path(total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+            </div>
+          <% end %>
+        <% else %>
+          <p>Aucun article pour le moment.</p>
+        <% end %>
+      </div>
+    </div>
   </div>
 </section>
