@@ -1,4 +1,4 @@
-<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+<section class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
 <div class="p-4">
   <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
   <%= link_to "Mes demandes en cours", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
@@ -14,10 +14,10 @@
               <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0  bg-white rounded shadow-sm p-5">
                   <h1 class="text-gray-900 text-xl title-font font-medium mb-0"><%= user.username %></h1>
                 <div class="flex mb-4">
-                  <%= link_to kept_plants_path(@kept_plant), class: 'flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1', 'turbo-frame': 'description' do %>
+                  <%= link_to '#', class: 'flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1', 'turbo-frame': 'description' do %>
                     Description
                   <% end %>
-                  <%= link_to kept_plants_path(@kept_plant), class: 'flex-grow border-b-2 border-gray-300 py-2 text-lg px-1', 'turbo-frame': 'details' do %>
+                  <%= link_to '#', class: 'flex-grow border-b-2 border-gray-300 py-2 text-lg px-1', 'turbo-frame': 'details' do %>
                     Détails
                   <% end %>
                 </div>
@@ -56,3 +56,48 @@
   </div>
 </section>
 
+
+
+<div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  <% if @kept_plants && @kept_plants.any? %>
+    <% @kept_plants.each do |user_id, kept_plants| %>
+      <% user = User.find(user_id) %>
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <% kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
+          <h3 class="text-lg pl-2 mb-4">
+            <span class="font-semibold">
+              <%= user.username %>
+            </span> 
+            aimerait faire garder du 
+              <span class="font-semibold">
+                <%= dates.first.strftime("%d/%m/%Y") %>
+              </span> 
+              au
+              <span class="font-semibold">
+                <%= dates.last.strftime("%d/%m/%Y") %>
+              </span>
+          </h3>
+
+            </p>
+          <div class="border rounded-lg p-4">
+            <p class="mb-2">
+
+            <p>Pour garder : </p>
+            <ul class="my-2 ml-4">
+              <% plants.each do |kept_plant| %>
+                <li>
+                  • <%= kept_plant.owned_plant.plant.common_name %>
+                </li>
+              <% end %>
+            </ul>
+            <p class="mb-2"><%= plants.first.description %></p>
+            <%= link_to "Détails", kept_plants_path(user_id: plants.first.owned_plant.user_id, start_date: dates.first, end_date: dates.last), class: "text-indigo-500 font-semibold" %>
+          </div>
+          <%= button_to "Garder ces plantes", plant_sittings_path, method: :post, params: { kept_plant_ids: plants.map(&:id) }, class: "p-2 text-indigo-500 font-semibold", form: { id: "create-plant-sitting-form" } %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Aucune plante à garder pour le moment.</p>
+  <% end %>
+</div>

@@ -2,18 +2,15 @@
   <h1 class="text-3xl font-bold mb-4"><%= @plant.common_name %></h1>
   <p class="text-gray-600 mb-6">De son nom latin <%= @plant.latin_name %></p>
 
-  <% if @plant.plantimg.attached? %>
+  <%if @plant.plantimg.attached?%>
     <%= image_tag @plant.plantimg, alt: 'plantimg' %>
-    <br>
-    <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
-      <%= file_field_tag :plantimg %>
-      <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
-    <% end %>
-  <% else %>
-    <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
-      <%= file_field_tag :plantimg %>
-      <%= button_tag "Mettre à jour", class: "bg-green-900 hover:bg-green-secondary text-white font-bold py-2 px-4 rounded" %>
-    <% end %>
+  <%else%>
+    <p>=== Il n'y a pas encore d'image liée à cette plante ===</p>
+  <%end%>
+  <br>
+  <%= form_tag plant_plantimgs_path(@plant), multipart: true do %>
+    <%= file_field_tag :plantimg %>
+    <%= submit_tag "uploader l'image" %>
   <% end %>
   <br>
   
@@ -44,7 +41,7 @@
     </div>
   </div>
   
-  <% if current_user %>
+<% if current_user %>
   <% if user_signed_in? %>
     <% if current_user.admin? %>
       <%= link_to "Modifier plante", edit_plant_path(@plant), class: "bg-indigo-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
@@ -78,7 +75,4 @@
     <%= link_to "Me connecter pour ajouter à mes plantes", new_user_session_path, class: "bg-green-500 text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
   <% end %>
 <% end %>
-
-
-
 </div>
