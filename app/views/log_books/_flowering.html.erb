@@ -6,7 +6,7 @@
 
   <div class="ml-3 text-sm font-normal">
     <% if @owned_plant.plant.flowering.nil? %>
-      <h1> </h1>
+      <p>Nous ne disposons pas encore d'informations sur la période de floraison de votre plante...</p>
     <% else %>
       <% current_month = Date.today.strftime("%B") %>
       <% flowering_months = @owned_plant.plant.flowering.split(", ") %>
@@ -27,6 +27,8 @@
 
       <% if flowering_months.include?(french_months[current_month]) %>
         <p>Votre plante est en saison de floraison. Attendez vous à des belles surprises !</p>
+      <% else %>
+        <p>Ce n'est pas encore la saison de floraison de votre plante. Attendons patiemment...</p>
       <% end %>
     <% end %>
   </div>
