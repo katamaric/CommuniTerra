@@ -25,18 +25,28 @@ class OwnedPlantsController < ApplicationController
   def create
     @owned_plant = OwnedPlant.new(owned_plant_params)
     @owned_plant.user = current_user
-
-    respond_to do |format|
-      if @owned_plant.save
+  
+    # Handle multiple plant entries based on the quantity
+    quantity = owned_plant_params[:quantity].to_i
+  
+    if quantity.positive? && @owned_plant.save
+      # Create additional entries for the same plant
+      (quantity - 1).times do
+        OwnedPlant.create(owned_plant_params.except(:quantity))
+      end
+  
+      respond_to do |format|
         format.html { redirect_to dashboard_index_url, notice: "La plante possédée a bien été ajoutée." }
         format.json { render :show, status: :created, location: @owned_plant }
-      else
+      end
+    else
+      respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @owned_plant.errors, status: :unprocessable_entity }
       end
     end
   end
-  
+    
   # PATCH/PUT /owned_plants/1 or /owned_plants/1.json
   def update
     respond_to do |format|
