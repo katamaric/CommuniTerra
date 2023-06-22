@@ -38,11 +38,7 @@
             <span class="ml-auto text-green-dark"><%= allotment.end_date.strftime("%d/%m/%Y") %></span>
           </div>
           <div class="flex items-center justify-center">
-            <% if current_user && current_user != allotment.user %>
-              <%= button_to "Passer commande", checkout_create_path(allotment_id: allotment.id, total: allotment.price + allotment.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
-            <% else %>
-              <p class="p-2">Cette annonce est la vôtre.</p>
-            <% end %>
+            <p>Rejoindre potager</p>
           </div>
         </div>
       <% end %>
