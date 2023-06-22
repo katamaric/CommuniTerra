@@ -1,8 +1,8 @@
 class CreateOwnedPlants < ActiveRecord::Migration[7.0]
   def change
     create_table :owned_plants do |t|
-      t.references :user, null: false, foreign_key: true
-      t.references :plant, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: { on_delete: :cascade }
+      t.references :plant, null: false, foreign_key: { on_delete: :cascade }
       t.integer :quantity
       t.text :description, default: nil
       t.string :nickname, default: nil

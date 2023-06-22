@@ -6,14 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :owned_plants, dependent: :destroy
-  has_many :plants, through: :owned_plants
+  has_many :plants, through: :owned_plants, dependent: :destroy
   has_many :listings, dependent: :destroy
 
-  has_many :kept_plants, foreign_key: :sitter_id, class_name: 'KeptPlant'
-  has_many :plant_sittings_as_sitter, through: :kept_plants, source: :plant_sitting_as_sitter
-
-  has_many :plant_sittings_as_asker, foreign_key: :asker_id, class_name: 'PlantSitting'
-  has_many :kept_plants_as_asker, through: :plant_sittings_as_asker, source: :kept_plant
+  has_many :kept_plants, through: :owned_plants, dependent: :destroy
 
   # has_many :private_sent_messages, class_name: 'PrivateMessage', foreign_key: 'sender_id'
   # has_many :private_received_messages, class_name: 'PrivateMessage', foreign_key: 'recipient_id'

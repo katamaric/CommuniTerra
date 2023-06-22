@@ -183,13 +183,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_144759) do
   add_foreign_key "allotment_users", "allotments"
   add_foreign_key "allotment_users", "users", column: "member_id"
   add_foreign_key "allotments", "users", column: "admin_id"
-  add_foreign_key "kept_plants", "owned_plants"
-  add_foreign_key "kept_plants", "plant_sittings"
+  add_foreign_key "kept_plants", "owned_plants", on_delete: :cascade
+  add_foreign_key "kept_plants", "plant_sittings", on_delete: :cascade
   add_foreign_key "listings", "deliveries"
   add_foreign_key "listings", "users"
   add_foreign_key "log_books", "owned_plants"
-  add_foreign_key "owned_plants", "plants"
-  add_foreign_key "owned_plants", "users"
+  add_foreign_key "owned_plants", "plants", on_delete: :cascade
+  add_foreign_key "owned_plants", "users", on_delete: :cascade
   add_foreign_key "plant_sittings", "users", column: "asker_id"
   add_foreign_key "plant_sittings", "users", column: "sitter_id"
 end
