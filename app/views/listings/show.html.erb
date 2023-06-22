@@ -1,12 +1,16 @@
-<div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
+<% if flash[:notice].present? %>
+  <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
+<% elsif flash[:alert].present? %>
+  <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
+<% end %>
+
+<div class="flex flex-col min-h-screen justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Les détails de l'article</h2>
   </div>
 
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
-
     <%= render @listing %>
-
     <% if current_user && @listing.user_id == current_user.id %>
     <div class="flex justify-between items-center px-4">
       <%= link_to "Modifier l'article", edit_listing_path(@listing), class: "text-indigo-500 font-semibold" %>

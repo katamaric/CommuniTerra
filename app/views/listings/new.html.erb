@@ -1,3 +1,9 @@
+<% if flash[:notice].present? %>
+  <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
+<% elsif flash[:alert].present? %>
+  <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
+<% end %>
+
 <div class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Mettez un article en vente</h2>
@@ -6,9 +12,8 @@
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
       <%= form_with(model: @listing, class: "contents") do |form| %>
         <% if @listing.errors.any? %>
-          <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+          <div id="error_explanation" class="bg-red-50 text-red-500 p-4 m-4 font-medium rounded-lg">
             <h2><%= pluralize(@listing.errors.count, "erreur(s)") %> vous empêche(nt) de valider :</h2>
-
             <ul>
               <% @listing.errors.each do |error| %>
                 <li><%= error.full_message %></li>
