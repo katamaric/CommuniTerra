@@ -1,56 +1,40 @@
-<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
-  <div class="p-4">
-    <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
-    <%= link_to "Mes demandes de garde", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
-    <%= link_to "Mes gardes de plantes", index_current_user_plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
-  </div>
 <div class="grid xs:grid-cols-1 my-5 mx-5">
   <div class="bg-white rounded-lg shadow-md p-4">
-    <% if @owned_plants.any? %>
-      <%= form_with(model: @kept_plant, url: kept_plants_path) do |form| %>
-        <%# <% if @kept_plant.errors.any? %>
-          <!-- ... Gestion des erreurs ... -->
-        <%# <% end %>
+    <%= form_with(model: @kept_plant, url: kept_plants_path) do |form| %>
+      <%# <% if @kept_plant.errors.any? %>
+        <!-- ... Gestion des erreurs ... -->
+      <%# <% end %>
 
-        <div class="field mb-4">
-          <%= form.label :owned_plant_id, "Plantes à faire garder :" %>
-          <% @owned_plants.each do |owned_plant| %>
-            <%= form.label nil, class: 'checkbox mx-2' do %>
-              <%= form.check_box :owned_plant_id, { multiple: true }, owned_plant.id, nil %>
-              <%= owned_plant.plant.common_name %>
-            <% end %>
+      <div class="field mb-4">
+        <%= form.label :owned_plant_id, "Plantes à faire garder :" %>
+        <% @owned_plants.each do |owned_plant| %>
+          <%= form.label nil, class: 'checkbox mx-2' do %>
+            <%= form.check_box :owned_plant_id, { multiple: true }, owned_plant.id, nil %>
+            <%= owned_plant.plant.common_name %>
           <% end %>
-        </div>
+        <% end %>
+      </div>
 
-        <div class="flex">
-            <div class="field mr-2">
-              <%= form.label :start_date, "Date de début :" %>
-              <%= form.date_field :start_date, class: "form-control rounded-md" %>
-            </div>
+      <div class="flex">
+          <div class="field mr-2">
+            <%= form.label :start_date, "Date de début :" %>
+            <%= form.date_field :start_date, class: "form-control rounded-md" %>
+          </div>
 
-            <div class="field mx-2">
-              <%= form.label :end_date, "Date de fin :" %>
-              <%= form.date_field :end_date, class: "form-control rounded-md" %>
-            </div>
+          <div class="field mx-2">
+            <%= form.label :end_date, "Date de fin :" %>
+            <%= form.date_field :end_date, class: "form-control rounded-md" %>
+          </div>
+      </div>
 
-            <div class="field mx-2">
-              <%= form.label :quantity, "Quantité :" %>
-              <%= form.number_field :quantity, min: 1, class: "form-control rounded-md w-20" %>
-            </div>
-        </div>
+      <div class="flex field my-4">
+        <%= form.label :description, "Description : " %>
+        <%= form.text_area :description, class: "ml-2 rounded-md w-800" %>
+      </div>
 
-        <div class="flex field my-4">
-          <%= form.label :description, "Description : " %>
-          <%= form.text_area :description, class: "ml-2 rounded-md w-800" %>
-        </div>
-
-        <div class="actions text-indigo-500 font-semibold">
-          <%= form.submit "Créer" %>
-        </div>
-      <% end %>
-    <% else %>
-      <p>Vous devez d'abord ajouter des plantes dans votre espace personnel avant de pouvoir les mettre en garde.</p>
-      <%= link_to "Ajouter des plantes", plants_path, class: "block py-2 pl-3 pr-4 text-green-primary rounded hover:bg-green-secondary md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 text-lg" %>
+      <div class="actions text-indigo-500 font-semibold">
+        <%= form.submit "Créer" %>
+      </div>
     <% end %>
   </div>
-</section>
+</div>
