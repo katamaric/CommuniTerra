@@ -111,7 +111,14 @@
         </div>
         <div class="mt-4">
           <%= link_to "Voir les détails", plant_path(plant), class: "text-indigo-500 font-semibold" %>
-          <%= button_to "Ajouter à mes plantes", owned_plants_path(owned_plant: { plant_id: plant.id }), method: :post, class: "text-indigo-500 font-semibold" %>
+          <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
+            <%= form.fields_for :owned_plant do |owned_plant_fields| %>
+              <%= owned_plant_fields.hidden_field :plant_id, value: plant.id %>
+              <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
+              <%= owned_plant_fields.hidden_field :quantity, value: 1 %>
+            <% end %>
+              <%= form.submit "Ajouter cette plante", class: "text-indigo-500 font-semibold" %>
+            <% end %>
         </div>
       </div>
     <% end %>
