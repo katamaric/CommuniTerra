@@ -16,12 +16,12 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Date de début :</strong>
-    <%= allotment.start_date.strftime("%d/%m/%Y") %>
+    <%= allotment.start_date %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Date de fin :</strong>
-    <%= allotment.end_date.strftime("%d/%m/%Y") %>
+    <%= allotment.end_date %>
   </p>
 
   <% if action_name != "show" %>
