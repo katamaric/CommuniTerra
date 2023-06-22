@@ -8,7 +8,7 @@
     <% @kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
       <div class="p-4 border rounded-lg mb-4">
         <h2 class="font-semibold text-xl">
-          Demande de garde du <%= l(dates[0].to_date, format: "%-d %B %Y") %> au <%= l(dates[1].to_date, format: "%-d %B %Y") %>
+          Demande de garde du <%= l(dates[0].to_date, format: "%-d/%m/%Y") %> au <%= l(dates[1].to_date, format: "%-d/%m/%Y") %>
         </h2>
         
         <% plants.each do |kept_plant| %>
