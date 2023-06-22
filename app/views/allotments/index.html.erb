@@ -4,17 +4,50 @@
   <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
 <% end %>
 
-<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
   <div class="p-4">
     <%= link_to 'Nouveau potager', new_allotment_path, class: 'p-4 text-indigo-500 font-semibold' %>
   </div>
-  <div class="w-full">
-    <div class="flex justify-between items-center">
-      <h1 class="font-bold text-4xl">Allotments</h1>
-    </div>
 
-    <div id="allotments" class="min-w-full">
-      <%= render @allotments %>
-    </div>
+  <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 p-4">
+    <% if @allotments.any? %>
+      <% @allotments.each do |allotment| %>
+        <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0 bg-white rounded shadow-sm p-5">
+          <h1 class="text-green-primary text-xl title-font font-medium mb-0 px-1"><%= allotment.name %><br></h1>
+          <div class="flex mb-4 mt-3">
+            <p class="flex-grow text-grey-900 border-b-2 border-grey-900 py-2 text-lg px-1">
+              Description
+            </p>
+            <%= link_to allotment_path(id: allotment.id), class: 'flex-grow border-b-2 border-indigo-500 py-2 text-lg text-indigo-500 px-1', 'turbo-frame': 'details' do %>
+              Détails
+            <% end %>
+          </div>
+          <p class="leading-relaxed mb-4 toggle-description-content">
+            <%= truncate(allotment.description, length: 100) %>
+          </p>
+          <div class="flex border-t border-gray-200 py-2 toggle-details-content">
+            <span class="text-green-primary">Ville</span>
+            <span class="ml-auto text-green-dark">Paris</span>
+          </div>
+          <div class="flex border-t border-gray-200 py-2 toggle-details-content">
+            <span class="text-green-primary">Date de début</span>
+            <span class="ml-auto text-green-dark"><%= allotment.start_date.strftime("%d/%m/%Y") %></span>
+          </div>
+          <div class="flex border-t border-b mb-6 border-gray-200 py-2 toggle-details-content">
+            <span class="text-green-primary">Date de fin</span>
+            <span class="ml-auto text-green-dark"><%= allotment.end_date.strftime("%d/%m/%Y") %></span>
+          </div>
+          <div class="flex items-center justify-center">
+            <% if current_user && current_user != allotment.user %>
+              <%= button_to "Passer commande", checkout_create_path(allotment_id: allotment.id, total: allotment.price + allotment.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+            <% else %>
+              <p class="p-2">Cette annonce est la vôtre.</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>Il n'y a aucun potager pour le moment.</p>
+    <% end %>
   </div>
 </section>

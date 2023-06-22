@@ -26,7 +26,7 @@ class AllotmentsController < ApplicationController
 
     respond_to do |format|
       if @allotment.save
-        format.html { redirect_to allotment_url(@allotment), notice: "Allotment was successfully created." }
+        format.html { redirect_to allotment_url(@allotment), notice: "Vous avez bien été ajouté au potager." }
         format.json { render :show, status: :created, location: @allotment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class AllotmentsController < ApplicationController
   def update
     respond_to do |format|
       if @allotment.update(allotment_params)
-        format.html { redirect_to allotment_url(@allotment), notice: "Allotment was successfully updated." }
+        format.html { redirect_to allotment_url(@allotment), notice: "Le potager a bien été modifié." }
         format.json { render :show, status: :ok, location: @allotment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class AllotmentsController < ApplicationController
     @allotment.destroy
 
     respond_to do |format|
-      format.html { redirect_to allotments_url, notice: "Allotment was successfully destroyed." }
+      format.html { redirect_to allotments_url, notice: "Le potager a bien été supprimé." }
       format.json { head :no_content }
     end
   end
