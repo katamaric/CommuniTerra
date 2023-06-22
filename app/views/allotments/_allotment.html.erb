@@ -16,25 +16,24 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Date de début :</strong>
-    <%= allotment.start_date %>
+    <%= allotment.start_date.strftime("%d/%m/%Y") %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Date de fin :</strong>
-    <%= allotment.end_date %>
+    <%= allotment.end_date.strftime("%d/%m/%Y") %>
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Voir ce potager", allotment, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Modifier ce potager", edit_allotment_path(allotment), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-<%= form_with(model: @allotment_user, url: allotment_users_path, method: :post) do |form| %>
-  <%= form.fields_for :allotment_user do |au_form| %>
-    <%= au_form.hidden_field :allotment_id, value: allotment.id %>
-    <%= au_form.hidden_field :member_id, value: current_user.id %>
-  <% end %>
-  <%= form.submit "Rejoindre ce potager", class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-<% end %>
-
+    <%= link_to "Voir ce potager", allotment, class: "text-indigo-500 font-semibold" %>
+    <%= link_to "Modifier ce potager", edit_allotment_path(allotment), class: "text-indigo-500 font-semibold" %>
+    <%= form_with(model: @allotment_user, url: allotment_users_path, method: :post) do |form| %>
+      <%= form.fields_for :allotment_user do |au_form| %>
+        <%= au_form.hidden_field :allotment_id, value: allotment.id %>
+        <%= au_form.hidden_field :member_id, value: current_user.id %>
+      <% end %>
+      <%= form.submit "Rejoindre ce potager", class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
     <hr class="mt-6">
   <% end %>
 </div>
