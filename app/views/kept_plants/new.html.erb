@@ -35,7 +35,7 @@
 
             <div class="field mx-2">
               <%= form.label :quantity, "Quantité :" %>
-              <%= form.number_field :quantity, class: "form-control rounded-md w-20" %>
+              <%= form.number_field :quantity, min: 1, class: "form-control rounded-md w-20" %>
             </div>
         </div>
 
