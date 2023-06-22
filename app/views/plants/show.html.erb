@@ -51,7 +51,7 @@
   <% if current_user %>
     <% if current_user.admin? %>
       <div class="actions mt-4 flex justify-between items-end">
-        <%= link_to "Modifier cette plante", edit_plant_path(@plant), class: "bg-green-primary text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+        <!--<%= link_to "Modifier cette plante", edit_plant_path(@plant), class: "bg-green-primary text-white py-2 px-4 mt-6 inline-block rounded-lg" %>-->
         <div class="actions mt-4 flex justify-between">
           <%= form_with(model: @owned_plant, url: owned_plants_path, method: :post) do |form| %>
             <%= form.fields_for :owned_plant do |owned_plant_fields| %>
@@ -65,11 +65,11 @@
               <%= owned_plant_fields.text_area :description, class: "w-1/3 block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
             <% end %>
             <div class="actions mt-4 bg-green-primary rounded-md">
-              <%= form.submit "Ajouter une nouvelle plante de la même espèce", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+              <button type="submit" class="flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary">Ajouter une nouvelle plante de la même espèce</button>
             <% end %>
           </div>
         </div>
-        </div>
+      </div>
     <% elsif current_user.owned_plants.exists?(plant_id: @plant.id) %>
       <div class="actions mt-4 flex justify-between items-end">
         <%= link_to "Voir ma plante", dashboard_index_path, class: "flex mx-10 h-10 w-1/3 justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
@@ -87,8 +87,8 @@
             <% end %>
             <div class="actions mt-4 bg-green-primary rounded-md">
               <%= form.submit "Ajouter une nouvelle plante de la même espèce", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
         </div>
       </div>
     <% else %>
@@ -110,5 +110,9 @@
         </div>
       </div>
     <% end %>
+  <% else %>
+    <div class="actions mt-4 flex justify-center">
+      <%= link_to "Se connecter pour ajouter cette plante", new_user_session_path, class: "bg-green-primary text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
+    </div>
   <% end %>
 </div>
