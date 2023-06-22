@@ -17,7 +17,10 @@
       <%= button_to "Supprimer l'article", listing_path(@listing), method: :delete, class: "text-indigo-500 font-semibold" %>
     </div>
     <% else %>
-      <%= link_to "Retour aux articles", listings_path, class: "text-indigo-500 font-semibold" %>
+      <div class="flex justify-between items-center px-4">
+        <%= button_to "Passer commande", checkout_create_path(listing_id: @listing.id, total: @listing.price + @listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+        <%= link_to "Retour aux articles", listings_path, class: "text-indigo-500 font-semibold" %>
+      </div>
     <% end %>
   </div>
 </div>
