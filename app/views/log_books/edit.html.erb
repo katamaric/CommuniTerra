@@ -39,6 +39,11 @@
         <%= form.check_box :watered, checked: @log_book.watered, class: "form-checkbox h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded" %>
       </div>
 
+      <div class="field">
+        <%= form.label :mood, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.select :mood, options_for_select(LogBook.moods.except(:no_data).keys.map { |key| [key.titleize, key] }), {}, class: "w-full text-green-primary focus:ring-green-primary border-gray-300 rounded" %>
+      </div>
+
       <div class="actions bg-green-primary rounded-md">
         <%= form.submit "Enregistrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
       </div>

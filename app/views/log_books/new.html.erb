@@ -40,7 +40,7 @@
 
       <div class="field">
         <%= log_book_form.label :mood, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-        <%= log_book_form.select :mood, options_for_select(LogBook.moods.keys.map { |key| [key.titleize, key] }), {}, class: "w-full text-green-primary focus:ring-green-primary border-gray-300 rounded" %>
+        <%= log_book_form.select :mood, options_for_select(LogBook.moods.except(:no_data).keys.map { |key| [key.titleize, key] }), {}, class: "w-full text-green-primary focus:ring-green-primary border-gray-300 rounded" %>
       </div>
 
       <div class="actions bg-green-primary rounded-md">

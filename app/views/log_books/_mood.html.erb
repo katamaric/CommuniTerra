@@ -1,12 +1,12 @@
 <% if log_book.mood == "no_data" %>
   <%= image_tag("/assets/shrug.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
-<% elsif log_book.mood == "awful" %>
+<% elsif log_book.mood == "horrible" %>
   <%= image_tag("/assets/angry.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
-<% elsif log_book.mood == "bad" %>
+<% elsif log_book.mood == "médiocre" %>
   <%= image_tag("/assets/mild.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
-<% elsif log_book.mood == "okay" %>
+<% elsif log_book.mood == "OK" %>
   <%= image_tag("/assets/neutral.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
-<% elsif log_book.mood == "great" %>
+<% elsif log_book.mood == "bien" %>
   <%= image_tag("/assets/smiling.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
 <% else %>
   <%= image_tag("/assets/happy.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
