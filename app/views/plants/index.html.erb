@@ -5,9 +5,9 @@
 <% end %>
 
 <section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
-  <div class="grid grid-cols-3 gap-4 px-4 mx-auto">
-    <div class="col-span-1 mr-8">
-      <div class="mt- sm:mx-auto sm:w-full sm:max-w-sm ">
+  <div class="grid grid-cols-1 gap-4 px-4 mx-auto sm:grid-cols-2 md:grid-cols-3">
+    <div class="col-span-1">
+      <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm ">
         <br />
         <%= search_form_for @q do |f| %>
 
@@ -30,7 +30,7 @@
       <% end %>
     </div>
 
-    <div class="ml-6 col-span-1">
+    <div class="ml-6 col-span-1 hidden md:block md:collapse">
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <br />
         <%= search_form_for @q,
@@ -39,24 +39,10 @@
               html: { autocomplete: 'off', autocapitalize: 'none' } do |f| %>
 
         <div class="field">
-          <%= f.label :maintenance_level_cont, "Filtrer par niveau d'entretien :", class: "block text-sm font-medium leading-6 text-gray-900" %>
-          <%= f.collection_select :maintenance_level_cont, Plant.select(:maintenance_level).distinct.order(:maintenance_level), :maintenance_level, :maintenance_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-        </div>
-
-        <div class="field">
           <%= f.label :cold_resistance_level_cont, "Filtrer par résistance au froid :", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <%= f.collection_select :cold_resistance_level_cont, Plant.select(:cold_resistance_level).distinct.order(:cold_resistance_level), :cold_resistance_level, :cold_resistance_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
 
-        <div class="field">
-          <%= f.label :water_requirement_level_cont, "Filtrer par besoin en eau :", class: "block text-sm font-medium leading-6 text-gray-900" %>
-          <%= f.collection_select :water_requirement_level_cont, Plant.select(:water_requirement_level).distinct.order(:water_requirement_level), :water_requirement_level, :water_requirement_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-6 col-span-1">
-      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <div class="field">
           <%= f.label :exposure_level_cont, "Filtrer par exposition :", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <%= f.collection_select :exposure_level_cont, Plant.select(:exposure_level).distinct.order(:exposure_level), :exposure_level, :exposure_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
@@ -65,6 +51,21 @@
         <div class="field">
           <%= f.label :flowering_cont, "Filtrer par floraison :", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <%= f.collection_select :flowering_cont, Plant.select(:flowering).distinct.order(:flowering), :flowering, :flowering, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 col-span-1">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+
+        <div class="field">
+          <%= f.label :maintenance_level_cont, "Filtrer par niveau d'entretien :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.collection_select :maintenance_level_cont, Plant.select(:maintenance_level).distinct.order(:maintenance_level), :maintenance_level, :maintenance_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :water_requirement_level_cont, "Filtrer par besoin en eau :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.collection_select :water_requirement_level_cont, Plant.select(:water_requirement_level).distinct.order(:water_requirement_level), :water_requirement_level, :water_requirement_level, { include_blank: true }, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
 
         <div class="form-group">
