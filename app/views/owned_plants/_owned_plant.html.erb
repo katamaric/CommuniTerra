@@ -13,7 +13,7 @@
         <% else %>
           <% @owned_plants.reverse_each do |owned_plant| %>
             <div class="transition-shadow duration-300 bg-white rounded shadow-sm flex flex-col">
-              <img src="<%= asset_path('inside_pots.png') %>" class="object-cover w-full h-64 rounded" alt="plantes d'intérieur en pot" />
+              <%= image_tag('inside_pots.png', class: 'object-cover w-full h-64 rounded', alt: "plantes d'intérieur en pot") %>
               <div class="p-5 rounded">
                 <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
                   <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
@@ -21,10 +21,10 @@
                 <% if owned_plant.nickname.present? %>
                   <div class="flex justify-end">
                     <%= link_to edit_owned_plant_path(owned_plant) do %>
-                      <%= image_tag("/assets/edit.png", width: "24", height: "24", alt: "Edit Entry") %>
+                      <%= image_tag("/assets/edit.png", width: "24", height: "24", alt: "modifier la plante") %>
                     <% end %>
                     <%= button_to owned_plant_path(owned_plant), method: :delete, class: "delete-button" do %>
-                      <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "Delete Entry") %>
+                      <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "supprimer la plante") %>
                     <% end %>
                   </div>
                   <div class="flex items-center mb-3">
@@ -38,10 +38,10 @@
                 <% else %>
                   <div class="flex justify-end">
                     <%= link_to edit_owned_plant_path(owned_plant) do %>
-                      <%= image_tag("/assets/edit.png", width: "24", height: "24", alt: "Edit Entry") %>
+                      <%= image_tag("/assets/edit.png", width: "24", height: "24", alt: "modifier la plante") %>
                     <% end %>
                     <%= button_to owned_plant_path(owned_plant), method: :delete, class: "delete-button" do %>
-                      <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "Delete Entry") %>
+                      <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "supprimer la plante") %>
                     <% end %>
                   </div>
                   <div class="flex items-center mb-3">

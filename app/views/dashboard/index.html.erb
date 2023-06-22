@@ -5,12 +5,12 @@
 <% end %>
 
 <div class="dashboard-container min-h-screen">
-  <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="max-w-xl sm:mx-auto lg:max-w-2xl">
       <div class="flex flex-col sm:text-center sm:mb-0">
         <a href="/" class="mb-6 sm:mx-auto">
           <div class="flex items-center justify-center rounded-full w-48 h-48 bg-indigo-50">
-            <img src="<%= asset_path('homeplant.png') %>" alt="communiterra logo" class="object-contain rounded-full">
+            <%= image_tag('homeplant.png', alt: 'intérieur de maison dessiné avec des plantes', class: 'object-contain rounded-full') %>
           </div>
         </a>
         <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
