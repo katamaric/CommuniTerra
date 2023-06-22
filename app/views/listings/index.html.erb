@@ -45,7 +45,7 @@
                 </div>
                 <div class="flex border-t border-b mb-6 border-gray-200 py-2 toggle-details-content">
                   <span class="text-green-primary">Prix de l'article</span>
-                  <span class="ml-auto font-semibold  text-green-dark"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</span>
+                  <span class="ml-auto font-semibold text-green-dark"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</span>
                 </div>
               </div>
             <% end %>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="flex border-t border-b mb-6 border-gray-200 py-2 toggle-details-content">
                   <span class="text-green-primary">Prix de l'article</span>
-                  <span class="ml-auto text-green-dark"><%= (listing.price + listing.delivery.delivery_price) %> €</span>
+                  <span class="ml-auto font-semibold text-green-dark"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</span>
                 </div>
                 <div class="flex items-center justify-center">
                   <% if current_user && current_user != listing.user %>
