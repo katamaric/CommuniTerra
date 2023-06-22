@@ -1,6 +1,20 @@
-# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
-
-en:
+fr:
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: "%{entry_name}  <b>%{first} - %{last}</b> sur <b>%{total}</b> au total"
+      one_page:
+        display_entries:
+          one: "<b>%{count}</b> %{entry_name}"
+          other: "<b>tous les %{count}</b> %{entry_name}"
+  views:
+    pagination:
+      first: "&laquo; Premier"
+      last: Dernier &raquo;
+      next: Suivant &rsaquo;
+      previous: "&lsaquo; Précédent"
+      truncate: "&hellip;"
+      
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
@@ -63,18 +77,3 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
-  helpers:
-    page_entries_info:
-      more_pages:
-        display_entries: "%{entry_name}  <b>%{first} - %{last}</b> sur <b>%{total}</b> au total"
-      one_page:
-        display_entries:
-          one: "<b>%{count}</b> %{entry_name}"
-          other: "<b>tous les %{count}</b> %{entry_name}"
-  views:
-    pagination:
-      first: "&laquo; Première"
-      last: Dernière &raquo;
-      next: Suivante &rsaquo;
-      previous: "&lsaquo; Précédente"
-      truncate: "&hellip;"
