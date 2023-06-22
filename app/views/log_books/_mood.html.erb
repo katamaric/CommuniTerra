@@ -1,1 +1,13 @@
-<%= image_tag("/assets/trash.png", width: "32", height: "32", alt: "Delete Entry") %>          
+<% if @log_books.last.mood == "no_data" %>
+  <%= image_tag("/assets/shrug.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
+<% elsif @log_books.last.mood == "awful" %>
+  <%= image_tag("/assets/angry.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
+<% elsif @log_books.last.mood == "bad" %>
+  <%= image_tag("/assets/mild.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
+<% elsif @log_books.last.mood == "okay" %>
+  <%= image_tag("/assets/neutral.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
+<% elsif @log_books.last.mood == "great" %>
+  <%= image_tag("/assets/smiling.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
+<% else %>
+  <%= image_tag("/assets/happy.png", width: "32", height: "32", alt: "smiley rouge pas content") %>
+<% end %>

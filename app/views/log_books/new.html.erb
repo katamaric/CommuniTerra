@@ -39,14 +39,9 @@
       </div>
 
       <div class="field">
-        <%= log_book_form.label :mood, "Arrosée", class: "block text-sm font-medium leading-6 text-gray-900" %>
-        <%= log_book_form.check_box :watered, class: "form-checkbox h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded" %>
+        <label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Min-max range</label>
+        <input id="minmax-range" type="range" min="0" max="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
       </div>
-
-
-<label for="minmax-range" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Min-max range</label>
-<input id="minmax-range" type="range" min="0" max="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-
 
       <div class="actions bg-green-primary rounded-md">
         <%= log_book_form.submit "Enregistrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
