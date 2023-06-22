@@ -20,7 +20,7 @@
         <br />
 
         <div class="actions bg-green-primary rounded-md">
-          <%= f.submit "Chercher", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary"%>
+          <%= f.button "Recherche", type: "submit", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary"%>
         </div>
 
         <hr/>
@@ -74,7 +74,7 @@
 
         <div class="form-group">
           <div class="actions bg-green-primary rounded-md">
-            <%= f.submit "Filtrer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+            <%= f.button "Filtre", type: "submit", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
           </div>
 
           <hr/>
@@ -118,7 +118,7 @@
               <%= owned_plant_fields.hidden_field :user_id, value: current_user.id %>
               <%= owned_plant_fields.hidden_field :quantity, value: 1 %>
             <% end %>
-              <%= form.submit "Ajouter cette plante", class: "text-indigo-500 font-semibold" %>
+            <button type="submit" class="text-indigo-500 font-semibold">Ajouter cette plante</button>
             <% end %>
         </div>
       </div>
