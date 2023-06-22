@@ -61,7 +61,7 @@
             </div>
             <div class="px-2">
               <p class="text-lg font-bold"><%= log_book.entry_date.strftime('%d') %></p>
-              <%= render partial: 'log_books/mood', locals: { log_books: @log_books, owned_plant: @owned_plant } %>
+              <%= render partial: 'log_books/mood', locals: { log_book: log_book } %>
             </div>
           </div>
           <div>
