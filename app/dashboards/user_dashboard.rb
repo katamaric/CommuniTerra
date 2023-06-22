@@ -18,9 +18,9 @@ class UserDashboard < Administrate::BaseDashboard
     last_name: Field::String,
     owned_plants: Field::HasMany,
     phone_number: Field::String,
-    plant_sittings: Field::HasMany,
+    
     plants: Field::HasMany,
-    kept_plants: Field::HasMany,
+    
     remember_created_at: Field::DateTime,
     reset_password_sent_at: Field::DateTime,
     reset_password_token: Field::String,
@@ -54,9 +54,9 @@ class UserDashboard < Administrate::BaseDashboard
     last_name
     owned_plants
     phone_number
-    plant_sittings
+    
     plants
-    kept_plants
+    
     remember_created_at
     reset_password_sent_at
     reset_password_token
@@ -78,9 +78,9 @@ class UserDashboard < Administrate::BaseDashboard
     last_name
     owned_plants
     phone_number
-    plant_sittings
+    
     plants
-    kept_plants
+    
     remember_created_at
     reset_password_sent_at
     reset_password_token
