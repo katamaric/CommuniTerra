@@ -11,10 +11,9 @@
 
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
     <%= render @allotment %>
-    <%= link_to 'Edit this allotment', edit_allotment_path(@allotment), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this allotment', allotment_path(@allotment), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="flex justify-between items-center px-4">
+      <%= link_to 'Modifier le potager', edit_allotment_path(@allotment), class: "text-indigo-500 font-semibold" %>
+      <%= button_to 'Supprimer le potager', allotment_path(@allotment), method: :delete, class: "text-indigo-500 font-semibold" %>
     </div>
-    <%= link_to 'Back to allotments', allotments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

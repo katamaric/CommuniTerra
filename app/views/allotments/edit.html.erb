@@ -1,8 +1,53 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing allotment</h1>
+<div class="min-h-screen justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Modifier le potager</h2>
+  </div>
 
-  <%= render "form", allotment: @allotment %>
+  <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+    <%= form_with(model: @allotment, class: "contents") do |form| %>
+      <% if @allotment.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+          <h2><%= pluralize(@allotment.errors.count, "erreur(s)") %> vous empêche(nt) de valider :</h2>
+          <ul>
+            <% @allotment.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <%= link_to "Show this allotment", @allotment, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to allotments", allotments_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+
+      <div class="mb-5">
+        <%= form.label :name, "Nom du potager", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :size, "Taille du potager", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= form.text_field :size, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :description, "Description", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :start_date, "Date de début", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= form.datetime_field :start_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="my-5">
+        <%= form.label :end_date, "Date de fin", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <%= form.datetime_field :end_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+
+      <div class="flex justify-between items-center px-4">
+        <%= form.submit "Valider", class: "px-4 text-indigo-500 font-semibold" %>
+        <%= link_to 'Annuler', @allotments_path, class: "px-4 text-indigo-500 font-semibold" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
