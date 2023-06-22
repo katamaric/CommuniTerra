@@ -53,7 +53,7 @@ class PlantDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    allotments
+    
     cold_resistance_description
     cold_resistance_level
     common_name
@@ -71,9 +71,9 @@ class PlantDashboard < Administrate::BaseDashboard
     mature_width
     owned_plants
     owners
-    plant_sittings
+    
     planting
-    kept_plants
+    
     pruning
     specie
     vegetation
@@ -87,7 +87,7 @@ class PlantDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    allotments
+    
     cold_resistance_description
     cold_resistance_level
     common_name
@@ -105,9 +105,9 @@ class PlantDashboard < Administrate::BaseDashboard
     mature_width
     owned_plants
     owners
-    plant_sittings
+    
     planting
-    kept_plants
+    
     pruning
     specie
     vegetation

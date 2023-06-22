@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       resources :log_books
       resources :owned_plants
       resources :plants
-      resources :plant_moods
       resources :plant_sittings
 
       root to: "users#index"
