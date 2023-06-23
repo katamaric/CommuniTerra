@@ -2,7 +2,7 @@ class LogBooksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_owned_plant
   before_action :set_log_book, only: [:edit, :update, :destroy]
-
+  before_action :check_security, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @owned_plant = OwnedPlant.find(params[:owned_plant_id])
@@ -58,5 +58,14 @@ class LogBooksController < ApplicationController
 
   def log_book_params
     params.require(:log_book).permit(:entry_date, :title, :content, :watered, :mood)
+  end
+
+  def check_security
+    if !current_user.plant_sittings.exists?(sitter_id: current_user.id) &&
+       !(@owned_plant.allotment_id.present? && Allotment.find(@owned_plant.allotment_id).admin_id == current_user.id) &&
+       !current_user.member?(Allotment.find(@owned_plant.allotment_id).allotment_users) &&
+       @owned_plant.user != current_user
+      redirect_to root_path, alert: "Vous n'avez pas les autorisations nécessaires pour effectuer cette action."
+    end
   end
 end
