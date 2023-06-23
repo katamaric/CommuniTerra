@@ -45,7 +45,7 @@ Run the seed file to load up the plant database
   rails db:seed
 ```
 
-Start your server. 
+Start your server
 
 ```bash
   rails server
