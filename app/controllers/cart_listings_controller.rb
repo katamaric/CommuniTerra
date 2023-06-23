@@ -9,10 +9,17 @@ class CartListingsController < ApplicationController
 
   def update
     cart_listing = CartListing.find(params[:id])
-    cart_listing.update(quantity: params[:quantity])
-    redirect_to cart_path, notice: "Quantity updated successfully."
-  end
+    new_quantity = params[:quantity].to_i
+    listing = cart_listing.listing
   
+    if new_quantity <= listing.remaining_quantity
+      cart_listing.update(quantity: new_quantity)
+      redirect_to cart_path, notice: 'Quantity updated successfully.'
+    else
+      flash[:alert] = 'The requested quantity exceeds the available quantity for this listing.'
+      redirect_to cart_path
+    end
+  end  
 
   def destroy
     @cart_listing = Cartlisting.find(params[:id])

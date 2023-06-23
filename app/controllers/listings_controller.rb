@@ -5,8 +5,8 @@ class ListingsController < ApplicationController
   # GET /listings or /listings.json
   def index
     @current_user_listings = current_user.listings
-    @listings = Listing.all
-  end
+    @listings = Listing.where("quantity > 0")
+  end  
 
   # GET /listings/1 or /listings/1.json
   def show
@@ -24,6 +24,7 @@ class ListingsController < ApplicationController
   # POST /listings or /listings.json
   def create
     @listing = Listing.new(listing_params)
+    @listing.remaining_quantity = @listing.quantity
 
     respond_to do |format|
       if @listing.save
