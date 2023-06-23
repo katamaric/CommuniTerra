@@ -16,6 +16,7 @@ class User < ApplicationRecord
         #  has_many :allotments, through: :allotment_user, dependent: :destroy
          has_one :cart, dependent: :destroy
          has_many :cart_listings, through: :cart, dependent: :destroy
+         has_many :plant_sittings, foreign_key: :sitter_id
 
 
   # has_many :private_sent_messages, class_name: 'PrivateMessage', foreign_key: 'sender_id'
@@ -43,6 +44,10 @@ class User < ApplicationRecord
   
   def admin?
     admin
+  end
+
+  def member?(allotment_users)
+    allotment_users.exists?(member_id: self.id)
   end
 
 end
