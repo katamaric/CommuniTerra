@@ -12,9 +12,6 @@
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
     <%= render @allotment_user %>
 
-    <%= link_to 'Modifier votre participation', edit_allotment_user_path(@allotment_user), class: "text-indigo-500 font-semibold" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Supprimer votre participation', allotment_user_path(@allotment_user), method: :delete, class: "text-indigo-500 font-semibold" %>
-    </div>
+    <%= button_to 'Supprimer votre participation', allotment_user_path(@allotment_user), method: :delete, class: "text-indigo-500 font-semibold" %>
   </div>
 </div>
