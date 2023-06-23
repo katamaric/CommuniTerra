@@ -58,7 +58,6 @@ class KeptPlantsController < ApplicationController
       end
     end
   
-  
     respond_to do |format|
       if @kept_plants.all?(&:save)
         format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont été ajoutées avec succès." }
@@ -69,9 +68,6 @@ class KeptPlantsController < ApplicationController
       end
     end
   end
-  
-  
-  
 
   # PATCH/PUT /kept_plants/1 or /kept_plants/1.json
   def update
