@@ -10,19 +10,41 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
 
         <% @current_user_plant_sittings.each do |plant_sitting| %>
-          <p>Plant Sitting ID: <%= plant_sitting.id %></p>
-          
-          <% if plant_sitting.kept_plants.empty? %>
-            <p>No kept_plants found for this plant_sitting.</p>
-          <% else %>
-            <p>Kept Plants:</p>
-            <ul>
-              <% plant_sitting.kept_plants.each do |kept_plant| %>
-                <li>Kept Plant ID: <%= kept_plant.id %></li>
-              <% end %>
-            </ul>
-          <% end %>
-          <hr>
+          <div class="p-4 border rounded-lg mb-4">
+            <h2 class="font-semibold text-lg">
+              Plant Sitter: <%= plant_sitting.sitter.username %>
+            </h2>
+
+            <h2 class="font-semibold text-lg">
+              Plant Asker: <%= plant_sitting.asker.username %>
+            </h2>
+
+
+            <% if plant_sitting.kept_plants.nil? %>
+              <p>No kept_plants found for this plant_sitting.</p>
+            <% else %>
+              <h2 class="font-semibold text-xl">
+                Kept Plants:
+              </h2>
+              <ul>
+                <% plant_sitting.kept_plants.each do |kept_plant| %>
+                  <div class="p-4 border rounded-lg mb-4">
+                    <h2 class="font-semibold text-lg">
+                      Nom de la plante: <%= kept_plant.owned_plant.plant.common_name %>
+                    </h2>
+                    <p class="mb-2">
+                      Description de la plante: <%= kept_plant.owned_plant.plant.description %>
+                    </p>
+                  </div>
+                <% end %>
+              </ul>
+            <% end %>
+            <hr>
+          </div>
+        <% end %>
+
+        <% if @current_user_plant_sittings.empty? %>
+          <p>Aucune garde n'a été effectuée.</p>
         <% end %>
       </div>
     </div>
