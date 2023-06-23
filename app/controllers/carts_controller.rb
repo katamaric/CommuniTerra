@@ -3,12 +3,13 @@ class CartsController < ApplicationController
   def index
     @cart = current_user.cart
   
-    if !@cart
-      @cart_total = 0
-    else
+    if @cart.present?
+      @delivery_price = @cart.listings.joins(:delivery).sum('deliveries.delivery_price')
       @cart_total = calculate_cart_total(@cart)
+    else
+      @cart_total = 0
     end
-  end
+  end  
     
   def show
     redirect_to carts_path
@@ -21,6 +22,7 @@ class CartsController < ApplicationController
   def create
     @cart = current_user.cart || Cart.new(user: current_user)
     @listing = Listing.find(params[:listing_id])
+    @delivery_price = @listing.delivery.delivery_price
   
     if @listing.remaining_quantity >= 1
       existing_cart_listing = @cart.cart_listings.find_by(listing: @listing)
