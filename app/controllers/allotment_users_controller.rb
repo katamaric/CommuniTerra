@@ -9,6 +9,7 @@ class AllotmentUsersController < ApplicationController
 
   # GET /allotment_users/1 or /allotment_users/1.json
   def show
+    @allotment_user = AllotmentUser.find(params[:id])
   end
 
   # GET /allotment_users/new
