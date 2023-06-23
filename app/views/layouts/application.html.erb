@@ -20,6 +20,8 @@
     <%= render partial: 'shared/alert', locals: { alert_type: @alert_type, alert_message: @alert_message } %>
     <%= yield %>
     <%= render "shared/footer"%>
+
+    <%= javascript_include_tag "custom" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
   </body>
 </html>
