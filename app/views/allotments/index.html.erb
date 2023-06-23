@@ -47,6 +47,8 @@
         <div class="flex items-center justify-center">
           <% unless allotment.allotment_users.exists?(member_id: current_user.id) %>
             <%= button_to "Rejoindre le potager", allotment_users_path(params: { allotment_id: allotment.id }), method: :post, class: "p-2 text-indigo-500 font-semibold" %>
+          <% else %>
+            <p class="p-2 text-gray-700 font-semibold">Vous êtes déjà inscrit ici.</p>
           <% end %>
         </div>
       <% end %>
