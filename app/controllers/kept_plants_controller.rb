@@ -16,6 +16,8 @@ class KeptPlantsController < ApplicationController
       end_date = Date.parse(params[:end_date])
       @kept_plants = @kept_plants.select { |kept_plant| kept_plant.start_date == start_date && kept_plant.end_date == end_date }
     end
+  
+    @current_user_plant_sittings = current_user.plant_sittings.includes(:kept_plants)
   end
 
   # GET /kept_plants/1 or /kept_plants/1.json

@@ -1,11 +1,30 @@
-<div id="<%= dom_id plant_sitting %>">
-  <p>
-    <strong>Sitter:</strong>
-    <%= plant_sitting.sitter.username %>
-  </p>
+<div id="plant-sitting-accordion" data-accordion="collapse">
+  <h2 id="plant-sitting-accordion-heading">
+    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#plant-sitting-accordion-body" aria-expanded="false" aria-controls="plant-sitting-accordion-body">
+      <p class="font-semibold text-2xl">Mes gardes</p>
+      <svg data-accordion-icon class="w-6 h-6 rotate-0 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+  </h2>
+  <div id="plant-sitting-accordion-body" class="hidden" aria-labelledby="plant-sitting-accordion-heading">
+    <div class="p-4 mx-auto">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
 
-  <p>
-    <strong>Asker:</strong>
-    <%= plant_sitting.asker.username %>
-  </p>
+        <% @current_user_plant_sittings.each do |plant_sitting| %>
+          <p>Plant Sitting ID: <%= plant_sitting.id %></p>
+          
+          <% if plant_sitting.kept_plants.empty? %>
+            <p>No kept_plants found for this plant_sitting.</p>
+          <% else %>
+            <p>Kept Plants:</p>
+            <ul>
+              <% plant_sitting.kept_plants.each do |kept_plant| %>
+                <li>Kept Plant ID: <%= kept_plant.id %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <hr>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

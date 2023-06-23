@@ -28,7 +28,7 @@ class PlantSittingsController < ApplicationController
       if @plant_sitting.save
         kept_plants.update_all(plant_sitting_id: @plant_sitting.id)
   
-        redirect_to @plant_sitting, notice: 'Plant sitting was successfully created.'
+        redirect_to kept_plants_path, notice: 'Plant sitting was successfully created.'
       else
         render :new
       end

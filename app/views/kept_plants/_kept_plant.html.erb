@@ -1,22 +1,66 @@
-<div id="<%= dom_id kept_plant %>">
-  <p>
-    <strong>De :</strong>
-    <%= kept_plant.owned_plant.user.username %>
-  </p>
+<div id="kept-plants-accordion" data-accordion="collapse">
+  <h2 id="kept-plants-accordion-heading">
+    <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#kept-plants-accordion-body" aria-expanded="false" aria-controls="kept-plants-accordion-body">
+      <p class="font-semibold text-2xl">Mes demandes de gardes</p>
+      <svg data-accordion-icon class="w-6 h-6 rotate-0 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+  </h2>
+  <div id="kept-plants-accordion-body" class="hidden" aria-labelledby="kept-plants-accordion-heading">
+    <div class="p-4 mx-auto">
+      <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <% @kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>
+      <div class="p-4 border rounded-lg mb-4">
+        <h2 class="font-semibold text-xl">
+          Demande de garde du <%= l(dates[0].to_date, format: "%-d/%m/%Y") %> au <%= l(dates[1].to_date, format: "%-d/%m/%Y") %>
+        </h2>
 
-  <p>
-    <strong>Plante :</strong>
-    <%= kept_plant.owned_plant.plant.common_name %>
-  </p>
+        <% plants.each do |kept_plant| %>
+          <h2 class="font-semibold text-lg">
+            <br><%= kept_plant.owned_plant.plant.common_name %>
+          </h2>
 
-  <p>
-    <strong>Quantité :</strong>
-    <%= kept_plant.quantity %>
-  </p>
+          <p class="mb-2">
+            <strong>Quantité :</strong> <%= kept_plant.quantity %>
+          </p>
 
-  <p>
-    <strong>Description :</strong>
-    <%= kept_plant.description %>
-  </p>
+          <p class="mb-2">
+            <%= kept_plant.description %>
+          </p>
 
+          <div class="mt-2">
+            <%= link_to "Plus de détails sur cette plante", kept_plant_path(kept_plant) %>
+            <% if current_user == kept_plant.owned_plant.user %>
+              <%= link_to "Éditer la plante à garder", edit_kept_plant_path(kept_plant) %>
+              <%= button_to "Supprimer la plante à garder", kept_plant, method: :delete %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if plants.first.plant_sitting && plants.first.plant_sitting.sitter %>
+          <p>
+            <br><strong>PlantSitter :</strong> <%= plants.first.plant_sitting.sitter.username %>
+          </p>
+        <% else %>
+          <p>
+            <br><strong>PlantSitter :</strong> Votre demande est en attente d'un PlantSitter
+          </p>
+        <% end %>
+        <% if current_user == plants.first.owned_plant.user %>
+          <div class="mt-4">
+            <% if plants.all? { |kept_plant| kept_plant.start_date == dates[0] && kept_plant.end_date == dates[1] } %>
+              <%= button_to "Supprimer la demande de garde et les plantes associées",
+                            delete_kept_plants_path(start_date: dates[0], end_date: dates[1]),
+                            method: :delete,
+                            data: { confirm: "Êtes-vous sûr de vouloir supprimer cette demande de garde et toutes les plantes associées ?" },
+                            class: "text-red-500 font-semibold" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @kept_plants.empty? %>
+      <p>Aucune plante n'a été mise en demande de garde.</p>
+    <% end %>
+  </div>
 </div>
