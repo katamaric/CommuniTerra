@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     get 'index_current_user', on: :collection
   end
   resources :kept_plants
+  delete 'kept_plants/delete', to: 'kept_plants#delete', as: 'delete_kept_plants'
   resources :owned_plants
   resources :plants, path: 'plantes'
   resources :plants, only: [:show] do
