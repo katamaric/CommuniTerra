@@ -1,13 +1,18 @@
 <div id="<%= dom_id allotment_user %>">
-  <p class="mb-4">
+  <p class="my-4">
     <strong class="block font-medium mb-1">Gestionnaire :</strong>
     <%= allotment_user.allotment.admin.username %>
   </p>
 
-  <p class="mb-4">
-    <strong class="block font-medium mb-1">Participants :</strong>
-    <%= allotment_user.member.username %>
+ <p class="my-4">
+  <strong class="block font-medium mb-1">Participants :</strong>
+  <% @allotment_users.each do |allotment_user| %>
+    <span class="inline-block bg-gray-200 text-gray-800 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">
+      <%= allotment_user.member.username %>
+    </span>
+  <% end %>
   </p>
+
 
   <% if action_name != "show" %>
     <%= link_to "Show this allotment user", allotment_user, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
