@@ -13,4 +13,11 @@ class Listing < ApplicationRecord
   has_many :carts, through: :cart_listings
   has_many :order_listings
   has_many :orders, through: :order_listings
+
+  validate :quantity_must_be_positive, on: :update
+
+  def quantity_must_be_positive
+    errors.add(:quantity, "must be greater than 0") if quantity.nil? || quantity <= 0
+  end
+
 end
