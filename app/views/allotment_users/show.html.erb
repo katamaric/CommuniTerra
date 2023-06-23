@@ -4,15 +4,17 @@
   <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
 <% end %>
 
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
+<div class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Les participants du potager</h2>
+  </div>
 
+  <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
     <%= render @allotment_user %>
 
-    <%= link_to 'Edit this allotment_user', edit_allotment_user_path(@allotment_user), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Modifier votre participation', edit_allotment_user_path(@allotment_user), class: "text-indigo-500 font-semibold" %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy this allotment_user', allotment_user_path(@allotment_user), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to 'Supprimer votre participation', allotment_user_path(@allotment_user), method: :delete, class: "text-indigo-500 font-semibold" %>
     </div>
-    <%= link_to 'Back to allotment_users', allotment_users_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

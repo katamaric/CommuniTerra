@@ -44,7 +44,9 @@
             <%= allotment_user_fields.hidden_field :allotment_id, value: allotment.id %>
             <%= allotment_user_fields.hidden_field :member_id, value: current_user.id %>
           <% end %>
-          <%= form.submit "Rejoindre le potager", class: "btn btn-primary" %>
+          <div class="flex items-center justify-center">
+            <%= form.submit "Rejoindre le potager", class: "p-2 text-indigo-500 font-semibold" %>
+          </div>
         <% end %>
         </div>
       <% end %>

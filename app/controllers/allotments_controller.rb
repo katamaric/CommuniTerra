@@ -26,7 +26,7 @@ class AllotmentsController < ApplicationController
 
     respond_to do |format|
       if @allotment.save
-        format.html { redirect_to allotment_url(@allotment), notice: "Vous avez bien été ajouté au potager." }
+        format.html { redirect_to allotment_url(@allotment), notice: "Le potager a bien été créé." }
         format.json { render :show, status: :created, location: @allotment }
       else
         format.html { render :new, status: :unprocessable_entity }
