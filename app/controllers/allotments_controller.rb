@@ -12,6 +12,7 @@ class AllotmentsController < ApplicationController
   def show
     @allotment_users = @allotment.allotment_users
     @allotment_user = AllotmentUser.find_by(member_id: current_user.id, allotment_id: @allotment.id)
+    @owned_plants = OwnedPlant.where(allotment_id: @allotment.id)
   end
 
   # GET /allotments/new
