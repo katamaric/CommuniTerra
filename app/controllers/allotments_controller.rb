@@ -11,6 +11,7 @@ class AllotmentsController < ApplicationController
   # GET /allotments/1 or /allotments/1.json
   def show
     @allotment_users = @allotment.allotment_users
+    @allotment_user = AllotmentUser.find_by(member_id: current_user.id, allotment_id: @allotment.id)
   end
 
   # GET /allotments/new

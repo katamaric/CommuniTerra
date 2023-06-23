@@ -15,8 +15,10 @@
       <% if current_user == @allotment.admin %>
         <%= link_to 'Modifier le potager', edit_allotment_path(@allotment), class: "text-indigo-500 font-semibold" %>
         <%= button_to 'Supprimer le potager', allotment_path(@allotment), method: :delete, class: "text-indigo-500 font-semibold" %>
+      <% elsif @allotment_user %>
+        <%= button_to 'Supprimer votre participation', allotment_user_path(@allotment_user), method: :delete, class: "text-indigo-500 font-semibold" %>
       <% else %>
-        <%= button_to 'Supprimer votre participation', allotment_path(@allotment), method: :delete, class: "text-indigo-500 font-semibold" %>
+        <%= button_to 'Rejoindre le potager', allotment_users_path(allotment_id: @allotment.id), method: :post, class: "p-2 text-indigo-500 font-semibold" %>
       <% end %>
     </div>
   </div>
