@@ -44,10 +44,15 @@
             <br><strong>PlantSitter :</strong> Votre demande est en attente d'un PlantSitter
           </p>
         <% end %>
-
         <% if current_user == plants.first.owned_plant.user %>
           <div class="mt-4">
-            <%= button_to "Supprimer la demande de garde", kept_plants_path(kept_plant_ids: plants.map(&:id)), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cette demande de garde et toutes les plantes associées ?" }, class: "text-red-500 font-semibold" %>
+            <% if plants.all? { |kept_plant| kept_plant.start_date == dates[0] && kept_plant.end_date == dates[1] } %>
+              <%= button_to "Supprimer la demande de garde et les plantes associées",
+                            delete_kept_plants_path(start_date: dates[0], end_date: dates[1]),
+                            method: :delete,
+                            data: { confirm: "Êtes-vous sûr de vouloir supprimer cette demande de garde et toutes les plantes associées ?" },
+                            class: "text-red-500 font-semibold" %>
+            <% end %>
           </div>
         <% end %>
       </div>

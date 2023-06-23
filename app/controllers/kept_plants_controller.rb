@@ -84,20 +84,39 @@ class KeptPlantsController < ApplicationController
 
   # DELETE /kept_plants/1 or /kept_plants/1.json
   def destroy
-    @kept_plant.destroy
-
+    if @kept_plant.nil?
+      KeptPlant.where(start_date: params[:start_date], end_date: params[:end_date]).destroy_all
+    else
+      @kept_plant.destroy
+    end
+  
     respond_to do |format|
       format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont bien été supprimées." }
       format.json { head :no_content }
     end
-  end
+  end  
+
+  def delete
+    @kept_plants = current_user.kept_plants.where(start_date: start_date, end_date: end_date)
+    
+    @kept_plants.destroy_all
+  
+    respond_to do |format|
+      format.html { redirect_to kept_plants_url, notice: "La demande de garde et les plantes associées ont été supprimées avec succès." }
+      format.json { head :no_content }
+    end
+  end  
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_kept_plant
-    @kept_plant = KeptPlant.find(params[:id])
-  end
+    if params[:id] == 'delete'
+      @kept_plants = KeptPlant.where(start_date: params[:start_date], end_date: params[:end_date])
+    else
+      @kept_plant = KeptPlant.find(params[:id])
+    end
+  end  
 
   # Only allow a list of trusted parameters through.
   def kept_plant_params
