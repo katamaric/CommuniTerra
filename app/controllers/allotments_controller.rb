@@ -1,6 +1,7 @@
 class AllotmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_allotment, only: %i[ show edit update destroy ]
+  before_action :administrator, only: %i[ edit destroy ]
 
   # GET /allotments or /allotments.json
   def index
@@ -9,6 +10,7 @@ class AllotmentsController < ApplicationController
 
   # GET /allotments/1 or /allotments/1.json
   def show
+    @allotment_users = @allotment.allotment_users
   end
 
   # GET /allotments/new
@@ -59,13 +61,21 @@ class AllotmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_allotment
-      @allotment = Allotment.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_allotment
+    @allotment = Allotment.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def allotment_params
-      params.require(:allotment).permit(:size, :name, :description, :start_date, :end_date, :admin_id)
+  # Only allow a list of trusted parameters through.
+  def allotment_params
+    params.require(:allotment).permit(:size, :name, :description, :start_date, :end_date, :admin_id)
+  end
+
+  def administrator
+    unless current_user == @allotment.admin
+      flash[:alert] = "Vous n'êtes pas autorisé à effectuer cette action."
+      redirect_back(fallback_location: root_url)
     end
+  end  
 end

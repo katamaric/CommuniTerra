@@ -9,7 +9,6 @@ class AllotmentUsersController < ApplicationController
 
   # GET /allotment_users/1 or /allotment_users/1.json
   def show
-    @allotment_users = AllotmentUser.all
   end
 
   # GET /allotment_users/new
@@ -25,9 +24,14 @@ class AllotmentUsersController < ApplicationController
   def create
     @allotment_user = AllotmentUser.new(allotment_user_params)
 
+    if @allotment_user.allotment.allotment_users.exists?(member_id: @allotment_user.member_id)
+      redirect_to allotment_path(@allotment_user.allotment), alert: "Vous êtes déjà membre de ce potager."
+      return
+    end
+
     respond_to do |format|
       if @allotment_user.save
-        format.html { redirect_to allotment_user_url(@allotment_user), notice: "Vous avez bien été ajouté au potager." }
+        format.html { redirect_to allotment_url(@allotment_user.allotment), notice: "Vous avez bien été ajouté.e au potager." }
         format.json { render :show, status: :created, location: @allotment_user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,7 +58,7 @@ class AllotmentUsersController < ApplicationController
     @allotment_user.destroy
 
     respond_to do |format|
-      format.html { redirect_to allotment_users_url, notice: "Vous avez bien été retiré du potager." }
+      format.html { redirect_to allotments_url, notice: "Vous avez bien été retiré.e du potager." }
       format.json { head :no_content }
     end
   end

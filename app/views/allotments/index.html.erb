@@ -37,17 +37,19 @@
             <span class="text-green-primary">Date de fin</span>
             <span class="ml-auto text-green-dark"><%= allotment.end_date %></span>
           </div>
-        <%= form_with(model: @allotment_user, url: allotment_users_path, method: :post) do |form| %>
-          <%= form.hidden_field :allotment_id, value: allotment.id %> 
-          <%= form.hidden_field :member_id, value: current_user.id %>
-          <%= form.fields_for :allotment_user do |allotment_user_fields| %>
-            <%= allotment_user_fields.hidden_field :allotment_id, value: allotment.id %>
-            <%= allotment_user_fields.hidden_field :member_id, value: current_user.id %>
-          <% end %>
-          <div class="flex items-center justify-center">
-            <%= form.submit "Rejoindre le potager", class: "p-2 text-indigo-500 font-semibold" %>
-          </div>
+            <%= form_with(model: @allotment_user, url: allotment_users_path, method: :post) do |form| %>
+        <%= form.hidden_field :allotment_id, value: allotment.id %> 
+        <%= form.hidden_field :member_id, value: current_user.id %>
+        <%= form.fields_for :allotment_user do |allotment_user_fields| %>
+          <%= allotment_user_fields.hidden_field :allotment_id, value: allotment.id %>
+          <%= allotment_user_fields.hidden_field :member_id, value: current_user.id %>
         <% end %>
+        <div class="flex items-center justify-center">
+          <% unless allotment.allotment_users.exists?(member_id: current_user.id) %>
+            <%= button_to "Rejoindre le potager", allotment_users_path(params: { allotment_id: allotment.id }), method: :post, class: "p-2 text-indigo-500 font-semibold" %>
+          <% end %>
+        </div>
+      <% end %>
         </div>
       <% end %>
     <% else %>
