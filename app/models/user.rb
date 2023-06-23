@@ -11,6 +11,9 @@ class User < ApplicationRecord
 
   has_many :kept_plants, through: :owned_plants, dependent: :destroy
 
+  has_one :cart, dependent: :destroy
+  has_many :orders, dependent: :destroy
+
   # has_many :private_sent_messages, class_name: 'PrivateMessage', foreign_key: 'sender_id'
   # has_many :private_received_messages, class_name: 'PrivateMessage', foreign_key: 'recipient_id'
   # has_many :posts, dependent: :destroy

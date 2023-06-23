@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_21_144759) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_23_082522) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_144759) do
     t.index ["admin_id"], name: "index_allotments_on_admin_id"
   end
 
+  create_table "cart_listings", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "listing_id", null: false
+    t.integer "quantity", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_listings_on_cart_id"
+    t.index ["listing_id"], name: "index_cart_listings_on_listing_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "deliveries", force: :cascade do |t|
     t.string "delivery_type"
     t.float "delivery_price"
@@ -95,7 +113,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_144759) do
     t.bigint "delivery_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "paid", default: false
     t.index ["delivery_id"], name: "index_listings_on_delivery_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
@@ -110,6 +127,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_144759) do
     t.integer "mood", default: 0
     t.boolean "watered", default: false
     t.index ["owned_plant_id"], name: "index_log_books_on_owned_plant_id"
+  end
+
+  create_table "order_listings", force: :cascade do |t|
+    t.bigint "listing_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_order_listings_on_listing_id"
+    t.index ["order_id"], name: "index_order_listings_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.decimal "order_total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "owned_plants", force: :cascade do |t|
@@ -183,11 +218,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_144759) do
   add_foreign_key "allotment_users", "allotments"
   add_foreign_key "allotment_users", "users", column: "member_id"
   add_foreign_key "allotments", "users", column: "admin_id"
+  add_foreign_key "cart_listings", "carts"
+  add_foreign_key "cart_listings", "listings"
+  add_foreign_key "carts", "users"
   add_foreign_key "kept_plants", "owned_plants", on_delete: :cascade
   add_foreign_key "kept_plants", "plant_sittings", on_delete: :cascade
   add_foreign_key "listings", "deliveries"
   add_foreign_key "listings", "users"
   add_foreign_key "log_books", "owned_plants"
+  add_foreign_key "order_listings", "listings"
+  add_foreign_key "order_listings", "orders"
+  add_foreign_key "orders", "users"
   add_foreign_key "owned_plants", "plants", on_delete: :cascade
   add_foreign_key "owned_plants", "users", on_delete: :cascade
   add_foreign_key "plant_sittings", "users", column: "asker_id"

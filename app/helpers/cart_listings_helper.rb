@@ -1,0 +1,2 @@
+module CartListingsHelper
+end

@@ -1,0 +1,54 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @order %>
+
+    <%= link_to 'Edit this order', edit_order_path(@order), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this order', order_path(@order), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to 'Back to orders', orders_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>
+
+<section class="user-dashboard page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Date</th>
+                  <th>listings</th>
+                  <th>Total Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#<%= @order.id %></td>
+                  <td><%= @order.created_at.strftime("%b %d, %Y") %></td>
+                  <td>
+                    <ul>
+                      <% @order.listings.each do |listing| %>
+                        <li>
+                          <%# <%= image_tag listing.listing_picture, class: "listing-image" %> 
+                          <%= link_to listing.listing_title, listing_path(listing.id) %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </td>
+                  <td>$<%= @order.order_total %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+

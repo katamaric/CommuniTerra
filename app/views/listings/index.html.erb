@@ -22,7 +22,6 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 p-4">
         <% if @current_user_listings.any? %>
           <% @current_user_listings.each do |current_user_listing| %>
-            <% unless current_user_listing.paid %>
               <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0 bg-white rounded shadow-sm p-5">
                 <h1 class="text-green-primary text-xl title-font font-medium mb-0 px-1"><%= current_user_listing.listing_title %><br></h1>
                 <div class="flex mb-4 mt-3">
@@ -49,7 +48,6 @@
                   <span class="ml-auto font-semibold text-green-dark"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</span>
                 </div>
               </div>
-            <% end %>
           <% end %>
         <% else %>
           <p>Il n'y a aucun article pour le moment.</p>
@@ -69,7 +67,6 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 p-4">
         <% if @listings.any? %>
           <% @listings.each do |listing| %>
-            <% unless listing.paid %>
               <div class="lg:w-1/6 md:w-1/6 sm:w-1/3 w-full lg:pr-6 lg:py-10 mb-6 lg:mb-0 bg-white rounded shadow-sm p-5">
                 <h1 class="text-green-primary text-xl title-font font-medium mb-0 px-1"><%= listing.listing_title %><br></h1>
                 <div class="flex mb-4 mt-3">
@@ -97,13 +94,14 @@
                 </div>
                 <div class="flex items-center justify-center">
                   <% if current_user && current_user != listing.user %>
-                    <%= button_to "Passer commande", checkout_create_path(listing_id: listing.id, total: listing.price + listing.delivery.delivery_price), class: "p-2 text-indigo-500 font-semibold", remote: true %>
+                    <%= button_to carts_path(listing_id: listing.id), method: :post, data: { turbo: false, listing_id: listing.id }, class: 'btn btn-primary' do %>
+                      <i class="tf-ion-android-cart"></i> Ajouter au panier
+                    <% end %>
                   <% else %>
                     <p class="p-2">Cet article est le vôtre.</p>
                   <% end %>
                 </div>
               </div>
-            <% end %>
           <% end %>
         <% else %>
           <p>Il n'y a aucun article pour le moment.</p>
