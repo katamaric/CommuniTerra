@@ -18,7 +18,7 @@
       <% elsif @allotment_user %>
         <%= button_to 'Supprimer votre participation', allotment_user_path(@allotment_user), method: :delete, class: "text-indigo-500 font-semibold" %>
       <% else %>
-        <%= button_to 'Rejoindre le potager', allotment_users_path(allotment_id: @allotment.id), method: :post, class: "p-2 text-indigo-500 font-semibold" %>
+        <%= button_to "Rejoindre le potager", allotment_users_path(allotment_id: @allotment.id, member_id: current_user.id), method: :post, class: "p-2 text-indigo-500 font-semibold" %>
       <% end %>
     </div>
   </div>

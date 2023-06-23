@@ -71,6 +71,6 @@ class AllotmentUsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def allotment_user_params
-      params.require(:allotment_user).permit(:allotment_id, :member_id)
-    end    
+      params.permit(:allotment_id, :member_id)
+    end       
 end
