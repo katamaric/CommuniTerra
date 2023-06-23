@@ -28,12 +28,12 @@ class PlantSittingsController < ApplicationController
       if @plant_sitting.save
         kept_plants.update_all(plant_sitting_id: @plant_sitting.id)
   
-        redirect_to kept_plants_path, notice: 'Plant sitting was successfully created.'
+        redirect_to kept_plants_path, notice: 'Le gardiennage a bien été créé.'
       else
         render :new
       end
     else
-      redirect_to plant_sittings_path, alert: 'Un ou plusieurs kept plants ont déjà un sitter assigné.'
+      redirect_to plant_sittings_path, alert: 'Une ou plusieurs plantes ont déjà un sitter assigné.'
     end
   end
   
