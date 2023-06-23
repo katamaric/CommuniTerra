@@ -236,6 +236,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_094129) do
   add_foreign_key "owned_plants", "allotments", on_delete: :cascade
   add_foreign_key "owned_plants", "plants", on_delete: :cascade
   add_foreign_key "owned_plants", "users", on_delete: :cascade
-  add_foreign_key "plant_sittings", "users", column: "asker_id"
-  add_foreign_key "plant_sittings", "users", column: "sitter_id"
+  add_foreign_key "plant_sittings", "users", column: "asker_id", on_delete: :cascade
+  add_foreign_key "plant_sittings", "users", column: "sitter_id", on_delete: :cascade
 end
