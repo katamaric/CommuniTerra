@@ -9,10 +9,10 @@ class Listing < ApplicationRecord
   validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 1 }, on: :create
   validates :delivery_id, presence: true, inclusion: { in: Delivery.pluck(:id) }
 
-  has_many :cart_listings
-  has_many :carts, through: :cart_listings
-  has_many :order_listings
-  has_many :orders, through: :order_listings
+  has_many :cart_listings, dependent: :destroy
+  has_many :carts, through: :cart_listings, dependent: :destroy
+  has_many :order_listings, dependent: :destroy
+  has_many :orders, through: :order_listings, dependent: :destroy
 
   validate :remaining_quantity_must_be_positive, on: :update
 

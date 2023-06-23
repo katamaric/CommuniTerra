@@ -217,20 +217,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_094129) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "allotment_users", "allotments"
-  add_foreign_key "allotment_users", "users", column: "member_id"
-  add_foreign_key "allotments", "users", column: "admin_id"
+  add_foreign_key "allotment_users", "allotments", on_delete: :cascade
+  add_foreign_key "allotment_users", "users", column: "member_id", on_delete: :cascade
+  add_foreign_key "allotments", "users", column: "admin_id", on_delete: :cascade
   add_foreign_key "cart_listings", "carts"
   add_foreign_key "cart_listings", "listings"
-  add_foreign_key "carts", "users"
+  add_foreign_key "carts", "users", on_delete: :cascade
   add_foreign_key "kept_plants", "owned_plants", on_delete: :cascade
   add_foreign_key "kept_plants", "plant_sittings", on_delete: :cascade
-  add_foreign_key "listings", "deliveries"
-  add_foreign_key "listings", "users"
+  add_foreign_key "listings", "deliveries", on_delete: :cascade
+  add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "log_books", "owned_plants"
   add_foreign_key "order_listings", "listings"
   add_foreign_key "order_listings", "orders"
-  add_foreign_key "orders", "users"
+  add_foreign_key "orders", "users", on_delete: :cascade
   add_foreign_key "owned_plants", "plants", on_delete: :cascade
   add_foreign_key "owned_plants", "users", on_delete: :cascade
   add_foreign_key "plant_sittings", "users", column: "asker_id"

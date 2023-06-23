@@ -45,11 +45,13 @@
           <%= allotment_user_fields.hidden_field :member_id, value: current_user.id %>
         <% end %>
         <div class="flex items-center justify-center">
-          <% unless allotment.allotment_users.exists?(member_id: current_user.id) %>
-            <%= button_to "Rejoindre le potager", allotment_users_path(params: { allotment_id: allotment.id }), method: :post, class: "p-2 text-indigo-500 font-semibold" %>
-          <% else %>
-            <p class="p-2 text-gray-700 font-semibold">Vous êtes déjà inscrit ici.</p>
-          <% end %>
+        <% if allotment.allotment_users.exists?(member_id: current_user.id) %>
+          <p class="p-2 text-gray-700 font-semibold">Vous êtes déjà inscrit ici.</p>
+        <% elsif allotment.admin_id == current_user.id %>
+          <p class="p-2 text-gray-700 font-semibold">Vous administrez ce potager.</p>
+        <% else %>
+          <%= button_to "Rejoindre le potager", allotment_users_path(params: { allotment_id: allotment.id }), method: :post, class: "p-2 text-indigo-500 font-semibold" %>
+        <% end %>
         </div>
       <% end %>
         </div>
