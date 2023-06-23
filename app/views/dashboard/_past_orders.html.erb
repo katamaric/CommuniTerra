@@ -8,29 +8,30 @@
   <div id="past-orders-accordion-body" class="hidden" aria-labelledby="past-orders-accordion-heading">
     <div class="p-4 mx-auto">
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-        <% if @current_user_listings.any? %>
-          <% @current_user_listings.each do |current_user_listing| %>
-            <% if current_user_listing.paid %>
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <div class="flex justify-between items-center">
-                  <h3 class="text-lg font-semibold pl-2 mb-4"><%= current_user_listing.listing_title %></h3>
-                  <h2 class="text-lg pl-2 mb-4"><%= (current_user_listing.price + current_user_listing.delivery.delivery_price) %> €</h2>
-                </div>
-
-                <div class="border rounded-lg p-4">
-                  <p class="mb-2 font-semibold"><%= current_user_listing.item_name %></p>
-                  <p class="mb-2"><%= current_user_listing.description %></p>
-                  <p class="mb-2">
-                    <span class="font-semibold">Quantité :</span> <%= current_user_listing.quantity %>
-                  </p>
-                  <%= link_to "Détails", listing_path(current_user_listing), class: "text-indigo-500 font-semibold" %>
-                </div>
+        <% if @current_user_order_listings.any? %>
+          <% @current_user_order_listings.each do |order_listing| %>
+            <div class="bg-white rounded-lg shadow-md p-4">
+              <div class="flex justify-between items-center">
+                <h3 class="text-lg font-semibold pl-2 mb-4"><%= order_listing.listing.listing_title %></h3>
+                <h2 class="text-lg pl-2 mb-4"><%= order_listing.order.order_total %> €</h2>
               </div>
-            <% end %>
+
+              <% @current_user_order_listings.each do |order_listing| %>
+                <div class="border rounded-lg p-4">
+                  <p class="mb-2 font-semibold"><%= order_listing.listing.listing_title %></p>
+                  <p class="mb-2"><%= order_listing.listing.description %></p>
+                  <p class="mb-2">
+                    <span class="font-semibold">Quantité :</span> <%= order_listing.quantity %>
+                  </p>
+                  <%= link_to "Détails", listing_path(order_listing), class: "text-indigo-500 font-semibold" %>
+                </div>
+              <% end %>
+            </div>
           <% end %>
         <% else %>
-          <p>Aucun article pour le moment.</p>
+          <p>Aucune commande passée pour le moment.</p>
         <% end %>
       </div>
     </div>
+  </div>
 </div>

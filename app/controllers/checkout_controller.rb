@@ -1,5 +1,4 @@
 class CheckoutController < ApplicationController
-  
   def create
     @total = current_user.cart.cart_listings.sum { |cart_listing| cart_listing.listing.price * cart_listing.quantity }
 
@@ -29,35 +28,39 @@ class CheckoutController < ApplicationController
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
-  
+
     @total = current_user.cart.cart_listings.sum { |cart_listing| cart_listing.listing.price * cart_listing.quantity }
-  
+
     order = Order.create!(user_id: current_user.id, order_total: @total)
     order.save!
     # OrderMailer.order_confirmation(current_user, order).deliver_now
-  
+
     cart_listings = current_user.cart.cart_listings
-  
+
     cart_listings.each do |cart_listing|
       listing = cart_listing.listing
       quantity_ordered = cart_listing.quantity
-      listing.quantity -= quantity_ordered
-      listing.save!
-      OrderListing.create!(
-        order_id: order.id,
-        listing_id: cart_listing.listing_id,
-        quantity: cart_listing.quantity
-      )
+      remaining_quantity = listing.remaining_quantity - quantity_ordered
+
+      if remaining_quantity >= 0
+        listing.update_columns(sold_quantity: listing.sold_quantity + quantity_ordered, remaining_quantity: remaining_quantity)
+        OrderListing.create!(
+          order_id: order.id,
+          listing_id: cart_listing.listing_id,
+          quantity: cart_listing.quantity
+        )
+      else
+        flash[:alert] = "Le produit #{listing.listing_title} n'est pas disponible dans la quantité demandée."
+        redirect_to cart_path and return
+      end
     end
-  
+
     current_user.cart.cart_listings.destroy_all
-  
+
     # Redirect or render a success page
     redirect_to order_path(order) # Assuming you have an `order_path` route and an `OrderController` to handle showing the order details
   end
-  
 
   def cancel
   end
-
 end

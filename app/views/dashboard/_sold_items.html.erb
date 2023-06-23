@@ -10,7 +10,7 @@
       <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         <% if @current_user_listings.any? %>
           <% @current_user_listings.each do |current_user_listing| %>
-            <% if current_user_listing.paid %>
+            <% if current_user_listing %>
               <div class="bg-white rounded-lg shadow-md p-4">
                 <div class="flex justify-between items-center">
                   <h3 class="text-lg font-semibold pl-2 mb-4"><%= current_user_listing.listing_title %></h3>
@@ -21,7 +21,8 @@
                   <p class="mb-2 font-semibold"><%= current_user_listing.item_name %></p>
                   <p class="mb-2"><%= current_user_listing.description %></p>
                   <p class="mb-2">
-                    <span class="font-semibold">Quantité :</span> <%= current_user_listing.quantity %>
+                    <span class="font-semibold">Quantité vendue :</span> <%= current_user_listing.sold_quantity %>
+                    <span class="font-semibold">Quantité restante :</span> <%= current_user_listing.remaining_quantity %>
                   </p>
                   <%= link_to "Détails", listing_path(current_user_listing), class: "text-indigo-500 font-semibold" %>
                 </div>
