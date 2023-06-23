@@ -52,14 +52,14 @@ class CheckoutController < ApplicationController
         )
       else
         flash[:alert] = "Le produit #{listing.listing_title} n'est pas disponible dans la quantité demandée."
-        redirect_to cart_path and return
+        redirect_to listings_url and return
       end
     end
 
     current_user.cart.cart_listings.destroy_all
 
     # Redirect or render a success page
-    redirect_to order_path(order) # Assuming you have an `order_path` route and an `OrderController` to handle showing the order details
+    redirect_to listings_url # Assuming you have an `order_path` route and an `OrderController` to handle showing the order details
   end
 
   def cancel
