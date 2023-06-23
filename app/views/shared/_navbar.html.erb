@@ -59,15 +59,15 @@
           </li>
           <% if current_user.admin == true %>
             <li>
-              <%= link_to "Admin", admin_root_path, class: "dropdown-item" %>
+              <%= link_to "Admin", admin_root_path, class: "dropdown-item block py-2 pl-3 pr-4 text-green-primary rounded hover:bg-green-secondary md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 text-lg" %>
             </li>
           <% end %>
         <% else %>
           <li>
-            <%= link_to "Se connecter", new_user_session_path, aria: { label: "Se connecter" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %>
+            <%= link_to "Se connecter", new_user_session_path, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-indigo-500 focus:shadow-outline focus:outline-none" %>
           </li>
           <li>
-            <%= link_to "S'inscrire", new_user_registration_path, aria: { label: "S'inscrire" }, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-green-dark focus:shadow-outline focus:outline-none" %>
+            <%= link_to "S'inscrire", new_user_registration_path, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-secondary transition duration-200 rounded shadow-md bg-green-primary hover:text-indigo-500 focus:shadow-outline focus:outline-none" %>
           </li>
         <% end %>
       </ul>
