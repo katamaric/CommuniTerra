@@ -1,37 +1,31 @@
 <% if notice.present? %>
-<p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
 <% end %>
+
 <div class="min-h-screen">
   <div class="py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="grid lg:grid-cols-2">
       <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
         <div class="flex items-left mb-4 rounded-full">
-          <img src="<%= asset_path('logo_sm.png') %>" alt="communiterra logo" class="object-contain">
+          <%= image_tag('logo_sm.png', alt: 'communiterra logo', class: 'object-contain') %>
         </div>
         <div class="max-w-xl mb-6">
-          <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+          <p class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
             Révélez votre <span class="inline-block text-green-primary">main verte</span>
-          </h2>
+          </p>
           <p class="text-base text-gray-700 md:text-lg">
             Rejoignez CommuniTerra et développez votre main verte à l'aide de nos conseils et de notre communauté. Journal de bord, partage de plantes, plantsitting : le bien-être de vos plantes est à votre portée, même en vacances !
           </p>
         </div>
-        <%= link_to "Rejoignez nous >", new_user_registration_path, class: "inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-primary transition duration-200 rounded shadow-md bg-green-secondary hover:text-green-dark focus:shadow-outline focus:outline-none" %>
+        <%= link_to 'Rejoignez nous >', new_user_registration_path, class: 'inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-primary transition duration-200 rounded shadow-md bg-green-secondary hover:text-green-dark focus:shadow-outline focus:outline-none' %>
       </div>
       <div class="flex items-center justify-center -mx-4 lg:pl-8">
         <div class="flex flex-col items-end px-3">
-          <img
-            class="object-cover mb-6 rounded shadow-lg sm:h-48 xl:h-56 sm:w-48 xl:w-56"
-            src="<%= asset_path('succulent.png') %>"
-            alt=""/>
-          <img class="object-cover rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40"           
-            src="<%= asset_path('shed.png') %>"
-            alt=""/>
+          <%= image_tag('succulent.png', class: 'object-cover mb-6 rounded shadow-lg sm:h-48 xl:h-56 sm:w-48 xl:w-56', alt: 'succulent en pot') %>
+          <%= image_tag('shed.png', class: 'object-cover rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40', alt: 'abri jardin') %>
         </div>
         <div class="px-3">
-          <img class="object-cover rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80" 
-          src="<%= asset_path('garden.png') %>"
-          alt=""/>
+          <%= image_tag('garden.png', class: 'object-cover rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80', alt: 'jardin') %>
         </div>
       </div>
     </div>
@@ -58,53 +52,46 @@
 
   <div class="flex justify-between px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <figure class="max-w-lg">
-      <img class="h-auto max-w-full rounded-lg" src="<%= asset_path('color_pop.png') %>" alt="main qui arrose sa plante">
+      <%= image_tag('color_pop.png', class: 'h-auto max-w-full rounded-lg', alt: 'main qui arrose sa plante') %>
     </figure>
     <figure class="max-w-lg">
-      <img class="h-auto max-w-full rounded-lg" src="<%= asset_path('market.png') %>" alt="marché aux plantes">
+      <%= image_tag('market.png', class: 'h-auto max-w-full rounded-lg', alt: 'marché aux plantes') %>
     </figure>
   </div>
 
   <div class="container mx-auto w-full h-full">
     <div class="relative wrap overflow-hidden p-10 h-full">
       <div class="border-2-2 absolute border-opacity-20 border-green-dark h-4/5 border" style="left: 50%"></div>
-        <div class="mb-8 flex justify-between items-center w-full right-timeline">
-          <div class="order-1 w-5/12"></div>
-            <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-              <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
-            </div>
+      <div class="mb-8 flex justify-between items-center w-full right-timeline">
+        <div class="order-1 w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+          <p class="mx-auto font-semibold text-lg text-white">1</p>
+        </div>
+        <div class="order-1 bg-green-secondary rounded-lg shadow-xl w-5/12 px-6 py-4">
+          <p class="mb-3 font-bold text-gray-800 text-xl">Créez votre compte</p>
+          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Rejoignez notre communauté en remplissant votre profil : un pseudo, les plantes dont vous vous occupez, et c'est parti !</p>
+        </div>
+      </div>
 
-            <div class="order-1 bg-green-secondary rounded-lg shadow-xl w-5/12 px-6 py-4">
-              <h3 class="mb-3 font-bold text-gray-800 text-xl">Créez votre compte</h3>
-              <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Rejoignez notre communauté en remplissant votre profil : un pseudo, les plantes dont vous vous occupez, et c'est parti !</p>
-            </div>
-          </div>
+      <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+        <div class="order-1 w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+          <p class="mx-auto text-white font-semibold text-lg">2</p>
+        </div>
+        <div class="order-1 bg-green-primary rounded-lg shadow-xl w-5/12 px-6 py-4">
+          <p class="mb-3 font-bold text-gray-400 text-xl">Laissez-vous guider</p>
+          <p class="text-sm font-medium leading-snug tracking-wide text-gray-400 text-opacity-100">Chaque jour, votre journal de bord vous indiquera comment prendre soin de votre plante toute au long de l'année. Remplissez le tous les jours et ne perdez plus le fil des arrosages !</p>
+        </div>
+      </div>
 
-          <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-            <div class="order-1 w-5/12"></div>
-              <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-                <h1 class="mx-auto text-white font-semibold text-lg">2</h1>
-              </div>
-
-              <div class="order-1 bg-green-primary rounded-lg shadow-xl w-5/12 px-6 py-4">
-                <h3 class="mb-3 font-bold text-gray-400 text-xl">Laissez-vous guider</h3>
-                <p class="text-sm font-medium leading-snug tracking-wide text-gray-400 text-opacity-100">Chaque jour, votre journal de bord vous indiquera comment prendre soin de votre plante toute au long de l'année. Remplissez le tous les jours et ne perdez plus le fil des arrosages !</p>
-              </div>
-            </div>
-
-            <div class="mb-8 flex justify-between items-center w-full right-timeline">
-              <div class="order-1 w-5/12"></div>
-                <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-                  <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
-                </div>
-
-                <div class="order-1 bg-green-secondary rounded-lg shadow-xl w-5/12 px-6 py-4">
-                  <h3 class="mb-3 font-bold text-gray-800 text-xl">Partez en vacances en toute sérénité</h3>
-                  <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Vous n'êtes pas chez vous pendant plusieurs jours ? Utilisez notre système de plantsitting et trouver un super sitter qui prendra soin de vos plantes tous les jours et remplira leur journal de bord en fonction. Zéro stress.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="mb-8 flex justify-between items-center w-full right-timeline">
+        <div class="order-1 w-5/12"></div>
+        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+          <p class="mx-auto font-semibold text-lg text-white">3</p>
+        </div>
+        <div class="order-1 bg-green-secondary rounded-lg shadow-xl w-5/12 px-6 py-4">
+          <p class="mb-3 font-bold text-gray-800 text-xl">Partez en vacances en toute sérénité</p>
+          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Vous n'êtes pas chez vous pendant plusieurs jours ? Utilisez notre système de plantsitting et trouver un super sitter qui prendra soin de vos plantes tous les jours et remplira leur journal de bord en fonction. Zéro stress.</p>
         </div>
       </div>
     </div>
