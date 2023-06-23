@@ -12,8 +12,12 @@
   <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
     <%= render @allotment %>
     <div class="flex justify-between items-center px-4">
-      <%= link_to 'Modifier le potager', edit_allotment_path(@allotment), class: "text-indigo-500 font-semibold" %>
-      <%= button_to 'Supprimer le potager', allotment_path(@allotment), method: :delete, class: "text-indigo-500 font-semibold" %>
+      <% if current_user == @allotment.admin %>
+        <%= link_to 'Modifier le potager', edit_allotment_path(@allotment), class: "text-indigo-500 font-semibold" %>
+        <%= button_to 'Supprimer le potager', allotment_path(@allotment), method: :delete, class: "text-indigo-500 font-semibold" %>
+      <% else %>
+        <%= button_to 'Supprimer votre participation', allotment_path(@allotment), method: :delete, class: "text-indigo-500 font-semibold" %>
+      <% end %>
     </div>
   </div>
 </div>
