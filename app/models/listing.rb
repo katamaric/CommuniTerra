@@ -14,10 +14,10 @@ class Listing < ApplicationRecord
   has_many :order_listings
   has_many :orders, through: :order_listings
 
-  validate :quantity_must_be_positive, on: :update
+  validate :remaining_quantity_must_be_positive, on: :update
 
-  def quantity_must_be_positive
-    errors.add(:quantity, "must be greater than 0") if quantity.nil? || quantity <= 0
+  def remaining_quantity_must_be_positive
+    errors.add(:remaining_quantity, "must be greater than 0") if quantity.nil? || quantity <= 0
   end
 
 end
