@@ -13,8 +13,7 @@ CommuniTerra is a website for plant care and plant sharing/sitting. It offers us
 - Plantsitting: ability to select plants that need a sitter, to plantsit for other users, and to log entries in plants a sitter is currently taking care of
 - "Smart" logbook: using the database info, the logbook will predict when the plant needs watering, its overall health, and allow the user to use the logbook faster
 - Allotments/Community gardens in your area
-- Private messaging between users
-- Dark Mode
+- Marketplace to add and buy listings between users
 
 ## Authors
 
@@ -40,10 +39,10 @@ Initialize the migrations (if necessary, create a database first with rails db:c
   rails db:migrate
 ```
 
-Run the database file to fill it in
+Run the seed file to load up the plant database
 
 ```bash
-  rails runner app/services/gdb.rb
+  rails db:seed
 ```
 
 Start your server. 
