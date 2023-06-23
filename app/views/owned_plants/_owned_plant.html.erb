@@ -18,32 +18,26 @@
                 <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
                   <span class="text-gray-600">ajoutée le <%= owned_plant.created_at.strftime("%d %b %Y") %></span>
                 </p>
-                <% if owned_plant.nickname.present? %>
-                  <div class="flex justify-end">
-                    <%= link_to edit_owned_plant_path(owned_plant) do %>
-                      <%= image_tag("/assets/edit.png", width: "24", height: "24", alt: "modifier la plante") %>
-                    <% end %>
-                    <%= button_to owned_plant_path(owned_plant), method: :delete, class: "delete-button" do %>
-                      <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "supprimer la plante") %>
-                    <% end %>
-                  </div>
-                  <div class="flex items-center mb-3">
-                    <h3 class="text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700">
-                      <%= link_to owned_plant.nickname, plant_path(owned_plant.plant.id) %>
-                    </h3>
-                  </div>
+                <% if owned_plant.user == current_user %>
+                  <% if owned_plant.nickname.present? %>
+                    <div class="flex justify-end">
+                      <%= link_to edit_owned_plant_path(owned_plant) do %>
+                        <%= image_tag("/assets/edit.png", width: "24", height: "24", alt: "modifier la plante") %>
+                      <% end %>
+                      <%= button_to owned_plant_path(owned_plant), method: :delete, class: "delete-button" do %>
+                        <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "supprimer la plante") %>
+                      <% end %>
+                    </div>
+                    <div class="flex items-center mb-3">
+                      <h3 class="text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700">
+                        <%= link_to owned_plant.nickname, plant_path(owned_plant.plant.id) %>
+                      </h3>
+                    </div>
+                  <% end %>
                   <p class="mb-2 text-gray-500 h-36 overflow-hidden">
                     <%= owned_plant.description %>
                   </p>
                 <% else %>
-                  <div class="flex gap-2 justify-end">
-                    <%= link_to edit_owned_plant_path(owned_plant) do %>
-                      <%= image_tag("/assets/edit.png", width: "24", height: "24", alt: "modifier la plante") %>
-                    <% end %>
-                    <%= button_to owned_plant_path(owned_plant), method: :delete, class: "delete-button" do %>
-                      <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "supprimer la plante") %>
-                    <% end %>
-                  </div>
                   <div class="flex items-center mb-3">
                     <h3 class="text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700">
                       <%= link_to owned_plant.plant.common_name, plant_path(owned_plant.plant.id) %>
@@ -54,8 +48,10 @@
                   </p>
                 <% end %>
                 <div class="mt-auto">
-                  <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
-                  <%= link_to "Voir le journal de bord", owned_plant_log_books_path(owned_plant.id), class: "mt-2 mb-3 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+                <% if current_user.plant_sittings.exists?(sitter_id: current_user.id) || (owned_plant.allotment_id.present? && (Allotment.find(owned_plant.allotment_id).admin_id == current_user.id) || current_user.member?(Allotment.find(owned_plant.allotment_id).allotment_users)) || owned_plant.user == current_user %>
+                    <%= link_to "Ajouter une entrée dans le journal de bord", new_owned_plant_log_book_path(owned_plant.id), class: "mt-2 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+                    <%= link_to "Voir le journal de bord", owned_plant_log_books_path(owned_plant.id), class: "mt-2 mb-3 flex w-full justify-center rounded-md bg-green-secondary text-green-dark px-3 py-2 text-sm font-semibold leading-5 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 hover:bg-gray-pale" %>
+                  <% end %>
                 </div>
               </div>
             </div>

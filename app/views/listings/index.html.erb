@@ -98,11 +98,11 @@
                 </div>
                 <div class="flex items-center justify-center">
                   <% if current_user && current_user != listing.user %>
-                    <%= button_to carts_path(listing_id: listing.id), method: :post, data: { turbo: false, listing_id: listing.id }, class: 'btn btn-primary' do %>
+                    <%= button_to carts_path(listing_id: listing.id), method: :post, data: { turbo: false, listing_id: listing.id }, class: "p-2 text-indigo-500 font-semibold" do %>
                       <i class="tf-ion-android-cart"></i> Ajouter au panier
                     <% end %>
                   <% else %>
-                    <p class="p-2">Cet article est le vôtre.</p>
+                    <p class="p-2 text-gray-700 font-semibold">Cet article est le vôtre.</p>
                   <% end %>
                 </div>
               </div>

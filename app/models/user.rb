@@ -4,22 +4,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         has_many :owned_plants, dependent: :destroy
-         has_many :plants, through: :owned_plants, dependent: :destroy
-         has_many :listings, dependent: :destroy
-         has_many :orders, dependent: :destroy
-         has_many :order_listings, through: :listings, dependent: :destroy
-         has_many :kept_plants, through: :owned_plants, dependent: :destroy
+        has_many :owned_plants, dependent: :destroy
+        has_many :plants, through: :owned_plants, dependent: :destroy
+        has_many :listings, dependent: :destroy
+        has_many :orders, dependent: :destroy
+        has_many :order_listings, through: :listings, dependent: :destroy
+        has_many :kept_plants, through: :owned_plants, dependent: :destroy
         # The following lines are commented out as a reminder of dependencies, but cascading deletions are made in migrations.
         #  has_many :allotments, foreign_key: :admin_id, as: :admin, dependent: :destroy
         #  has_many :allotment_users, foreign_key: :member_id, as: :member, dependent: :destroy
         #  has_many :allotments, through: :allotment_user, dependent: :destroy
-         has_one :cart, dependent: :destroy
-         has_many :cart_listings, through: :cart, dependent: :destroy
+        has_one :cart, dependent: :destroy
+        has_many :cart_listings, through: :cart, dependent: :destroy
         has_many :plant_sittings, foreign_key: :sitter_id
-        has_many :kept_plants, through: :plant_sittings
+        has_many :kept_plants, through: :plant_sittings, dependent: :destroy
 
-
+  
   # has_many :private_sent_messages, class_name: 'PrivateMessage', foreign_key: 'sender_id'
   # has_many :private_received_messages, class_name: 'PrivateMessage', foreign_key: 'recipient_id'
   # has_many :posts, dependent: :destroy
@@ -45,6 +45,10 @@ class User < ApplicationRecord
   
   def admin?
     admin
+  end
+
+  def member?(allotment_users)
+    allotment_users.exists?(member_id: self.id)
   end
 
 end
