@@ -40,7 +40,7 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1 or /listings/1.json
   def update
     respond_to do |format|
-      if @listing.update(listing_params)
+      if @listing.update(listing_params) && @listing.user == current_user
         format.html { redirect_to listing_url(@listing), notice: "L'article a bien été modifié." }
         format.json { render :show, status: :ok, location: @listing }
       else
@@ -48,17 +48,25 @@ class ListingsController < ApplicationController
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
-  end
+  end  
 
   # DELETE /listings/1 or /listings/1.json
   def destroy
-    @listing.destroy
-
-    respond_to do |format|
-      format.html { redirect_to listings_url, notice: "L'article a bien été supprimé." }
-      format.json { head :no_content }
+    if @listing.user == current_user
+      @listing.destroy
+      respond_to do |format|
+        format.html { redirect_to listings_url, notice: "L'article a bien été supprimé." }
+        format.json { head :no_content }
+      end
+    else
+      # Gérer le cas où l'utilisateur actuel n'est pas autorisé à supprimer la liste
+      respond_to do |format|
+        format.html { redirect_to listing_url(@listing), alert: "Vous n'êtes pas autorisé à supprimer cet article." }
+        format.json { render json: { error: "Unauthorized" }, status: :unauthorized }
+      end
     end
   end
+  
 
   private
   # Use callbacks to share common setup or constraints between actions.
