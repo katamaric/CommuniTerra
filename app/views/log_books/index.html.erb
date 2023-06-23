@@ -21,7 +21,7 @@
               de votre plante !
             <% end %>
           </h2>
-          <p class="text-base text-gray-700 md:text-lg">
+          <p class="text-base text-gray-700 md:text-base">
             Vous pouvez ici consulter toutes vos entrées passées sur votre plante, en ajouter, les modifier, et les supprimer. Si votre plante est actuellement en train d'être gardé, ou si elle est dans un potager, les autres usagers peuvent aussi ajouter des entrées dans le journal de bord : toute la communauté se rassemble pour prendre soin de votre plante :) 
           </p>
         </div>
@@ -65,15 +65,18 @@
             </div>
           </div>
           <div>
-            <div class="mb-2">
-              <%= link_to "Modifier cette entrée", edit_owned_plant_log_book_path(@owned_plant, log_book.id), method: :get, class: "text-xs font-semibold tracking-wide uppercase transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800", aria: { label: "Modify Log Entry" }, title: "Modify Log Entry" %>
-            </div>
+            <p class="mb-2 text-xs uppercase">
+              entrée écrite par <%= log_book.owned_plant.user.username %>
+            </p>
             <div class="mb-2">
               <h5 class="inline-block text-2xl font-bold leading-5 text-black"><%= log_book.title %></h5>
             </div>
-            <p class="mb-5 text-gray-700">
+            <p class="text-gray-700">
               <%= log_book.content %>
             </p>
+            <div class="mb-2">
+              <%= link_to "Modifier cette entrée", edit_owned_plant_log_book_path(@owned_plant, log_book.id), method: :get, class: "text-xs font-semibold tracking-wide uppercase transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800", title: "Modifier cette entrée" %>
+            </div>
           </div>
         </div>
         <% end %>
