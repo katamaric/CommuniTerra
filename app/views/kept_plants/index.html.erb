@@ -2,7 +2,7 @@
   <div class="p-4">
     <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
     <%= link_to "Mes demandes de garde", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
-    <%= link_to "Mes gardes de plantes", index_current_user_plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes gardes de plantes", plant_sittings_path(id: current_user.id), class: "p-4 text-indigo-500 font-semibold" %>
   </div>
   <div class="bg-white rounded-lg shadow-md p-4">
     <% @kept_plants.group_by { |kept_plant| [kept_plant.start_date, kept_plant.end_date] }.each do |dates, plants| %>

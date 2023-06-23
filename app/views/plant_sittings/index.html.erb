@@ -1,8 +1,8 @@
-<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
+<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
   <div class="p-4">
     <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
     <%= link_to "Mes demandes de garde", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
-    <%= link_to "Mes gardes de plantes", index_current_user_plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes gardes de plantes", plant_sittings_path(id: current_user.id), class: "p-4 text-indigo-500 font-semibold" %>
   </div>
   <div class="container">
     <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 p-4">
@@ -15,9 +15,6 @@
               <div class="flex mb-4 mt-3">
                 <%= link_to '#', class: 'flex-grow text-green-primary border-b-2 border-green-primary py-2 text-lg px-1', 'turbo-frame': 'description' do %>
                   Description
-                <% end %>
-                <%= link_to '#', class: 'flex-grow border-b-2 border-green-secondary py-2 text-lg text-green-secondary px-1', 'turbo-frame': 'details' do %>
-                  Détails
                 <% end %>
               </div>
               <p class="leading-relaxed mb-4 toggle-description-content">

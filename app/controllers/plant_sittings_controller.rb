@@ -2,32 +2,22 @@ class PlantSittingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_plant_sitting, only: %i[ show edit update destroy ]
 
-  # GET /plant_sittings or /plant_sittings.json
   def index
     @plant_sittings = PlantSitting.all
     @kept_plants = KeptPlant.includes(:plant_sitting).where(plant_sitting_id: nil).where("end_date >= ?", Date.today).group_by { |kept_plant| kept_plant.owned_plant.user_id }
   end  
 
-  # GET /plant_sittings/1 or /plant_sittings/1.json
   def show
     @plant_sittings = PlantSitting.includes(:sitter, :asker).where(sitter_id: current_user.id)
   end
-
-  def index_current_user
-    @plant_sittings_as_asker = PlantSitting.includes(:sitter, :asker).where(asker_id: current_user.id)
-    @plant_sittings_as_sitter = PlantSitting.includes(:sitter, :asker).where(sitter_id: current_user.id)
-  end
   
-  # GET /plant_sittings/new
   def new
     @plant_sitting = PlantSitting.new
   end
 
-  # GET /plant_sittings/1/edit
   def edit
   end
 
-  # POST /plant_sittings or /plant_sittings.json
   def create
     kept_plants = KeptPlant.where(id: params[:kept_plant_ids])
     asker_id = kept_plants.first&.owned_plant&.user_id
@@ -48,8 +38,6 @@ class PlantSittingsController < ApplicationController
   end
   
   
-
-  # PATCH/PUT /plant_sittings/1 or /plant_sittings/1.json
   def update
     respond_to do |format|
       if @plant_sitting.update(plant_sitting_params)
@@ -62,7 +50,6 @@ class PlantSittingsController < ApplicationController
     end
   end
 
-  # DELETE /plant_sittings/1 or /plant_sittings/1.json
   def destroy
     @plant_sitting.destroy
 
@@ -74,12 +61,10 @@ class PlantSittingsController < ApplicationController
 
   private
   
-  # Use callbacks to share common setup or constraints between actions.
   def set_plant_sitting
     @plant_sitting = PlantSitting.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def plant_sitting_params
     params.require(:plant_sitting).permit(:user_id, :kept_plant_id)
   end    
