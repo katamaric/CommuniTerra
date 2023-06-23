@@ -16,6 +16,8 @@
   
   <body class="bg-gray-light flex-grow width:100%">
     <%= render "shared/navbar" %>
+    <br>
+    <%= render partial: 'shared/alert', locals: { alert_type: @alert_type, alert_message: @alert_message } %>
     <%= yield %>
     <%= render "shared/footer"%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>

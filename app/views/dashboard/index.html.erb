@@ -1,7 +1,7 @@
-<% if flash[:notice].present? %>
-  <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
-<% elsif flash[:alert].present? %>
-  <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
 <% end %>
 
 <div class="dashboard-container min-h-screen">
@@ -45,3 +45,13 @@
 
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var alertContainer = document.getElementById('alert-container');
+    if (alertContainer) {
+      setTimeout(function() {
+        alertContainer.style.display = 'none';
+      }, 3000);
+  });
+</script>

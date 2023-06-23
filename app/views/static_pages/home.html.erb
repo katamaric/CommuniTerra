@@ -1,5 +1,7 @@
-<% if notice.present? %>
-  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
 <% end %>
 
 <div class="min-h-screen">
@@ -97,3 +99,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var alertContainer = document.getElementById('alert-container');
+    if (alertContainer) {
+      setTimeout(function() {
+        alertContainer.style.display = 'none';
+      }, 3000);
+    }
+  });
+</script>
