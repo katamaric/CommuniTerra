@@ -36,7 +36,7 @@ class KeptPlantsController < ApplicationController
   def create
     @owned_plants = current_user.owned_plants
     @kept_plants = []
-    
+  
     @owned_plants.each do |owned_plant|
       if params[:kept_plant] && params[:kept_plant][:owned_plant_id].include?(owned_plant.id.to_s)
         kept_plant_params_with_attributes = kept_plant_params.merge(
@@ -45,15 +45,17 @@ class KeptPlantsController < ApplicationController
           start_date: params[:kept_plant][:start_date],
           end_date: params[:kept_plant][:end_date]
         )
-    
+  
         existing_kept_plant = KeptPlant.find_by(owned_plant_id: owned_plant.id)
-        if existing_kept_plant
-          # Rajouter le message d'erreur
+  
+        if existing_kept_plant && existing_kept_plant.start_date == kept_plant_params_with_attributes[:start_date] && existing_kept_plant.end_date == kept_plant_params_with_attributes[:end_date]
+          # La KeptPlant existe déjà avec les mêmes dates, vous pouvez effectuer une action appropriée ici
         else
           @kept_plants << KeptPlant.new(kept_plant_params_with_attributes)
         end
       end
-    end    
+    end
+  
   
     respond_to do |format|
       if @kept_plants.all?(&:save)
