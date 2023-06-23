@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1 style="font-size: 24px; color: #333; margin-bottom: 16px;">Bonjour, <%= @user.username %> !</h1>
+    <p style="font-size: 16px; color: #666; margin-bottom: 8px;">Votre commande a été confirmée.</p>
+    <p style="font-size: 16px; color: #666; margin-bottom: 8px;">Détails de la commande :</p>
+    <ul style="font-size: 14px; color: #888; margin-bottom: 16px; padding-left: 20px;">
+      <% @listings.each do |listing| %>
+        <li><%= listing.listing_title %> : <%= listing.quantity %>x</li>
+      <% end %>
+    </ul>
+    <p style="font-size: 16px; color: #666;">Nous faisons le nécessaire pour que votre commande soit expédiée au plus vite. Merci pour votre achat. Si vous avez des questions, n'hésitez pas à nous contacter.</p>
+  </body>
+</html>

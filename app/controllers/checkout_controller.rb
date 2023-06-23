@@ -63,5 +63,17 @@ class CheckoutController < ApplicationController
   end
 
   def cancel
+    # Restaurer les quantités du panier en cas d'annulation
+    cart_listings = current_user.cart.cart_listings
+
+    cart_listings.each do |cart_listing|
+      listing = cart_listing.listing
+      listing.update(remaining_quantity: listing.remaining_quantity + cart_listing.quantity)
+    end
+
+    current_user.cart.cart_listings.destroy_all
+
+    flash[:notice] = 'Le panier a été annulé et les quantités ont été restaurées.'
+    redirect_to carts_path
   end
 end
