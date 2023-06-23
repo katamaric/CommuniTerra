@@ -15,25 +15,23 @@
         </h2>
 
         <% plants.each do |kept_plant| %>
+
           <h2 class="font-semibold text-lg">
             <br><%= kept_plant.owned_plant.plant.common_name %>
           </h2>
 
-          <p class="mb-2">
-            <strong>Quantité :</strong> <%= kept_plant.quantity %>
+          <p class="mb-2 mt-2">
+            Description: <%= kept_plant.description %>
           </p>
 
-          <p class="mb-2">
-            <%= kept_plant.description %>
-          </p>
-
-          <div class="mt-2">
-            <%= link_to "Plus de détails sur cette plante", kept_plant_path(kept_plant) %>
+          <div class="mt-2 flex justify-end">
             <% if current_user == kept_plant.owned_plant.user %>
-              <%= link_to "Éditer la plante à garder", edit_kept_plant_path(kept_plant) %>
-              <%= button_to "Supprimer la plante à garder", kept_plant, method: :delete %>
+              <%= button_to kept_plant, method: :delete, class: "delete-button" do %> 
+                <%= image_tag("/assets/trash.png", width: "24", height: "24", alt: "supprimer la plante") %>
+              <% end %>
             <% end %>
           </div>
+
         <% end %>
 
         <% if plants.first.plant_sitting && plants.first.plant_sitting.sitter %>
