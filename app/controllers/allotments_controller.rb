@@ -18,6 +18,7 @@ class AllotmentsController < ApplicationController
   # GET /allotments/new
   def new
     @allotment = Allotment.new
+    @owned_plants = current_user.owned_plants
   end
 
   # GET /allotments/1/edit
