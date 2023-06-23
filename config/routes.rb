@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :cart_listings
+  resources :order_listings
+  resources :orders
+  resources :carts
 
   namespace :admin do
       resources :users

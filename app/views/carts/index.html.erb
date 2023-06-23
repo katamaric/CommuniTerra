@@ -1,0 +1,83 @@
+<div class="page-wrapper">
+  <div class="cart shopping">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="block">
+            <div class="product-list">
+              <form method="post">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="">listing Name</th>
+                      <th class="">Update Quantity</th>
+                      <th class="">listing Price</th>
+                      <th class="">Remove listing</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if current_user.cart.present? %>
+                      <% if current_user.cart.cart_listings.empty? %>
+                        <tr>
+                          <td colspan="4">Cart Empty</td>
+                        </tr>
+                      <% else %>
+                        <% current_user.cart.cart_listings.each do |cart_listing| %>
+                          <tr class="">
+                            <td class="product-column">
+                              <div class="product-info">
+                                <%= button_to "-", root_path, class: "hidden-button" %>
+                                <%# <%= image_tag cart_listing.listing.listing_picture, style: "width: 80px; height: 80px; object-fit: cover;" %>
+                                <%= link_to cart_listing.listing.listing_title, listing_path(cart_listing.listing.id) %>
+                              </div>
+                            </td>
+                            <td class="">
+                              <div class="quantity-control">
+                              <% if cart_listing.quantity > 1 %>
+                                <%= button_to "-", cart_listing_path(cart_listing), method: :patch, params: { quantity: cart_listing.quantity - 1 }, class: "btn btn-secondary" %>
+                              <% end %>
+                                <span class="quantity-display"><%= cart_listing.quantity %></span>
+                                <%= button_to "+", cart_listing_path(cart_listing), method: :patch, params: { quantity: cart_listing.quantity + 1 }, class: "btn btn-secondary" %>
+                              </div>
+                            </td>
+                            <td class=""><%= cart_listing.listing.price * cart_listing.quantity %> €</td>
+                            <td class="">
+                              <%= button_to "Delete", cart_listing_path(cart_listing.id), method: :delete, class: "btn btn-danger" %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      <% end %>
+                      <tr>
+                        <td colspan="2"></td>
+                        <td class="cart-total">Cart Total:</td>
+                        <td class="cart-total-amount" colspan="4"><%= @cart_total %> €</td>
+                      </tr>
+                      <tr>
+                        <td colspan="6" class="text-center">
+                          <% if current_user.cart.present? && current_user.cart.cart_listings.any? %>
+                            <%= button_to "Order", checkout_create_path(total: @cart_total), class: "btn btn-primary", data: {turbo: false} %>
+                          <% end %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="6" class="text-center">
+                          <% if current_user.cart.present? && current_user.cart.cart_listings.any? %>
+                            <%= button_to "Empty Cart", cart_path(current_user.cart), method: :delete, class: "btn btn-danger" %>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% else %>
+                      <tr>
+                        <td colspan="5">Cart Empty</td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
