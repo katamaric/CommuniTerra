@@ -152,11 +152,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_094129) do
   create_table "owned_plants", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "plant_id", null: false
+    t.bigint "allotment_id"
     t.integer "quantity"
     t.text "description"
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["allotment_id"], name: "index_owned_plants_on_allotment_id"
     t.index ["plant_id"], name: "index_owned_plants_on_plant_id"
     t.index ["user_id"], name: "index_owned_plants_on_user_id"
   end
@@ -231,6 +233,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_094129) do
   add_foreign_key "order_listings", "listings"
   add_foreign_key "order_listings", "orders"
   add_foreign_key "orders", "users", on_delete: :cascade
+  add_foreign_key "owned_plants", "allotments", on_delete: :cascade
   add_foreign_key "owned_plants", "plants", on_delete: :cascade
   add_foreign_key "owned_plants", "users", on_delete: :cascade
   add_foreign_key "plant_sittings", "users", column: "asker_id"
