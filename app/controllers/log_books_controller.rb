@@ -62,10 +62,10 @@ class LogBooksController < ApplicationController
 
   def check_security
     if !current_user.plant_sittings.exists?(sitter_id: current_user.id) &&
-       !(@owned_plant.allotment_id.present? && Allotment.find(@owned_plant.allotment_id).admin_id == current_user.id) &&
-       !current_user.member?(Allotment.find(@owned_plant.allotment_id).allotment_users) &&
+       !(@owned_plant.allotment_id.present? && Allotment.find_by(id: @owned_plant.allotment_id)&.admin_id == current_user.id) &&
+       !@owned_plant.allotment_id.present? &&
        @owned_plant.user != current_user
       redirect_to root_path, alert: "Vous n'avez pas les autorisations nécessaires pour effectuer cette action."
     end
-  end
+  end  
 end

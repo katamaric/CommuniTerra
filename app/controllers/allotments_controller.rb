@@ -25,20 +25,18 @@ class AllotmentsController < ApplicationController
   def edit
   end
 
-  # POST /allotments or /allotments.json
   def create
     @allotment = Allotment.new(allotment_params)
-
-    respond_to do |format|
-      if @allotment.save
-        format.html { redirect_to allotment_url(@allotment), notice: "Le potager a bien été créé." }
-        format.json { render :show, status: :created, location: @allotment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @allotment.errors, status: :unprocessable_entity }
-      end
+    if @allotment.save
+      @allotment.owned_plants << OwnedPlant.find(params[:allotment][:owned_plant_ids]) if params[:allotment][:owned_plant_ids].present?
+      redirect_to @allotment, notice: "Le potager a été créé avec succès."
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @allotment.errors, status: :unprocessable_entity }
     end
   end
+  
+  
 
   # PATCH/PUT /allotments/1 or /allotments/1.json
   def update
@@ -72,8 +70,8 @@ class AllotmentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def allotment_params
-    params.require(:allotment).permit(:size, :name, :description, :start_date, :end_date, :admin_id)
-  end
+    params.require(:allotment).permit(:admin_id, :name, :size, :description, :start_date, :end_date, owned_plant_ids: [])
+  end  
 
   def administrator
     unless current_user == @allotment.admin
@@ -82,3 +80,4 @@ class AllotmentsController < ApplicationController
     end
   end  
 end
+
