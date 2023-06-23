@@ -15,14 +15,17 @@
                 <th scope="col" class="px-6 py-3">
                   Produit
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-2 py-3">
                   Quantité
                 </th>
                 <th scope="col" class="px-6 py-3">
                   Prix
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Supprimer
+                  Livraison
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Suppression
                 </th>
               </tr>
             </thead>
@@ -50,27 +53,26 @@
                       <td class="px-6 py-4">
                         <%= cart_listing.listing.price * cart_listing.quantity %> €
                       </td>
+                      <td class="px-6 py-4">
+                        <%= cart_listing.listing.delivery.delivery_price %> €
+                      </td>
                       <td class="px-6 py-4 text-right">
-                        <%= button_to "Delete", cart_listing_path(cart_listing.id), method: :delete, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+                        <%= button_to "Supprimer", cart_listing_path(cart_listing.id), method: :delete, class: "text-red-500 font-semibold" %>
                       </td>
                     </tr>
                   <% end %>
                   <tr>
-                    <td colspan="2"></td>
+                    <td colspan="3"></td>
                     <td class="px-6 py-4 font-semibold">Total :</td>
-                    <td class="px-6 py-4"><%= @cart_total %> €</td>
+                    <td class="px-6 py-4"><%= @cart_total + @delivery_price %> €</td>
                   </tr>
                   <tr>
-                    <td colspan="4" class="px-6 py-4 text-right">
+                    <td colspan="5" class="px-6 py-4 text-right">
                       <% if current_user.cart.present? && current_user.cart.cart_listings.any? %>
-                        <%= button_to "Commander", checkout_create_path(total: @cart_total), class: "btn btn-primary", data: {turbo: false} %>
-                      <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="4" class="px-6 py-4 text-right">
-                      <% if current_user.cart.present? && current_user.cart.cart_listings.any? %>
-                        <%= button_to "Vider le panier", cart_path(current_user.cart), method: :delete, class: "btn btn-danger" %>
+                        <div class="flex justify-between">
+                          <%= button_to "Vider le panier", cart_path(current_user.cart), method: :delete, class: "btn btn-danger" %>
+                          <%= button_to "Commander", checkout_create_path(total: @cart_total), class: "text-indigo-500 font-semibold", data: {turbo: false} %>
+                        </div>
                       <% end %>
                     </td>
                   </tr>
