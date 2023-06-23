@@ -49,7 +49,7 @@ class KeptPlantsController < ApplicationController
         existing_kept_plant = KeptPlant.find_by(owned_plant_id: owned_plant.id)
   
         if existing_kept_plant && existing_kept_plant.start_date == kept_plant_params_with_attributes[:start_date] && existing_kept_plant.end_date == kept_plant_params_with_attributes[:end_date]
-          # La KeptPlant existe déjà avec les mêmes dates, vous pouvez effectuer une action appropriée ici
+          format.html { redirect_to kept_plants_url, alert: "Une même plante à garder sur ces dates existe déjà." }
         else
           @kept_plants << KeptPlant.new(kept_plant_params_with_attributes)
         end
