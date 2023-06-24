@@ -59,8 +59,7 @@ class CheckoutController < ApplicationController
 
     current_user.cart.cart_listings.destroy_all
 
-    # Redirect or render a success page
-    redirect_to listings_url # Assuming you have an `order_path` route and an `OrderController` to handle showing the order details
+    redirect_to listings_url
   end
 
   def cancel
