@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact/index'
+  get 'contact/create'
   resources :cart_listings
   resources :order_listings
   resources :orders
@@ -61,5 +63,5 @@ Rails.application.routes.draw do
   resources :owned_plants do
     resources :log_books, except: [:show]
   end
-  
+  post '/send_contact_email', to: 'contact#create'
 end
