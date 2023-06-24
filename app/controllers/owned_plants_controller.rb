@@ -81,5 +81,4 @@ class OwnedPlantsController < ApplicationController
   def owned_plant_params
     params.require(:owned_plant).permit(:plant_id, :quantity, :nickname, :description).merge(user_id: current_user.id)
   end
-
 end
