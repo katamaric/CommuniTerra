@@ -50,6 +50,7 @@ class CheckoutController < ApplicationController
           listing_id: cart_listing.listing_id,
           quantity: cart_listing.quantity
         )
+        flash[:notice] = "Le paiement a bien été effectué."
       else
         flash[:alert] = "Le produit #{listing.listing_title} n'est pas disponible dans la quantité demandée."
         redirect_to listings_url and return
