@@ -63,7 +63,6 @@ class CheckoutController < ApplicationController
   end
 
   def cancel
-    # Restaurer les quantités du panier en cas d'annulation
     cart_listings = current_user.cart.cart_listings
 
     cart_listings.each do |cart_listing|
