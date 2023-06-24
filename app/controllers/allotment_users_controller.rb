@@ -64,13 +64,14 @@ class AllotmentUsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_allotment_user
-      @allotment_user = AllotmentUser.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_allotment_user
+    @allotment_user = AllotmentUser.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def allotment_user_params
-      params.permit(:allotment_id, :member_id)
-    end       
+  # Only allow a list of trusted parameters through.
+  def allotment_user_params
+    params.permit(:allotment_id, :member_id)
+  end       
 end

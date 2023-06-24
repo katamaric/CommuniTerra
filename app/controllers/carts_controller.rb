@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-
   def index
     @cart = current_user.cart
   
@@ -56,8 +55,8 @@ class CartsController < ApplicationController
     else
       flash[:error] = 'The listing is out of stock.'
     end
-  
-    @cart_total = calculate_cart_total(@cart) # Calculate cart total
+    
+    @cart_total = calculate_cart_total(@cart)
     redirect_to carts_path
   end
   
@@ -80,20 +79,20 @@ class CartsController < ApplicationController
   
 
   private
-    # Only allow a list of trusted parameters through.
-    def cart_params
-      params.require(:cart).permit(:user_id, :listing_id, :quantity)
-    end
 
-    def calculate_cart_total(cart)
-      total = 0
-      cart.cart_listings.each do |cart_listing|
-        total += cart_listing.listing.price * cart_listing.quantity
-      end
-      total
-    end
-
-    def destroy_inactive_carts
-      Cart.where("last_activity_at < ?", 30.minutes.ago).destroy_all
-    end
+  def cart_params
+    params.require(:cart).permit(:user_id, :listing_id, :quantity)
   end
+
+  def calculate_cart_total(cart)
+    total = 0
+    cart.cart_listings.each do |cart_listing|
+      total += cart_listing.listing.price * cart_listing.quantity
+    end
+    total
+  end
+
+  def destroy_inactive_carts
+    Cart.where("last_activity_at < ?", 30.minutes.ago).destroy_all
+  end
+end
