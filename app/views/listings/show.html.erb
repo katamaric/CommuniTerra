@@ -18,7 +18,7 @@
     </div>
     <% else %>
       <div class="flex justify-between items-center px-4">
-				<%= button_to "Ajouter au panier", carts_path(listing_id: @listing.id), method: :post, class: "btn btn-primary", data: { turbo: false, listing_id: @listing.id } %>
+				<%= button_to "Ajouter au panier", carts_path(listing_id: @listing.id), method: :post, class: "p-2 text-indigo-500 font-semibold", data: { turbo: false, listing_id: @listing.id } %>
         <%= link_to "Retour aux articles", listings_path, class: "text-indigo-500 font-semibold" %>
       </div>
     <% end %>
