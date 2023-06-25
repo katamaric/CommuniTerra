@@ -1,11 +1,11 @@
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
+
 <div class="mx-auto md:w-2/3 min-h-screen flex flex-col justify-center" >
     <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Panier</h2>
-
-    <% if flash[:notice].present? %>
-      <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
-    <% elsif flash[:alert].present? %>
-      <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
-    <% end %>
 
     <div class="mt-8 flex justify-center">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-1/2">

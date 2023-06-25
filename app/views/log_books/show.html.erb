@@ -1,3 +1,9 @@
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
+
 <div id="<%= dom_id(@log_book) %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">Owned plant:</strong>

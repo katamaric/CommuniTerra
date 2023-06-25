@@ -1,4 +1,15 @@
 fr:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "L'adresse e-mail est déjà utilisée"
+            username:
+              taken: "Le nom d'utilisateur est déjà pris"
+      messages:
+        taken: "est déjà pris(e)"
   helpers:
     page_entries_info:
       more_pages:

@@ -1,3 +1,9 @@
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
+
 <div class="mx-auto md:w-2/3 w-full min-h-screen">
 
 <div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
@@ -9,7 +15,7 @@
     <%= form_with(model: [@owned_plant, @log_book], class: "space-y-6 contents", local: true) do |form| %>
       <% if @log_book.errors.any? %>
         <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-          <h2><%= pluralize(@log_book.errors.count, "error") %> prohibited this log_book from being saved:</h2>
+          <h2><%= pluralize(@log_book.errors.count, "erreur(s)") %> empêche(nt) l'entrée d'être sauvegardée :</h2>
 
           <ul>
             <% @log_book.errors.each do |error| %>

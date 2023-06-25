@@ -21,6 +21,6 @@ module CommuniterraThp
     config.public_file_server.enabled = true
 
     # Set the default locale to :fr
-    # config.i18n.default_locale = :fr
+    config.i18n.default_locale = :fr
   end
 end

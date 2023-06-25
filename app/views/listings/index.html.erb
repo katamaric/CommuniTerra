@@ -1,7 +1,7 @@
-<% if flash[:notice].present? %>
-  <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
-<% elsif flash[:alert].present? %>
-  <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
 <% end %>
 
 <section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">

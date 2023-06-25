@@ -1,4 +1,8 @@
-<p style="color: green"><%= notice %></p>
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
 
 <div>
   <%= link_to "Modifier", edit_plant_sitting_path(@plant_sitting) %> |

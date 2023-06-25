@@ -59,5 +59,9 @@ fr:
       not_found: "introuvable"
       not_locked: "n'a pas été verrouillé"
       not_saved:
-        one: "1 erreur a empêché l'enregistrement de cette %{resource} :"
-        other: "%{count} erreurs ont empêché l'enregistrement de cette %{resource} :"
+        one: "1 erreur a empêché l'enregistrement de cet(te) %{resource} :"
+        other: "%{count} erreurs ont empêché l'enregistrement de cet(te) %{resource} :"
+      email:
+        taken: "est déjà pris(e)"
+      username:
+        taken: "est déjà pris(e)"

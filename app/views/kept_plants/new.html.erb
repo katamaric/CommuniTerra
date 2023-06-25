@@ -1,7 +1,7 @@
-<% if flash[:notice].present? %>
-  <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
-<% elsif flash[:alert].present? %>
-  <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
 <% elsif @owned_plants.empty? %>
 <section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
   <div class="p-4">
@@ -10,7 +10,7 @@
     <%= link_to "Mes gardes", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
   </div>
   <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-    <p>Vous devez d'abord ajouter des plantes avant de créer une demande de plantsitting.</p>
+    <p>Vous devez d'abord ajouter des plantes avant de créer une demande de gardiennage.</p>
   </div>
   </section>
 <% else %>
