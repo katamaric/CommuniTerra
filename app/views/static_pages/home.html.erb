@@ -33,24 +33,22 @@
     </div>
   </div>
 
-  <section class="bg-white dark:bg-gray-900">
-    <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
-      <dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
-        <div class="flex flex-col items-center justify-center">
-          <dt class="mb-2 text-3xl md:text-4xl font-extrabold"><%= User.count %></dt>
-          <dd class="font-light text-gray-500 dark:text-gray-400">inscrits</dd>
-        </div>
-        <div class="flex flex-col items-center justify-center">
-          <dt class="mb-2 text-3xl md:text-4xl font-extrabold"><%= Allotment.count + PlantSitting.count + Listing.count %></dt>
-          <dd class="font-light text-gray-500 dark:text-gray-400">annonces</dd>
-        </div>
-        <div class="flex flex-col items-center justify-center">
-          <dt class="mb-2 text-3xl md:text-4xl font-extrabold"><%= Plant.count %></dt>
-          <dd class="font-light text-gray-500 dark:text-gray-400">plantes</dd>
-        </div>
-      </dl>
-    </div>
-  </section>
+  <div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
+    <dl class="grid max-w-screen-md gap-8 mx-auto text-gray-900 sm:grid-cols-3 dark:text-white">
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl md:text-4xl font-extrabold"><%= User.count %></dt>
+        <dd class="font-light text-gray-500 dark:text-gray-400">inscrits</dd>
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl md:text-4xl font-extrabold"><%= Allotment.count + PlantSitting.count + Listing.count %></dt>
+        <dd class="font-light text-gray-500 dark:text-gray-400">annonces</dd>
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <dt class="mb-2 text-3xl md:text-4xl font-extrabold"><%= Plant.count %></dt>
+        <dd class="font-light text-gray-500 dark:text-gray-400">plantes</dd>
+      </div>
+    </dl>
+  </div>
 
   <div class="grid pt-8 border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
     <div>
@@ -89,7 +87,7 @@
         </div>
         <div class="order-1 bg-green-primary rounded-lg shadow-xl w-5/12 px-6 py-4">
           <p class="mb-3 font-bold text-gray-400 text-xl">Laissez-vous guider</p>
-          <p class="text-sm font-medium leading-snug tracking-wide text-gray-400 text-opacity-100">Chaque jour, votre journal de bord vous indiquera comment prendre soin de votre plante toute au long de l'année. Remplissez le tous les jours et ne perdez plus le fil des arrosages !</p>
+          <p class="text-sm font-medium leading-snug tracking-wide text-gray-400 text-opacity-100">Chaque jour, votre journal de bord vous indiquera comment prendre soin de votre plante tout au long de l'année. Remplissez-le tous les jours et ne perdez plus le fil des arrosages !</p>
         </div>
       </div>
       <div class="mb-8 flex justify-between items-center w-full right-timeline">
@@ -99,7 +97,7 @@
         </div>
         <div class="order-1 bg-green-secondary rounded-lg shadow-xl w-5/12 px-6 py-4">
           <p class="mb-3 font-bold text-gray-800 text-xl">Partez en vacances en toute sérénité</p>
-          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Vous n'êtes pas chez vous pendant plusieurs jours ?<br>Utilisez notre système de plantsitting et trouver un super sitter qui prendra soin de vos plantes tous les jours et remplira leur journal de bord en fonction.<br>Zéro stress !</p>
+          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Vous n'êtes pas chez vous pendant plusieurs jours ?<br> Utilisez notre système de plantsitting et trouvez un super sitter qui prendra soin de vos plantes tous les jours et remplira leur journal de bord en conséquence. Zéro stress.</p>
         </div>
       </div>
     </div>
