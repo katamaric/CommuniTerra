@@ -2,60 +2,76 @@
   <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
 <% elsif flash[:alert].present? %>
   <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
-<% end %>
-
-<div class="md:w-2/3 w-full min-h-screen">
-
-<div class="flex min-h-screen flex-col mt-10 p-4">
-  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Créer une demande de plantsitting</h2>
+<% elsif @owned_plants.empty? %>
+<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
+  <div class="p-4">
+    <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Voir toutes les demandes", plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes gardes", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
   </div>
+  <div class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+    <p>Vous devez d'abord ajouter des plantes avant de créer une demande de plantsitting.</p>
+  </div>
+  </section>
+<% else %>
+<section class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 min-h-screen">
+  <div class="p-4">
+    <%= link_to "Ajouter des plantes à garder", new_kept_plant_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Voir toutes les demandes", plant_sittings_path, class: "p-4 text-indigo-500 font-semibold" %>
+    <%= link_to "Mes gardes", kept_plants_path, class: "p-4 text-indigo-500 font-semibold" %>
+  </div>
+  <div class="md:w-2/3 w-full min-h-screen">
+    <div class="flex min-h-screen flex-col mt-10 p-4">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Créer une demande de plantsitting</h2>
+      </div>
 
-  <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
-    <%= form_with(model: @kept_plant, url: kept_plants_path) do |form| %>
-      <% if @kept_plant.errors.any? %>
-        <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-          <h2><%= pluralize(@kept_plant.errors.count, "error") %> prohibited this form from being saved:</h2>
+      <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm">
+        <%= form_with(model: @kept_plant, url: kept_plants_path) do |form| %>
+          <% if @kept_plant.errors.any? %>
+            <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+              <h2><%= pluralize(@kept_plant.errors.count, "error") %> prohibited this form from being saved:</h2>
+              <ul>
+                <% @kept_plant.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% else %>
+            <div class="field mb-4">
+              <%= form.label :owned_plant_id, "Sélectionnez les plantes que vous souhaitez faire garder :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <div class="mt-2">
+                <% @owned_plants.each do |owned_plant| %>
+                  <div class="flex items-center">
+                    <%= form.check_box :owned_plant_id, { multiple: true }, owned_plant.id, id: "owned_plant_#{owned_plant.id}" %>
+                    <%= form.label "owned_plant_#{owned_plant.id}", owned_plant.plant.common_name, class: 'checkbox ml-2' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
 
-          <ul>
-            <% @kept_plant.errors.each do |error| %>
-              <li><%= error.full_message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+            <div class="field">
+              <%= form.label :start_date, "Date de début :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <%= form.date_field :start_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+            </div>
 
-    <div class="field mb-4">
-      <%= form.label :owned_plant_id, "Plantes à faire garder :", class: "block text-sm font-medium leading-6 text-gray-900" %>
-      <div class="mt-2">
-        <% @owned_plants.each do |owned_plant| %>
-          <div class="flex items-center">
-            <%= form.check_box :owned_plant_id, { multiple: true }, owned_plant.id, id: "owned_plant_#{owned_plant.id}" %>
-            <%= form.label "owned_plant_#{owned_plant.id}", owned_plant.plant.common_name, class: 'checkbox ml-2' %>
-          </div>
+            <div class="field">
+              <%= form.label :end_date, "Date de fin :", class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <%= form.date_field :end_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+            </div>
+
+            <div class="field">
+              <%= form.label :description, "Description : ", class: "block text-sm font-medium leading-6 text-gray-900" %>
+              <%= form.text_area :description, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+            <div class="actions bg-green-primary rounded-md mt-2">
+              <%= form.submit "Créer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
-
-      <div class="field">
-            <%= form.label :start_date, "Date de début :", class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <%= form.date_field :start_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-          </div>
-
-      <div class="field">
-            <%= form.label :end_date, "Date de fin :", class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <%= form.date_field :end_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-          </div>
-
-      <div class="field">
-        <%= form.label :description, "Description : ", class: "block text-sm font-medium leading-6 text-gray-900" %>
-        <%= form.text_area :description, class: "block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-      </div>
-
-      <div class="actions bg-green-primary rounded-md mt-2">
-        <%= form.submit "Créer", class: "flex w-full justify-center rounded-md bg-green-primary text-white px-3 py-2 text-sm font-semibold leading-5 shadow-sm hover:bg-green-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-primary" %>
-      </div>
-    <% end %>
-    </div>
   </div>
-</div>
+<% end %>
+</section>

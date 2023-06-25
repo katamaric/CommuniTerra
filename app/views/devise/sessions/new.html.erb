@@ -1,3 +1,9 @@
+<% if flash[:notice].present? %>
+  <%= render 'shared/alert', alert_type: 'success', alert_message: flash[:notice] %>
+<% elsif flash[:alert].present? %>
+  <%= render 'shared/alert', alert_type: 'error', alert_message: flash[:alert] %>
+<% end %>
+
 <div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <%= image_tag('logo_sm.png', alt: 'logo communiterra', class: 'mx-auto h-35 w-auto') %>
