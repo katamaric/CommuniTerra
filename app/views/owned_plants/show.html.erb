@@ -1,4 +1,8 @@
-<p style="color: green"><%= notice %></p>
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
 
 <div class="bg-white rounded-lg shadow-md p-4 m-4 h-full">
   <%= render @owned_plant %>

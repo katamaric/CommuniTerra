@@ -1,3 +1,9 @@
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
+
 <h1>Nouvelle plante</h1>
 
 <%= render "form", plant: @plant %>

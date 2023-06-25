@@ -1,3 +1,9 @@
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
+
 <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 min-h-screen">
   <h2 class="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Contactez nous</h2>
   <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">

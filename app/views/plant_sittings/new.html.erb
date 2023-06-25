@@ -1,9 +1,15 @@
+<% if flash[:notice].present? || flash[:alert].present? %>
+  <div id="alert-container" class="flex justify-center mb-4">
+    <%= render 'shared/alert', alert_type: flash[:notice].present? ? 'success' : 'error', alert_message: flash[:notice] || flash[:alert] %>
+  </div>
+<% end %>
+
 <h1>New plant sitting</h1>
 
 <%= form_with(model: plant_sitting) do |form| %>
   <% if plant_sitting.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(plant_sitting.errors.count, "error") %> prohibited this plant_sitting from being saved:</h2>
+      <h2><%= pluralize(plant_sitting.errors.count, "erreur(s)") %> empêche(nt) la sauvegarde de ce gardiennage.</h2>
 
       <ul>
         <% plant_sitting.errors.each do |error| %>
