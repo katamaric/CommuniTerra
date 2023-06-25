@@ -4,7 +4,7 @@
   </div>
 <% end %>
 
-<div class="min-h-screen">
+<div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
   <div class="py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="grid lg:grid-cols-2">
       <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
@@ -21,7 +21,7 @@
         </div>
         <%= link_to 'Rejoignez nous >', new_user_registration_path, class: 'inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-green-primary transition duration-200 rounded shadow-md bg-green-secondary hover:text-green-dark focus:shadow-outline focus:outline-none' %>
       </div>
-      <div class="flex items-center justify-center -mx-4 lg:pl-8">
+      <div class="flex items-center justify-center -mx-4 lg:pl-8 mt-8 lg:mt-0">
         <div class="flex flex-col items-end px-3">
           <%= image_tag('succulent.png', class: 'object-cover mb-6 rounded shadow-lg sm:h-48 xl:h-56 sm:w-48 xl:w-56', alt: 'succulent en pot') %>
           <%= image_tag('shed.png', class: 'object-cover rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40', alt: 'abri jardin') %>
@@ -52,13 +52,21 @@
     </div>
   </section>
 
-  <div class="flex justify-between px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <figure class="max-w-lg">
-      <%= image_tag('color_pop.png', class: 'h-auto max-w-full rounded-lg', alt: 'main qui arrose sa plante') %>
-    </figure>
-    <figure class="max-w-lg">
-      <%= image_tag('market.png', class: 'h-auto max-w-full rounded-lg', alt: 'marché aux plantes') %>
-    </figure>
+  <div class="grid pt-8 border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
+    <div>
+      <div class="mb-10">
+        <figure class="max-w-lg mx-auto">
+          <%= image_tag('market.png', class: 'h-auto max-w-full rounded-lg', alt: 'marché aux plantes') %>
+        </figure>
+      </div>
+    </div>
+    <div>
+      <div class="mb-10">
+        <figure class="max-w-lg mx-auto">
+          <%= image_tag('color_pop.png', class: 'h-auto max-w-full rounded-lg', alt: 'main qui arrose sa plante') %>
+        </figure>
+      </div>
+    </div>
   </div>
 
   <div class="container mx-auto w-full h-full">
@@ -71,10 +79,9 @@
         </div>
         <div class="order-1 bg-green-secondary rounded-lg shadow-xl w-5/12 px-6 py-4">
           <p class="mb-3 font-bold text-gray-800 text-xl">Créez votre compte</p>
-          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Rejoignez notre communauté en remplissant votre profil : un pseudo, les plantes dont vous vous occupez, et c'est parti !</p>
+          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Rejoignez notre communauté en remplissant votre profil,<br>un pseudo,<br>les plantes dont vous vous occupez,<br>et c'est parti !</p>
         </div>
       </div>
-
       <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
         <div class="order-1 w-5/12"></div>
         <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -85,7 +92,6 @@
           <p class="text-sm font-medium leading-snug tracking-wide text-gray-400 text-opacity-100">Chaque jour, votre journal de bord vous indiquera comment prendre soin de votre plante toute au long de l'année. Remplissez le tous les jours et ne perdez plus le fil des arrosages !</p>
         </div>
       </div>
-
       <div class="mb-8 flex justify-between items-center w-full right-timeline">
         <div class="order-1 w-5/12"></div>
         <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -93,7 +99,7 @@
         </div>
         <div class="order-1 bg-green-secondary rounded-lg shadow-xl w-5/12 px-6 py-4">
           <p class="mb-3 font-bold text-gray-800 text-xl">Partez en vacances en toute sérénité</p>
-          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Vous n'êtes pas chez vous pendant plusieurs jours ? Utilisez notre système de plantsitting et trouver un super sitter qui prendra soin de vos plantes tous les jours et remplira leur journal de bord en fonction. Zéro stress.</p>
+          <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">Vous n'êtes pas chez vous pendant plusieurs jours ?<br>Utilisez notre système de plantsitting et trouver un super sitter qui prendra soin de vos plantes tous les jours et remplira leur journal de bord en fonction.<br>Zéro stress !</p>
         </div>
       </div>
     </div>
