@@ -34,5 +34,4 @@ class CartListingsController < ApplicationController
   def destroy_inactive_carts
     Cart.where("last_activity_at < ?", 30.minutes.ago).destroy_all
   end
-  
 end

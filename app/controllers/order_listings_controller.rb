@@ -58,13 +58,14 @@ class OrderListingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order_listing
-      @order_listing = OrderListing.find(params[:id])
-    end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order_listing
+    @order_listing = OrderListing.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def order_listing_params
-      params.require(:order_listing).permit(:listing_id, :order_id, :quantity)
-    end
+  # Only allow a list of trusted parameters through.
+  def order_listing_params
+    params.require(:order_listing).permit(:listing_id, :order_id, :quantity)
+  end
 end

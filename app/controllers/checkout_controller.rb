@@ -50,6 +50,7 @@ class CheckoutController < ApplicationController
           listing_id: cart_listing.listing_id,
           quantity: cart_listing.quantity
         )
+        flash[:notice] = "Le paiement a bien été effectué."
       else
         flash[:alert] = "Le produit #{listing.listing_title} n'est pas disponible dans la quantité demandée."
         redirect_to listings_url and return
@@ -58,12 +59,10 @@ class CheckoutController < ApplicationController
 
     current_user.cart.cart_listings.destroy_all
 
-    # Redirect or render a success page
-    redirect_to listings_url # Assuming you have an `order_path` route and an `OrderController` to handle showing the order details
+    redirect_to listings_url
   end
 
   def cancel
-    # Restaurer les quantités du panier en cas d'annulation
     cart_listings = current_user.cart.cart_listings
 
     cart_listings.each do |cart_listing|

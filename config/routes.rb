@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contact/index'
+  get 'contact/create'
   resources :cart_listings
   resources :order_listings
   resources :orders
@@ -7,15 +9,10 @@ Rails.application.routes.draw do
   namespace :admin do
       resources :users
       resources :allotments
-      resources :allotment_users
       resources :deliveries
-      resources :kept_plants
       resources :listings
-      resources :log_books
       resources :owned_plants
       resources :plants
-      resources :plant_sittings
-
       root to: "users#index"
     end
 
@@ -66,5 +63,5 @@ Rails.application.routes.draw do
   resources :owned_plants do
     resources :log_books, except: [:show]
   end
-  
+  post '/send_contact_email', to: 'contact#create'
 end
