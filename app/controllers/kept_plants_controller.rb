@@ -2,7 +2,6 @@ class KeptPlantsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_kept_plant, only: %i[ show edit update destroy ]
 
-  # GET /kept_plants or /kept_plants.json
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
@@ -20,21 +19,17 @@ class KeptPlantsController < ApplicationController
     @current_user_plant_sittings = current_user.plant_sittings.includes(:kept_plants)
   end
 
-  # GET /kept_plants/1 or /kept_plants/1.json
   def show
   end
 
-  # GET /kept_plants/new
   def new
     @kept_plant = KeptPlant.new
     @owned_plants = current_user.owned_plants
   end
 
-  # GET /kept_plants/1/edit
   def edit
   end
 
-  # POST /kept_plants or /kept_plants.json
   def create
     @owned_plants = current_user.owned_plants
     @kept_plants = []
@@ -51,38 +46,29 @@ class KeptPlantsController < ApplicationController
         existing_kept_plant = KeptPlant.find_by(owned_plant_id: owned_plant.id)
   
         if existing_kept_plant && existing_kept_plant.start_date == kept_plant_params_with_attributes[:start_date] && existing_kept_plant.end_date == kept_plant_params_with_attributes[:end_date]
-          format.html { redirect_to kept_plants_url, alert: "Une même plante à garder sur ces dates existe déjà." }
+          redirect_to kept_plants_url, alert: "Une même plante à garder sur ces dates existe déjà."
+          return
         else
           @kept_plants << KeptPlant.new(kept_plant_params_with_attributes)
         end
       end
     end
   
-    respond_to do |format|
-      if @kept_plants.all?(&:save)
-        format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont été ajoutées avec succès." }
-        format.json { render :index, status: :created, location: kept_plants_url }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @kept_plants.map { |kp| kp.errors.full_messages }, status: :unprocessable_entity }
-      end
+    if @kept_plants.all?(&:save)
+      redirect_to kept_plants_url, notice: "Les plantes à garder ont été ajoutées avec succès."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /kept_plants/1 or /kept_plants/1.json
   def update
-    respond_to do |format|
-      if @kept_plant.update(kept_plant_params)
-        format.html { redirect_to kept_plant_url(@kept_plant), notice: "Les plantes à garder ont bien été modifiées." }
-        format.json { render :show, status: :ok, location: @kept_plant }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @kept_plant.errors, status: :unprocessable_entity }
-      end
+    if @kept_plant.update(kept_plant_params)
+      redirect_to kept_plant_url(@kept_plant), notice: "Les plantes à garder ont bien été modifiées."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /kept_plants/1 or /kept_plants/1.json
   def destroy
     if @kept_plant.nil?
       KeptPlant.where(start_date: params[:start_date], end_date: params[:end_date]).destroy_all
@@ -90,15 +76,11 @@ class KeptPlantsController < ApplicationController
       @kept_plant.destroy
     end
   
-    respond_to do |format|
-      format.html { redirect_to kept_plants_url, notice: "Les plantes à garder ont bien été supprimées." }
-      format.json { head :no_content }
-    end
+    redirect_to kept_plants_url, notice: "Les plantes à garder ont bien été supprimées."
   end  
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_kept_plant
     if params[:id] == 'delete'
       @kept_plants = KeptPlant.where(start_date: params[:start_date], end_date: params[:end_date])
@@ -107,7 +89,6 @@ class KeptPlantsController < ApplicationController
     end
   end  
 
-  # Only allow a list of trusted parameters through.
   def kept_plant_params
     params.require(:kept_plant).permit(:quantity, :description, :start_date, :end_date, owned_plant_id: [])
   end    

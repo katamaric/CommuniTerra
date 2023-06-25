@@ -12,19 +12,19 @@
         <% @current_user_plant_sittings.each do |plant_sitting| %>
           <div class="p-4 border rounded-lg mb-4">
             <h2 class="font-semibold text-lg">
-              Plant Sitter: <%= plant_sitting.sitter.username %>
+              Gardien : <%= plant_sitting.sitter.username %>
             </h2>
 
             <h2 class="font-semibold text-lg">
-              Plant Asker: <%= plant_sitting.asker.username %>
+              Demandeur : <%= plant_sitting.asker.username %>
             </h2>
 
 
             <% if plant_sitting.kept_plants.nil? %>
-              <p>No kept_plants found for this plant_sitting.</p>
+              <p>Aucune plante n'a été trouvée pour ce gardiennage.</p>
             <% else %>
               <h2 class="font-semibold text-xl">
-                Kept Plants:
+                Plantes gardées :
               </h2>
               <ul>
                 <% plant_sitting.kept_plants.each do |kept_plant| %>
