@@ -34,7 +34,7 @@ class CheckoutController < ApplicationController
 
     order = Order.create!(user_id: current_user.id, order_total: @total)
     order.save!
-    # OrderMailer.order_confirmation(current_user, order).deliver_now
+    OrderMailer.order_confirmation(current_user, order).deliver_now
 
     cart_listings = current_user.cart.cart_listings
 
