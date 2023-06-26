@@ -4,7 +4,7 @@
   </div>
 <% end %>
 
-<div class="max-w-3xl p-5 mx-auto my-5 min-h-screen">
+<main class="max-w-3xl p-5 mx-auto my-5 min-h-screen">
   <h1 class="text-3xl font-bold mb-4"><%= @plant.common_name %></h1>
   <p class="text-gray-600 mb-6">De son nom latin <%= @plant.latin_name %></p>
 
@@ -121,4 +121,4 @@
       <%= link_to "Se connecter pour ajouter cette plante", new_user_session_path, class: "bg-green-primary text-white py-2 px-4 mt-6 inline-block rounded-lg" %>
     </div>
   <% end %>
-</div>
+</main>
