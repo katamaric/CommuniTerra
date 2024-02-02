@@ -55,4 +55,4 @@ You should be able to access it via your standard friendly http://localhost:3000
 
 ## Visit the website
 
-Painstakingly deployed to Heroku, you can browse and use CommuniTerra at this address: https://communiterra.herokuapp.com/
+Painstakingly deployed to Heroku, you can browse and use CommuniTerra at this address: https://communiterra.fly.dev
